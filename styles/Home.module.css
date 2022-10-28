@@ -118,6 +118,11 @@
   color: #2957cb;
 }
 
+.header {
+ 
+  background-color: #fafafa;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
