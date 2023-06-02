@@ -1,0 +1,15 @@
+.description {
+  color: #B6B6B6;
+  line-height: 16px;
+  font-weight: 200;
+}
+
+.originalPrice {
+  color: red;
+  text-decoration: line-through;
+}
+
+.row{
+  border-bottom: 1px solid #E7E7E7;
+  padding:  15px 0 15px 0;
+}

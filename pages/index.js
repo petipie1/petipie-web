@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -25,8 +25,8 @@ export default function Home() {
 
         <Grid container item>
           <Grid item>
-            <Typography style={{ color: "#737373" }}>{"Email: octo@gmail.com"}</Typography>
-            <Typography style={{ color: "#737373" }}>{"Contact: 00355686284516"}</Typography>
+            <Typography style={{ color: '#737373' }}>{'Email: octo@gmail.com'}</Typography>
+            <Typography style={{ color: '#737373' }}>{'Contact: 00355686284516'}</Typography>
           </Grid>
 
           <Grid container item style={{ marginTop: '10px' }}>
@@ -44,11 +44,7 @@ export default function Home() {
           </Grid>
 
         </Grid>
-
-
-
-
       </footer>
     </div >
-  )
+  );
 }
