@@ -1,9 +1,6 @@
-import { Container, Grid, useMediaQuery } from '@mui/material';
-import { Hidden } from '@mui/material';
+import { Container, Grid, useMediaQuery, Hidden } from '@mui/material';
 import * as PropTypes from 'prop-types';
 import React from 'react';
-
-
 
 const CondensedContainer = ({ children, ...props }: any) => {
   const isSmDown = !useMediaQuery((theme: any) => theme.breakpoints.down('sm'));
@@ -16,7 +13,7 @@ const CondensedContainer = ({ children, ...props }: any) => {
           <Grid item sm={1} />
         </Hidden>
         <Grid item style={{
-          justifyContent: "center"
+          justifyContent: 'center'
         }} container xs={'auto'} sm={isSmDown ? smDownValue : 12} >
           {children}
         </Grid>

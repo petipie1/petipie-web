@@ -4,10 +4,8 @@ import { Button, Grid, Typography } from '@mui/material';
 
 const OrderTotal = ({ total, show, onClick, isPopupOpen }: any) => {
 
-  // if (!show)
-  //   return null;
-
   const buttonLabel = isPopupOpen ? 'Order' : 'Continue';
+
   return (
     <Grid item container sx={{
       position: 'fixed', bottom: 0, left: 0, right: 0,

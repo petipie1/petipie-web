@@ -1,15 +1,12 @@
-import React, { useCallback, useState } from 'react';
-import Highlight from '../../Base/Highlight';
+import React, { useCallback } from "react";
 // import { StyledText } from 'components/BaseComponents/StyledText';
-import PropTypes from 'prop-types';
-import { Grid, Card, CardContent, Container, Typography, CardMedia } from '@mui/material';
+import PropTypes from "prop-types";
+import { Grid, Typography } from "@mui/material";
 // import StepCount from 'components/StepCount/Loadable';
 // import { glide } from 'react-tiger-transition/esm/react-tiger-transition';
 // import CSSTransition from 'react-transition-group/CSSTransition';
 // import ConfirmationDialog from 'components/ConfirmationDialog/Loadable';
-import Image from 'next/image';
-import styles from './MenuItem.module.css';
-import StepCount from '../../StepCount';
+import StepCount from "../../StepCount";
 // import ConfirmationDialog from '../../ConfirmationDialog';
 
 // glide({
@@ -24,19 +21,18 @@ import StepCount from '../../StepCount';
 const MenuItem = ({
   name,
   imageUrl,
-  imgUrl,
   index,
   quantity,
   price,
   onCountChange,
-  animationDelay,
-  description,
+  // animationDelay,
+  // description,
   // promoId,
-  discount,
+  // discount,
   // addedByPromo,
 }: any) => {
 
-  const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
+  // const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
   // const classes = useStyles();
   const stepOnChangeHandler = useCallback(
     (newValue: number) => {
@@ -48,19 +44,18 @@ const MenuItem = ({
 
   // const [rowPrice, setRowPrice] = useState(quantity * price);
 
-  const handleOnRemoveItem = useCallback((shouldRemove: boolean) => {
-    if (shouldRemove) onCountChange(0);
-  }, []);
+  // const handleOnRemoveItem = useCallback((shouldRemove: boolean) => {
+  //   if (shouldRemove) onCountChange(0);
+  // }, []);
 
   const memoImage = React.useMemo(
     () =>
       <Grid item container sx={{
-        backgroundColor: '#fff', borderRadius: 1.5,
-        marginRight: 1, width: '60px', height: '60px'
+        backgroundColor: "#fff", borderRadius: 1.5,
+        marginRight: 1, width: "60px", height: "60px"
       }}
-        alignItems={'center'} justifyContent="center"
+        alignItems={"center"} justifyContent="center"
       >
-
         <img alt="" src={imageUrl} height={16} width={16} style={{ padding: 1, margin: 1 }}
         />
       </Grid>
@@ -68,7 +63,7 @@ const MenuItem = ({
     [imageUrl],
   );
 
-  const isPromotionItem = false; // !!promoId || !!addedByPromo || promoComponents?.length >= 1;
+  // const isPromotionItem = false; // !!promoId || !!addedByPromo || promoComponents?.length >= 1;
 
   const itemDetails = React.useMemo(() => {
     const renderItemDetails = (caption: string) => (
@@ -77,12 +72,12 @@ const MenuItem = ({
       <Typography
         variant="body1"
         sx={{
-          display: '-webkit-box',
-          overflow: 'hidden',
-          WebkitBoxOrient: 'vertical',
+          display: "-webkit-box",
+          overflow: "hidden",
+          WebkitBoxOrient: "vertical",
           WebkitLineClamp: 3,
-          color: 'black',
-          lineHeight: '16px',
+          color: "black",
+          lineHeight: "16px",
           fontWeight: 600
         }}
       >
@@ -95,31 +90,31 @@ const MenuItem = ({
     return <>{renderItemDetails(price)}</>;
   }, [price]);
 
-  const discountedTotal = () => (
-    <>
-      <Highlight variant="h4">
-        {price === 0 ? 'FREE' : `Lek ${price.toFixed(2)}`}
-      </Highlight>
-      <Typography variant="h3" className={styles.originalPrice}>
-        {`Lek ${(price + discount).toFixed(2)}`}
-      </Typography>
-    </>
-  );
+  // const discountedTotal = () => (
+  //   <>
+  //     <Highlight variant="h4">
+  //       {price === 0 ? 'FREE' : `Lek ${price.toFixed(2)}`}
+  //     </Highlight>
+  //     <Typography variant="h3" className={styles.originalPrice}>
+  //       {`Lek ${(price + discount).toFixed(2)}`}
+  //     </Typography>
+  //   </>
+  // );
 
   const content = (
     <Grid padding={1} container direction="row">
       <Grid item container xs={2.5}
         sx={{
-          justifyContent: 'center',
-          alignContent: 'center',
+          justifyContent: "center",
+          alignContent: "center",
         }}>
         {memoImage}
       </Grid>
       <Grid item container xs={5.5}
-        direction={'column'}
+        direction={"column"}
         sx={{
-          justifyContent: 'start',
-          alignContent: 'start',
+          justifyContent: "start",
+          alignContent: "start",
         }}>
         <Typography variant="subtitle1" color="#515075">
           {name}
@@ -128,9 +123,9 @@ const MenuItem = ({
       </Grid>
       <Grid item container xs={4}
         sx={{
-          justifyContent: 'center',
-          alignContent: 'center',
-          alignItems: 'center'
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center"
         }}>
         <StepCount
           idx={index}
@@ -166,9 +161,9 @@ MenuItem.propTypes = {
 
 MenuItem.defaultProps = {
   animationDelay: 300,
-  description: '',
+  description: "",
   quantity: 0,
-  imageUrl: '/coke.png'
+  imageUrl: ""
 };
 
 export default React.memo(

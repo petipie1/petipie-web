@@ -6,7 +6,6 @@ import * as PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 
 import { Typography } from '@mui/material';
-import { isString } from 'lodash';
 
 const buildColor = (color: string) => {
   if (color !== 'default') {
@@ -28,10 +27,10 @@ export const StyledText = ({
   const output = useMemo(
     () =>
       React.Children.map(children, child => {
-        if (isString(child)) {
+        if (typeof child === 'string') {
           const newChild = child.replace(
             /®/g,
-            `<span style="font-size: x-small; vertical-align: super">®</span>`,
+            '<span style="font-size: x-small; vertical-align: super">®</span>',
           );
           return newChild;
         }

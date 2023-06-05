@@ -1,22 +1,19 @@
 import React, { useEffect, useMemo, useState } from "react";
 // import AppBar from '@mui/material/AppBar';
-
 import { useDispatch, useSelector } from "react-redux";
-
 import type { NextPage } from "next";
-import { getBusinessMenu, postOrder, callWaiter } from "../../../../services/apiClient";
 import Menu from "components/Menu";
-// import { businessData, categories } from "../../../../common/constants";
 import { clearCart, updateCartItemQuantity, updateCartNote } from "redux/reducers/cartSlice";
 import OrderTotal from "components/OrderTotal";
 import MenuSlider from "components/MenuSlider";
 import OrderSummary from "components/OrderSummary";
 import InfoDialog from "components/InfoDialog";
 import SearchBox from "components/SearchBox";
-import { calculateCartTotal, diffInMinutesFromNow, randomString, scroll } from "utils/common";
+import { businessData, categories } from "common/constants";
+import { calculateCartTotal, diffInMinutesFromNow, scroll } from "utils/common";
 import EmptyView from "components/EmptyView";
 
-const MenuPage: NextPage = ({ business, umbrella }: any) => {
+const MenuPage: NextPage = ({ business }: any) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: any) => state.cart);
 
@@ -24,21 +21,9 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [callWaiterOpen, setCallWaiterOpen] = useState(false);
+  const [waiterAlerted, setWaiterAlerted] = useState(false);
 
-  const sanitizedMenu = business?.menu?.filter((category: any) => category?.available)
-    .map((category: any) => (
-      {
-        ...category,
-        products: category?.products.filter((product: any) => product.available)
-      }));
-
-  const [menu, setMenu] = useState(sanitizedMenu);
-
-  const categories = sanitizedMenu?.
-    map((category: any) => ({
-      text: category?.name,
-      url: category?.url ?? category?.name?.toLowerCase(),
-    }));
+  const [menu, setMenu] = useState(business?.menu);
 
   const onCountChange = React.useCallback(
     (product: any, quantity: number) => {
@@ -56,37 +41,21 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
       setOpen(false);
     }
     return () => { };
+
   }, [cart?.items]);
 
   const onMenuClickHandler = ({ url }: any) => scroll(url);
 
-  const orderTotal = React.useMemo(() =>
-    calculateCartTotal(cart?.items), [cart?.items]);
+  const orderTotal = React.useMemo(() => calculateCartTotal(cart?.items), [cart?.items]);
 
-  const handleContinue = async () => {
+  const handleContinue = () => {
     if (cart?.lastOrderTime && diffInMinutesFromNow(cart?.lastOrderTime) < 3) {
       setIsAlertOpen(true);
       return;
     }
 
     if (open) {
-      const items = Object.values(cart?.items);
-      const orderRef = `${business?.name.slice(0, 3)}-${randomString(5)}`;
-
-      const orderRequest = {
-        businessId: business.id,
-        umbrella,
-        status: "awaiting",
-        orderNumber: orderRef,
-        total: orderTotal,
-        currency: "Lek",
-        items: items,
-        note: cart?.notes
-      };
-
-      const order = await postOrder(orderRequest);
-      console.log("order", order);
-      dispatch(clearCart(false));
+      dispatch(clearCart(true));
       setIsDialogOpen(true);
     }
     setOpen(!open);
@@ -96,9 +65,9 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
 
   const handleSearch = (term: string) => {
     if (!term) {
-      setMenu(sanitizedMenu);
+      setMenu(business?.menu);
     } else {
-      const filterdMenu = sanitizedMenu.map((category: any) => ({
+      const filterdMenu = business?.menu.map((category: any) => ({
         ...category,
         products: category?.products.filter((product: any) => filterProduct(product.name, term))
       }));
@@ -113,27 +82,24 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
   };
 
   const handleCallWaiter = () => {
-    const orderRequest = {
-      recipient: business.whatsapp,
-      umbrella,
-    };
-    callWaiter(orderRequest);
+    console.log(`Kerkohet kamarieri tek çadra: ${3}`);
     setCallWaiterOpen(false);
+    setWaiterAlerted(true);
   };
 
   const orderItems = Object.values(cart?.items);
 
-  const shouldOpen = useMemo(() =>
-    Boolean(orderItems?.length && open), [orderItems?.length, open]);
+  const shouldOpen = useMemo(() => Boolean(orderItems?.length && open), [orderItems?.length, open]);
 
-  if (!business?.available)
-    return <EmptyView />;
+  // if (business?.available)
+  //   return <EmptyView />;
 
   return (
     <>
       <SearchBox
         onSearch={handleSearch}
         onIconClick={() => setCallWaiterOpen(true)} />
+
       <MenuSlider
         menuItems={categories}
         onClickHandler={onMenuClickHandler}
@@ -157,7 +123,6 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
       <OrderTotal total={orderTotal} show={!!(orderTotal)}
         onClick={handleContinue}
         isPopupOpen={open} />
-
       <InfoDialog title="Porosia u konfirmua."
         message="Kamarieri po vjen, ju lutem qendroni ne cader :)"
         isOpen={isDialogOpen}
@@ -168,6 +133,11 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
         isOpen={isAlertOpen}
         isInfo
         handleClose={() => setIsAlertOpen(false)} />
+      <InfoDialog title="U njoftua"
+        message="Kamarieri u njoftua dhe do te vije per pak."
+        isOpen={waiterAlerted}
+        isInfo
+        handleClose={() => setWaiterAlerted(false)} />
       <InfoDialog title="Therrisni kamarierin"
         message="Doni te therrisni kamarierin tek çadra?"
         isOpen={callWaiterOpen}
@@ -179,24 +149,11 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
 
 export default MenuPage;
 
-export async function getServerSideProps(ctx: any) {
-
-  const { umbrella, id } = ctx.query;
-
-  const { data: business } = await getBusinessMenu(id, umbrella);
-  console.log("businessL", business?.menu);
-
-  // if(!delivery)
-  //return {
-  //   redirect: {
-  //     destination: '/delivery-not-found'
-  //   }
-  // }
+export async function getServerSideProps() {
 
   return {
     props: {
-      business,
-      umbrella
+      business: businessData
     }
   };
 }

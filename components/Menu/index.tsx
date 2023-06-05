@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import MenuItem from './MenuItem';
-import { Container, Grid, Typography } from '@mui/material';
+import React from "react";
+import PropTypes from "prop-types";
+import MenuItem from "./MenuItem";
+import { Box, Container, Grid, Typography } from "@mui/material";
 
 const Menu = ({ menu, onCountChange, cartItems }: any) => {
 
   return (
     <>
       <Container maxWidth="sm" >
-        <Grid container item spacing={3} sx={{ justify: 'center', alignItems: 'center' }}>
+        <Grid container item spacing={3} sx={{ justify: "center", alignItems: "center" }}>
           {menu.map((category: any, idx: number) => (
-            <Grid item container key={idx} id={category.name.toLowerCase()} sx={{ justifyContent: 'start', alignItems: 'center' }}>
+            <Grid item container key={idx} id={category?.url ?? category.name.toLowerCase()} sx={{ justifyContent: "start", alignItems: "center" }}>
               <Typography color="#51515C" variant='h6'
                 sx={{ marginBottom: 2, fontWeight: 400 }} >
                 {category?.name}
@@ -30,6 +30,7 @@ const Menu = ({ menu, onCountChange, cartItems }: any) => {
               </Grid>
             </Grid>
           ))}
+          <Box sx={{ m: 8 }} />
         </Grid >
       </Container >
     </>
@@ -37,9 +38,9 @@ const Menu = ({ menu, onCountChange, cartItems }: any) => {
 };
 
 Menu.propTypes = {
-  menu: PropTypes.object,
+  menu: PropTypes.array,
   onCountChange: PropTypes.func,
-  orderItems: PropTypes.array
+  cartItems: PropTypes.object
 };
 
 export default Menu;

@@ -1,5 +1,5 @@
 // import CircleButton from 'components/BaseComponents/CircleButton';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CircleButton from '../Base/CircleButton';
 // import DeleteForeverIcon from '@mui/icons-material/DeleteForeverOutlined';
@@ -9,7 +9,8 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 interface StepCountProps {
   value: number;
-  onStepValueChange: (count: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  onStepValueChange: (value: number) => void;
   enableDelete: boolean;
 
 }

@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Button, Container, Grid, Link, Tab, Tabs, styled } from '@mui/material';
-import PhoneMissedIcon from '@mui/icons-material/PhoneMissed';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { Container, Link, Tab, Tabs, styled } from "@mui/material";
 
 const StyledTab = styled(Tab)({
-  minHeight: '44px',
+  minHeight: "44px",
 });
 
 const MenuSlider = ({ selectedTabUrlValue, menuItems, onClickHandler }) => {
@@ -26,28 +25,28 @@ const MenuSlider = ({ selectedTabUrlValue, menuItems, onClickHandler }) => {
   return (
     <Container disableGutters maxWidth="sm"
       sx={{
-        overflowX: 'auto',
+        overflowX: "auto",
         // position: '-webkit-sticky',
-        position: 'sticky',
+        position: "sticky",
         top: 0,
         zIndex: 1,
-        background: '#Ffdd74',
-        opacity: '0.95',
+        background: "#Ffdd74",
+        opacity: "0.95",
       }}>
       <Tabs
         value={tabIndex}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons="on"
+        scrollButtons
         orientation="horizontal"
         aria-label="scrollable auto tabs example"
         indicatorColor='red'
-        textColor='white'
+        textColor='inherit'
         sx={{
           padding: 0.5,
           marginTop: 1,
-          display: 'flex',
-          overflowX: 'auto'
+          display: "flex",
+          overflowX: "auto"
         }}
 
       >
@@ -58,15 +57,15 @@ const MenuSlider = ({ selectedTabUrlValue, menuItems, onClickHandler }) => {
               icon={<img alt="" src={`/${item.url}.png`} height={18} width={18} />}
               iconPosition='start'
               sx={{
-                height: '40px',
-                minWidth: 'auto',
-                textTransform: 'none',
+                height: "40px",
+                minWidth: "auto",
+                textTransform: "none",
                 fontWeight: idx === tabIndex ? 700 : null,
-                backgroundColor: '#020f85',
-                opacity: idx === tabIndex ? null : '0.7',
-                borderRadius: '12px',
-                color: 'white',
-                margin: '3px',
+                backgroundColor: "#020f85",
+                opacity: idx === tabIndex ? null : "0.7",
+                borderRadius: "12px",
+                color: "white",
+                margin: "3px",
               }}
 
               disableRipple

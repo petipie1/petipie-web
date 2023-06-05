@@ -1,14 +1,11 @@
-import React, { useCallback, useState } from 'react';
-import Highlight from '../../Base/Highlight';
+import React, { useCallback } from 'react';
 // import { StyledText } from 'components/BaseComponents/StyledText';
 import PropTypes from 'prop-types';
-import { Grid, Card, CardContent, Container, Typography, CardMedia } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 // import StepCount from 'components/StepCount/Loadable';
 // import { glide } from 'react-tiger-transition/esm/react-tiger-transition';
 // import CSSTransition from 'react-transition-group/CSSTransition';
 // import ConfirmationDialog from 'components/ConfirmationDialog/Loadable';
-import Image from 'next/image';
-import styles from './MenuItem.module.css';
 import StepCount from '../../StepCount';
 // import ConfirmationDialog from '../../ConfirmationDialog';
 
@@ -28,7 +25,7 @@ const OrderItem = ({
   quantity,
   price,
   onCountChange,
-  discount,
+  // discount,
 }: any) => {
 
   // const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);

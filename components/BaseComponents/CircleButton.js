@@ -24,13 +24,13 @@ import IconButton from '@mui/material/IconButton';
 // });
 
 const CircleButton = ({
-  height,
-  width,
-  padding,
-  border,
-  borderColor,
+  // height,
+  // width,
+  // padding,
+  // border,
+  // borderColor,
   disabled,
-  className,
+  // className,
   ...props
 }) => {
   // const classes = useStyles({

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface CartState {
   items: any;
@@ -6,18 +6,20 @@ export interface CartState {
   hasPromo: any;
   discount: any;
   notes?: string;
+  lastOrderTime?: string;
 }
 
 const initialState: CartState = {
   items: {},
-  promoCode: '',
+  promoCode: "",
   hasPromo: false,
   discount: 0,
-  notes: '',
+  notes: "",
+  lastOrderTime: ""
 };
 
 export const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     addProductToCart: (state, action) => {
@@ -42,12 +44,13 @@ export const cartSlice = createSlice({
       console.log(note);
       state.notes = note;
     },
-    clearCart: (state) => {
+    clearCart: (state, isDemo) => {
       state.items = {};
-      state.promoCode = '';
+      state.promoCode = "";
       state.hasPromo = false;
       state.discount = 0;
-      state.notes = '';
+      state.notes = "";
+      state.lastOrderTime = isDemo ? "" : new Date().toISOString();
     },
   },
 });

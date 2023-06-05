@@ -19,94 +19,13 @@ const selectorBuilder = (
     return copy;
   }, {});
 
-const commonStyles = {
-  root: ({ topLeft, bottomLeft, topRight, bottomRight }: any) => ({
-    backgroundColor: 'rgba(255, 255, 255, 1)',
-    color: 'rgba(41, 41, 41, 1)',
-    '& .MuiInputBase-root': {
-      fontWeight: 400,
-    },
-    '& .MuiInputBase-input.Mui-disabled': {
-      color: 'rgb(111 111 111)',
-      background: 'rgb(241,241,241)',
-    },
-    '& .MuiFilledInput-root': {
-      backgroundColor: 'rgba(255, 255, 255, 1)',
-      ...makeBorder({
-        topLeft,
-        bottomLeft,
-        topRight,
-        bottomRight,
-        color: 'rgb(241,241,241)',
-      }),
-      '&.Mui-disabled': {
-        color: 'rgb(111 111 111)',
-        background: 'rgb(241,241,241)',
-      },
-    },
-    '& .MuiFilledInput-root > .MuiInputAdornment-root': {
-      color: 'rgb(111 111 111)',
-    },
-    '& .MuiFormLabel-root': {
-      color: 'rgb(111 111 111)',
-      fontWeight: 400,
-    },
-    ...selectorBuilder('.MuiFilledInput-underline', [':before', ':after'], {
-      borderBottom: 'none',
-    }),
-    ...selectorBuilder(
-      '.MuiFilledInput-root',
-      ['.Mui-focused', '.Mui-active'],
-      makeBorder({
-        topLeft,
-        bottomLeft,
-        topRight,
-        bottomRight,
-        color: '#1A75C0',
-      }),
-    ),
-    ...selectorBuilder('.MuiFormLabel-root', ['.Mui-focused', '.Mui-active'], {
-      color: 'rgba(41, 41, 41, 1)',
-    }),
-    ...selectorBuilder(
-      '.MuiFilledInput-root',
-      ['.Mui-focused', '.Mui-active'],
-      {
-        color: '#1A75C0',
-      },
-      '.MuiInputAdornment-root',
-    ),
-    ...selectorBuilder(
-      '.MuiFilledInput-root',
-      ['.Mui-error'],
-      makeBorder({
-        topLeft,
-        bottomLeft,
-        topRight,
-        bottomRight,
-        color: '#EA413B',
-      }),
-    ),
-    ...selectorBuilder('.MuiFormLabel-root', ['.Mui-error'], {
-      color: '#EA413B',
-    }),
-  }),
-};
-
 export const BasicBorderedInput = ({
-  topLeft,
-  bottomLeft,
-  topRight,
-  bottomRight,
-  className,
-  autoFocus,
   ...newProps
 }: any) => {
 
   return (
     <TextField
       {...newProps}
-      autoFocus={autoFocus}
       sx={{
         root: ({ topLeft, bottomLeft, topRight, bottomRight }: any) => ({
           backgroundColor: 'rgba(255, 255, 255, 1)',
