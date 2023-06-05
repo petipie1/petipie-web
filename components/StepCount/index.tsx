@@ -1,11 +1,11 @@
 // import CircleButton from 'components/BaseComponents/CircleButton';
-import React from 'react';
-import PropTypes from 'prop-types';
-import CircleButton from '../Base/CircleButton';
+import React from "react";
+import PropTypes from "prop-types";
+import CircleButton from "../Base/CircleButton";
 // import DeleteForeverIcon from '@mui/icons-material/DeleteForeverOutlined';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 // import Wrapper from './Wrapper';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 interface StepCountProps {
   value: number;
@@ -47,19 +47,19 @@ const StepCount = ({ value, onStepValueChange }: StepCountProps) => {
         onKeyDown={decrement}
       >
         <RemoveCircleIcon sx={{
-          height: 28,
-          width: 28,
-          color: '#D70000',
+          height: 35,
+          width: 35,
+          color: "#D70000",
           opacity: 0.5
 
         }} />
       </CircleButton>
-      <span>{value}</span>
+      <span style={{ fontWeight: 700 }}>{value}</span>
       <CircleButton onClick={increment} onKeyDown={increment}>
         <AddCircleIcon sx={{
-          height: 28,
-          width: 28,
-          color: '#26c48b',
+          height: 35,
+          width: 35,
+          color: "#26c48b",
           opacity: 0.7
 
         }} />

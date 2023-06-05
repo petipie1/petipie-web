@@ -7,6 +7,7 @@ import { Grid, Typography } from "@mui/material";
 // import CSSTransition from 'react-transition-group/CSSTransition';
 // import ConfirmationDialog from 'components/ConfirmationDialog/Loadable';
 import StepCount from "../../StepCount";
+import Image from "next/image";
 // import ConfirmationDialog from '../../ConfirmationDialog';
 
 // glide({
@@ -48,15 +49,20 @@ const MenuItem = ({
   //   if (shouldRemove) onCountChange(0);
   // }, []);
 
+  // const productImage = imageUrl ||;
+
   const memoImage = React.useMemo(
     () =>
       <Grid item container sx={{
         backgroundColor: "#fff", borderRadius: 1.5,
-        marginRight: 1, width: "60px", height: "60px"
+        marginRight: 1, width: "80px", height: "80px",
+        p: 0.7
       }}
         alignItems={"center"} justifyContent="center"
       >
-        <img alt="" src={imageUrl} height={16} width={16} style={{ padding: 1, margin: 1 }}
+        <Image alt="" src={imageUrl || "/apple-touch-icon.png"}
+          width={"100%"} height={"100%"}
+          objectFit='contain'
         />
       </Grid>
     ,
@@ -70,7 +76,6 @@ const MenuItem = ({
       // <Grid item>
       //   <>
       <Typography
-        variant="body1"
         sx={{
           display: "-webkit-box",
           overflow: "hidden",
@@ -78,7 +83,8 @@ const MenuItem = ({
           WebkitLineClamp: 3,
           color: "black",
           lineHeight: "16px",
-          fontWeight: 600
+          fontWeight: 600,
+          fontSize: "19px"
         }}
       >
         {caption} lek
@@ -102,30 +108,35 @@ const MenuItem = ({
   // );
 
   const content = (
-    <Grid padding={1} container direction="row">
-      <Grid item container xs={2.5}
+    <Grid paddingTop={1}
+      paddingBottom={1}
+      container direction="row">
+      <Grid item container xs={3}
         sx={{
           justifyContent: "center",
           alignContent: "center",
         }}>
         {memoImage}
       </Grid>
-      <Grid item container xs={5.5}
+      <Grid item container xs={5}
         direction={"column"}
         sx={{
-          justifyContent: "start",
+          justifyContent: "center",
           alignContent: "start",
         }}>
-        <Typography variant="subtitle1" color="#515075">
+        <Typography sx={{
+          lineHeight: "20px", paddingBottom: "3px",
+          fontSize: "21px"
+        }}>
           {name}
         </Typography>
         {itemDetails}
       </Grid>
       <Grid item container xs={4}
         sx={{
-          justifyContent: "center",
+          justifyContent: "end",
           alignContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}>
         <StepCount
           idx={index}
@@ -134,7 +145,7 @@ const MenuItem = ({
           enableDelete
         />
       </Grid>
-    </Grid>);
+    </Grid >);
 
   return (
     <>

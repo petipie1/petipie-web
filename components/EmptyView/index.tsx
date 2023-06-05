@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 
 const EmptyView = () => (
   <Grid item container direction={"column"}
@@ -15,25 +15,34 @@ const EmptyView = () => (
     <Typography variant="subtitle2">
       (Page not available!)
     </Typography>
-
-    <Button
-      size='medium'
-      sx={{
-        borderRadius: 2,
-        color: "white",
-        marginTop: 3,
-        fontWeight: 400,
-        textTransform: "none",
-        fontSize: "16px",
-        maxHeight: "45px",
-        minWidth: "160px",
-        fontFamily: "sans-serif"
-      }}
-      style={{ backgroundColor: "#020f85" }}
-    // onClick={onClick}
-    >
-      {"Scan QR Code"}
-    </Button>
+    <input
+      accept="image/*"
+      id="icon-button-file"
+      type="file"
+      capture="environment"
+      style={{ display: "none" }}
+    />
+    <label htmlFor="icon-button-file">
+      <IconButton
+        color="primary"
+        aria-label="upload picture"
+        component="span"
+        sx={{
+          borderRadius: 2,
+          color: "white",
+          m: 2,
+          fontWeight: 400,
+          textTransform: "none",
+          fontSize: "16px",
+          maxHeight: "45px",
+          minWidth: "160px",
+          fontFamily: "sans-serif"
+        }}
+        style={{ backgroundColor: "#020f85" }}
+      >
+        {"Scan QR Code"}
+      </IconButton>
+    </label>
   </Grid>);
 
 export default EmptyView;

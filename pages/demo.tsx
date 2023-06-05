@@ -11,7 +11,6 @@ import InfoDialog from "components/InfoDialog";
 import SearchBox from "components/SearchBox";
 import { businessData, categories } from "common/constants";
 import { calculateCartTotal, diffInMinutesFromNow, scroll } from "utils/common";
-import EmptyView from "components/EmptyView";
 
 const MenuPage: NextPage = ({ business }: any) => {
   const dispatch = useDispatch();

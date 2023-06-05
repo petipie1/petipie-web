@@ -5,12 +5,14 @@ import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
+  const { t, i18n } = useTranslation();
 
   const [value, setValue] = React.useState("");
   const [timer, setTimer]: any = React.useState(null);
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,8 +38,8 @@ export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
     onSearch("");
   };
 
-  const handleLanguageSelect = (language: string) => {
-    console.log("Selected language: ", language);
+  const handleLanguageSelect = async (language: string) => {
+    i18n.changeLanguage(language);
     setAnchorEl(null);
   };
 
@@ -52,6 +54,7 @@ export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
               paddingRight: "12px",
               marginTop: "5px",
               paddingLeft: "15px",
+              fontSize: "26px"
             },
             endAdornment: (
               <IconButton
@@ -65,7 +68,7 @@ export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
               </IconButton>
             ),
             style: {
-              fontSize: "0.95rem", fontWeight: "100", color: "grey",
+              fontSize: "18px", fontWeight: "400", color: "grey",
             }
           }}
 
@@ -73,33 +76,34 @@ export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
           InputLabelProps={{
             style: {
               fontSize: 30, alignSelf: "start",
-
             }
           }}
           sx={{
             backgroundColor: "white",
             "& input[type=number]::-webkit-inner-spin-button": {
               "WebkitAppearance": "none",
-              margin: 0
+              margin: 0,
+
             },
 
             flexGrow: "1",
             borderRadius: "12px",
             boxShadow: "0px 5px 6px 3px rgba(100, 100, 111, 0.1)",
             zIndex: 1,
-            height: 40,
+            height: 45,
             justifyContent: "start",
+            fontSize: "19px"
           }}
           value={value}
           onChange={handleChange}
-          placeholder={placeholder ?? "Search"} color="secondary"
+          placeholder={placeholder ?? t("search")} color="secondary"
         />
         <Grid>
           <IconButton onClick={handleClick}>
             <Avatar
               sx={{
                 backgroundColor: "#020f85",
-                marginTop: -1, marginBottom: -1
+                marginTop: -1, marginBottom: -1,
               }}>
               <FilterListIcon htmlColor='white' />
             </Avatar>
@@ -107,8 +111,7 @@ export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
           <IconButton onClick={onIconClick}>
             <Avatar style={{}}
               sx={{ backgroundColor: "#020f85", margin: -1 }}>
-
-              <img alt="alb" src="/waiterrr.png" width={30} height={30}
+              <Image alt="waiter" src="/waiterrr.png" width={30} height={30}
               />
             </Avatar>
           </IconButton>
@@ -122,18 +125,18 @@ export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
             "aria-labelledby": "basic-button",
           }}
         >
-          <MenuItem onClick={() => handleLanguageSelect("EN")}>
+          <MenuItem onClick={() => handleLanguageSelect("en")}>
             <ListItemIcon>
-              <img alt="alb" src="/english.png" width={30} height={30} />
+              <Image alt="eng" src="/english.png" width={30} height={30} />
             </ListItemIcon>
-            <ListItemText>English</ListItemText>
+            <ListItemText>{t("English")}</ListItemText>
           </MenuItem>
 
-          <MenuItem onClick={() => handleLanguageSelect("AL")}>
+          <MenuItem onClick={() => handleLanguageSelect("al")}>
             <ListItemIcon>
-              <img alt="alb" src="/albanian.png" width={30} height={30} />
+              <Image alt="alb" src="/albanian.png" width={30} height={30} />
             </ListItemIcon>
-            <ListItemText>Albanian</ListItemText>
+            <ListItemText>{t("Albanian")}</ListItemText>
           </MenuItem>
         </Menu>
       </Grid>

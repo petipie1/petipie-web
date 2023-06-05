@@ -1,35 +1,38 @@
 
-import * as React from 'react';
-import { Button, Grid, Typography } from '@mui/material';
+import * as React from "react";
+import { Button, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const OrderTotal = ({ total, show, onClick, isPopupOpen }: any) => {
+  const { t } = useTranslation();
 
-  const buttonLabel = isPopupOpen ? 'Order' : 'Continue';
+  const buttonLabel = isPopupOpen ? t("order") : t("continue");
 
   return (
     <Grid item container sx={{
-      position: 'fixed', bottom: 0, left: 0, right: 0,
-      minHeight: '70px',
-      justifyContent: 'center',
-      opacity: !show ? '0' : '1',
-      transition: 'all 0.4s',
-      visibility: !show ? 'hidden' : 'visible',
-      zIndex: 4
+      position: "fixed", bottom: 0, left: 0, right: 0,
+      minHeight: "70px",
+      justifyContent: "center",
+      opacity: !show ? "0" : "1",
+      transition: "all 0.4s",
+      visibility: !show ? "hidden" : "visible",
+      zIndex: 4,
+
     }}>
       <Grid item container sx={{
         borderTopLeftRadius: 30, borderTopRightRadius: 30,
-        direction: 'row',
-        background: '#26c48b',
-        alignContent: 'center',
+        direction: "row",
+        background: "#26c48b",
+        alignContent: "center",
         p: 2,
-        maxWidth: 'sm',
+        maxWidth: "sm",
       }}
       >
-        <Grid item container xs={5} sx={{ alignContent: 'center' }} direction="column" >
-          <Typography variant='subtitle2' fontWeight={100} color="white">
+        <Grid item container xs={5} sx={{ alignContent: "center" }} direction="column" >
+          <Typography variant='h6' fontWeight={400} color="white">
             Total:
           </Typography>
-          <Typography sx={{ marginTop: -0.5 }} variant='h6' fontWeight={400} color="white">
+          <Typography sx={{ marginTop: -0.5, fontSize: "26px" }} variant='h6' fontWeight={700} color="white">
             {`${total} lek`}
           </Typography>
         </Grid>
@@ -40,15 +43,14 @@ const OrderTotal = ({ total, show, onClick, isPopupOpen }: any) => {
             fullWidth
             size='medium'
             sx={{
-              borderRadius: 18,
-              color: '#26c48b',
-              fontWeight: 400,
-              textTransform: 'none',
-              fontSize: '16px',
-              maxHeight: '45px',
-              fontFamily: 'sans-serif'
+              borderRadius: 16,
+              color: "#26c48b",
+              fontWeight: 500,
+              textTransform: "none",
+              fontSize: "20px",
+              maxHeight: "60px",
             }}
-            style={{ backgroundColor: 'white' }}
+            style={{ backgroundColor: "white" }}
             onClick={onClick}
           >
             {buttonLabel}

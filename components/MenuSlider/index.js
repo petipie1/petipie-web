@@ -1,12 +1,17 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Container, Link, Tab, Tabs, styled } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const StyledTab = styled(Tab)({
   minHeight: "44px",
+  fontSize: "18px"
 });
 
 const MenuSlider = ({ selectedTabUrlValue, menuItems, onClickHandler }) => {
+
+  const { t } = useTranslation();
+
   const selectedTab = React.useMemo(() => {
     const idx = menuItems.map(item => item.url).indexOf(selectedTabUrlValue);
     return idx < 0 ? 0 : idx;
@@ -53,22 +58,22 @@ const MenuSlider = ({ selectedTabUrlValue, menuItems, onClickHandler }) => {
           menuItems.map((item, idx) => (
             <StyledTab
               key={`tab-main-${item.url}`}
-              icon={<img alt="" src={item?.icon} height={18} width={18} />}
+              icon={<img alt="" src={item?.icon} height={25} width={25} />}
               iconPosition='start'
               sx={{
                 height: "40px",
                 minWidth: "auto",
                 textTransform: "none",
-                fontWeight: idx === tabIndex ? 700 : null,
+                fontWeight: idx === tabIndex ? 500 : null,
                 backgroundColor: "#020f85",
-                opacity: idx === tabIndex ? null : "0.7",
+                opacity: idx === tabIndex ? null : "0.9",
                 borderRadius: "12px",
                 color: "white",
                 margin: "3px",
               }}
 
               disableRipple
-              label={item.text}
+              label={t(item.text)}
               component={Link}
               to={`#${item.url}`}
               onClick={() => onClickHandler(item)}

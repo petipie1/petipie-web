@@ -1,36 +1,39 @@
-import React from 'react';
+import React from "react";
 
-import { Dialog, Grid, TextField, Typography } from '@mui/material';
-import Image from 'next/image';
-import OrderItem from './OrderItem';
+import { Dialog, Grid, TextField, Typography } from "@mui/material";
+import Image from "next/image";
+import OrderItem from "./OrderItem";
+import { useTranslation } from "react-i18next";
 
 const OrderSummary = ({ shouldOpen, handleClose, orderItems, onCountChange, handleNoteChange, notes }: any) => {
+
+  const { t } = useTranslation();
 
   return (
     <Dialog open={shouldOpen} onClose={handleClose} fullWidth sx={{
       zIndex: 1,
-      maxHeight: '90%',
+      maxHeight: "90%",
     }}
       style={{
         margin: -18,
       }}>
 
       <Grid container sx={{
-        overflow: 'scroll',
-        '&::-webkit-scrollbar': {
-          display: 'none',
+        overflow: "scroll",
+        "&::-webkit-scrollbar": {
+          display: "none",
         }
       }}>
         <Grid item container sx={{
-          background: 'white',
+          background: "white",
           margin: 1,
           borderRadius: 2
         }} >
           <Grid item container sx={{
-            justifyContent: 'end', marginTop: 1,
+            justifyContent: "end", marginTop: 1,
             marginRight: 1.5,
           }}>
-            <Image alt="closeIcon" src={'/CloseIcon.svg'} height={32} width={32} style={{ padding: 3 }}
+            <Image alt="closeIcon" src={"/CloseIcon.svg"} height={32} width={32} style={{ padding: 3 }}
               onClick={handleClose} />
           </Grid>
           {orderItems?.map((item: any) => (
@@ -45,17 +48,18 @@ const OrderSummary = ({ shouldOpen, handleClose, orderItems, onCountChange, hand
           ))}
 
           <Grid item container sx={{ padding: 1.5 }}>
-            <Typography color="grey" fontWeight={300} >
-              Notes:
+            <Typography color="grey" fontWeight={300} sx={{ fontSize: "18px" }}>
+              {t("notes")}:
             </Typography>
             <TextField
               multiline
               InputProps={{
                 sx: {
-                  backgroundColor: 'white',
+                  backgroundColor: "white",
                   borderRadius: 2,
-                  minHeight: '60px',
-                  textAlign: 'start',
+                  minHeight: "60px",
+                  textAlign: "start",
+                  fontSize: "18px"
                 },
               }}
               onChange={handleNoteChange}

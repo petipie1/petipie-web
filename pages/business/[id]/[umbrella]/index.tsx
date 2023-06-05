@@ -15,19 +15,20 @@ import InfoDialog from "components/InfoDialog";
 import SearchBox from "components/SearchBox";
 import { calculateCartTotal, diffInMinutesFromNow, getPromotionProducts, randomString, scroll } from "utils/common";
 import EmptyView from "components/EmptyView";
+import { useTranslation } from "react-i18next";
 
 const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: any) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const cart = useSelector((state: any) => state.cart);
 
   const [open, setOpen] = useState(!(cart?.items));
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [callWaiterOpen, setCallWaiterOpen] = useState(false);
-  const [menu, setMenu] = useState(sanitizedMenu);
+  const [isWaiterCommingAlertOpen, setIsWaiterCommingAlertOpen] = useState(false);
 
-  console.log("sanitizedMenu", sanitizedMenu);
-  console.log("categories", categories);
+  const [menu, setMenu] = useState(sanitizedMenu);
 
   const onCountChange = React.useCallback(
     (product: any, quantity: number) => {
@@ -108,6 +109,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
     };
     callWaiter(orderRequest);
     setCallWaiterOpen(false);
+    setIsWaiterCommingAlertOpen(true);
   };
 
   const orderItems = Object.values(cart?.items);
@@ -120,6 +122,11 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
 
   return (
     <>
+      <div style={{
+        background: "linear-gradient(#Ffdd74,white)", position: "fixed",
+        zIndex: -1, height: "100%", width: "100%"
+      }} >
+      </div>
       <SearchBox
         onSearch={handleSearch}
         onIconClick={() => setCallWaiterOpen(true)} />
@@ -147,21 +154,27 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
         onClick={handleContinue}
         isPopupOpen={open} />
 
-      <InfoDialog title="Porosia u konfirmua."
-        message="Kamarieri po vjen, ju lutem qendroni ne cader :)"
+      <InfoDialog title={t("orderConfirmedTitle")}
+        message={t("orderConfirmedMsg")}
         isOpen={isDialogOpen}
         isInfo
         handleClose={() => setIsDialogOpen(false)} />
-      <InfoDialog title="Oops, gabimisht?"
-        message="Ju porositet para pak minutash, ju lutem prisni pak :D"
+      <InfoDialog title={t("oopsTitle")}
+        message={t("oopsMsg")}
         isOpen={isAlertOpen}
         isInfo
         handleClose={() => setIsAlertOpen(false)} />
-      <InfoDialog title="Therrisni kamarierin"
-        message="Doni te therrisni kamarierin tek çadra?"
+      <InfoDialog title={t("waiterComingTitle")}
+        message={t("waiterComingMsg")}
+        isOpen={isWaiterCommingAlertOpen}
+        isInfo
+        handleClose={() => setIsWaiterCommingAlertOpen(false)} />
+      <InfoDialog title={t("callWaiterTitle")}
+        message={t("callWaiterMsg")}
         isOpen={callWaiterOpen}
         handleConfirm={handleCallWaiter}
         handleCancel={() => setCallWaiterOpen(false)} />
+
     </>
   );
 };
@@ -200,14 +213,14 @@ export async function getServerSideProps(ctx: any) {
 
   if (preferredProducts?.length) {
     const suggestionsCategory = {
-      name: "Our suggestions",
+      name: "Our Suggestions",
       url: "preferred",
       products: preferredProducts
     };
 
     sanitizedMenu = [suggestionsCategory, ...sanitizedMenu];
 
-    categories = [{ text: "Our suggestions", url: "preferred", icon: "/drinks.png" }, ...categories];
+    categories = [{ text: "Our Suggestions", url: "preferred", icon: "/drinks.png" }, ...categories];
   }
 
   return {

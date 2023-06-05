@@ -1,11 +1,10 @@
-import React from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { Link } from '@mui/material';
+import React from "react";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { IconButton, Link } from "@mui/material";
 
 export default function Home() {
   return (
@@ -20,30 +19,40 @@ export default function Home() {
         <Image src="/octo-scan.png" alt="Vercel Logo" width={180} height={180} />
 
         {/* <Button className={styles.scanBtn} variant="outlined" size="medium">Scan QR code.</Button> */}
-        <Button
-          size='medium'
-          sx={{
-            borderRadius: 2,
-            color: 'white',
-            m: 2,
-            fontWeight: 400,
-            textTransform: 'none',
-            fontSize: '16px',
-            maxHeight: '45px',
-            minWidth: '160px',
-            fontFamily: 'sans-serif'
-          }}
-          style={{ backgroundColor: '#020f85' }}
-        // onClick={onClick}
-        >
-          {'Scan QR Code'}
-        </Button>
+        <input
+          accept="image/*"
+          id="icon-button-file"
+          type="file"
+          capture="environment"
+          style={{ display: "none" }}
+        />
+        <label htmlFor="icon-button-file">
+          <IconButton
+            color="primary"
+            aria-label="upload picture"
+            component="span"
+            sx={{
+              borderRadius: 2,
+              color: "white",
+              m: 2,
+              fontWeight: 400,
+              textTransform: "none",
+              fontSize: "16px",
+              maxHeight: "45px",
+              minWidth: "160px",
+              fontFamily: "sans-serif"
+            }}
+            style={{ backgroundColor: "#020f85" }}
+          >
+            {"Scan QR Code"}
+          </IconButton>
+        </label>
 
-        <Grid item direction={'row'}>
+        <Grid item direction={"row"}>
           <Typography>
-            {'Si funksionon? '}
+            {"Si funksionon? "}
             <Link href="/demo" variant="outlined" size="medium">
-              {'Demo'}
+              {"Demo"}
             </Link>
           </Typography>
         </Grid>
@@ -53,8 +62,8 @@ export default function Home() {
         <Grid container item>
 
           <Grid item>
-            <Typography style={{ color: '#737373' }}>{'Email: octo@gmail.com'}</Typography>
-            <Typography style={{ color: '#737373' }}>{'Contact: 00355686284516'}</Typography>
+            <Typography style={{ color: "#737373" }}>{"Email: octo@gmail.com"}</Typography>
+            <Typography style={{ color: "#737373" }}>{"Contact: 00355686284516"}</Typography>
           </Grid>
 
           <Grid container item>
@@ -63,7 +72,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Powered by{''}
+              Powered by{""}
               <span className={styles.logo_text}>
                 Octo.al
                 {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}

@@ -5,9 +5,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { DialogActions, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const InfoDialog = ({ title, message, isOpen, handleClose, isInfo,
   handleConfirm, handleCancel }: any) => {
+
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -21,12 +24,12 @@ const InfoDialog = ({ title, message, isOpen, handleClose, isInfo,
         }}
       >
         <DialogTitle id="alert-dialog-title">
-          <Typography fontWeight={700}>
+          <Typography fontWeight={700} sx={{ fontSize: "20px" }}>
             {title}
           </Typography>
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" sx={{ fontSize: "18px" }}>
             {message}
           </DialogContentText>
         </DialogContent>
@@ -34,14 +37,15 @@ const InfoDialog = ({ title, message, isOpen, handleClose, isInfo,
           {handleCancel &&
             <Button onClick={handleCancel}
               sx={{
-                color: "red", textTransform: "none"
+                color: "red", textTransform: "none",
+                fontSize: "18px"
               }}>
-              JO
+              {t("no")}
             </Button>
           }
           {handleConfirm &&
-            <Button onClick={handleConfirm}>
-              PO
+            <Button onClick={handleConfirm} sx={{ fontSize: "18px" }}>
+              {t("yes")}
             </Button>
           }
         </DialogActions>
