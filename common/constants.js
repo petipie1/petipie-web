@@ -13,13 +13,13 @@ export const businessData = {
   "menu": [
     {
       "available": true,
-      "isPromotion": true,
       "name": "Promotions",
       "products": [
         {
           "id": "410019d8-bf33-4b38-a74e-6d1f96215ba9",
           "name": "Corona 0.33",
           "price": 550,
+          "isPromotion": true,
           "imageUrl": "/corona.png",
           "available": true,
           "description": ""
@@ -29,6 +29,7 @@ export const businessData = {
           "name": "Peja 0.33",
           "price": 300,
           "imageUrl": "",
+          "isPromotion": true,
           "available": true,
           "description": ""
         },

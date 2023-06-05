@@ -13,10 +13,10 @@ import MenuSlider from "components/MenuSlider";
 import OrderSummary from "components/OrderSummary";
 import InfoDialog from "components/InfoDialog";
 import SearchBox from "components/SearchBox";
-import { calculateCartTotal, diffInMinutesFromNow, randomString, scroll } from "utils/common";
+import { calculateCartTotal, diffInMinutesFromNow, getPromotionProducts, randomString, scroll } from "utils/common";
 import EmptyView from "components/EmptyView";
 
-const MenuPage: NextPage = ({ business, umbrella }: any) => {
+const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: any) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: any) => state.cart);
 
@@ -24,21 +24,10 @@ const MenuPage: NextPage = ({ business, umbrella }: any) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [callWaiterOpen, setCallWaiterOpen] = useState(false);
-
-  const sanitizedMenu = business?.menu?.filter((category: any) => category?.available)
-    .map((category: any) => (
-      {
-        ...category,
-        products: category?.products.filter((product: any) => product.available)
-      }));
-
   const [menu, setMenu] = useState(sanitizedMenu);
 
-  const categories = sanitizedMenu?.
-    map((category: any) => ({
-      text: category?.name,
-      url: category?.url ?? category?.name?.toLowerCase(),
-    }));
+  console.log("sanitizedMenu", sanitizedMenu);
+  console.log("categories", categories);
 
   const onCountChange = React.useCallback(
     (product: any, quantity: number) => {
@@ -184,7 +173,6 @@ export async function getServerSideProps(ctx: any) {
   const { umbrella, id } = ctx.query;
 
   const { data: business } = await getBusinessMenu(id, umbrella);
-  console.log("businessL", business?.menu);
 
   // if(!delivery)
   //return {
@@ -193,10 +181,41 @@ export async function getServerSideProps(ctx: any) {
   //   }
   // }
 
+  let sanitizedMenu = business?.menu?.filter((category: any) => category?.available)
+    .map((category: any) => (
+      {
+        ...category,
+        products: category?.products.filter((product: any) => product.available)
+      }));
+
+  let categories = sanitizedMenu?.
+    map((category: any) => ({
+      text: category?.name,
+      url: category?.url ?? category?.name?.toLowerCase(),
+      icon: category?.icon,
+    })
+    );
+
+  const preferredProducts = getPromotionProducts(sanitizedMenu);
+
+  if (preferredProducts?.length) {
+    const suggestionsCategory = {
+      name: "Our suggestions",
+      url: "preferred",
+      products: preferredProducts
+    };
+
+    sanitizedMenu = [suggestionsCategory, ...sanitizedMenu];
+
+    categories = [{ text: "Our suggestions", url: "preferred", icon: "/drinks.png" }, ...categories];
+  }
+
   return {
     props: {
       business,
-      umbrella
+      umbrella,
+      sanitizedMenu,
+      categories
     }
   };
 }

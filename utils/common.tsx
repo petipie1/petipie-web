@@ -34,3 +34,32 @@ export function randomString(length: number) {
   }
   return result.toLowerCase();
 }
+
+export function getCurrentDayPart(date: Date) {
+  const currentHour = date.getHours();
+
+  if (currentHour >= 7 && currentHour < 11) {
+    return "morning";
+  } else if (currentHour >= 11 && currentHour < 16) {
+    return "lunch";
+  } else if (currentHour >= 16 && currentHour < 19) {
+    return "afternoon";
+  } else {
+    return "evening";
+  }
+}
+
+export function getPromotionProducts(menu: any) {
+  const currentDate = new Date();
+  const partOfDay = getCurrentDayPart(currentDate);
+  console.log("Getting promos for: ", partOfDay);
+
+  const promotionProducts = menu.reduce((acc: any, category: any) => {
+    const products = category.products.filter((product: any) =>
+      product?.isPromotion && product?.times?.includes(partOfDay)
+    );
+    return acc.concat(products);
+  }, []);
+
+  return promotionProducts;
+}

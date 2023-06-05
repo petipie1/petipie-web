@@ -48,13 +48,12 @@ const MenuSlider = ({ selectedTabUrlValue, menuItems, onClickHandler }) => {
           display: "flex",
           overflowX: "auto"
         }}
-
       >
         {
           menuItems.map((item, idx) => (
             <StyledTab
               key={`tab-main-${item.url}`}
-              icon={<img alt="" src={`/${item.url}.png`} height={18} width={18} />}
+              icon={<img alt="" src={item?.icon} height={18} width={18} />}
               iconPosition='start'
               sx={{
                 height: "40px",
@@ -93,4 +92,4 @@ MenuSlider.propTypes = {
   selectedTabUrlValue: PropTypes.string,
 };
 
-export default MenuSlider;
+export default React.memo(MenuSlider);
