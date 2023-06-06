@@ -8,13 +8,13 @@ const resources = {
   en: {
     translation: {
       "search": "Search",
-      "callWaiterTitle": "Call the waiter",
-      "callWaiterMsg": "Do you want to call the waiter in your umbrella?",
+      "callWaiterTitle": "Request the waiter",
+      "callWaiterMsg": "Request a waiter to your umbrella?",
       "oopsTitle": "Oops, by mistake?",
       "oopsMsg": "You just ordered a few minutes ago, please let's wait a bit :D",
       "orderConfirmedTitle": "Order confirmed.",
       "orderConfirmedMsg": "Waiter is coming, please stay there :)",
-      "waiterComingTitle": "Waiter called",
+      "waiterComingTitle": "Waiter requested",
       "waiterComingMsg": "Please wait for the waiter to come.",
       "yes": "YES",
       "no": "NO",
@@ -35,9 +35,11 @@ const resources = {
       "Snacks": "Snacks",
       "Pizza & Sandwich": "Pizza & Sandwich",
       "Breakfast": "Breakfast",
-      "Albanian": "Albanian",
-      "English": "English"
-
+      "Albanian": "Shqip",
+      "English": "Anglisht",
+      "Promotions": "Promotions",
+      "Pizza": "Pizza",
+      "Ice Cream": "Ice Cream"
     }
   },
   al: {
@@ -70,9 +72,11 @@ const resources = {
       "Snacks": "Snacks",
       "Pizza & Sandwich": "Pica & Sanduic",
       "Breakfast": "Mengjesi",
-      "Albanian": "Shqip",
-      "English": "Anglisht"
-
+      "Albanian": "Albanian",
+      "English": "English",
+      "Promotions": "Promocione",
+      "Pizza": "Pica",
+      "Ice Cream": "Akullore"
     }
   }
 };

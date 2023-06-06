@@ -7,8 +7,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Link from "next/link";
 
-export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
+export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo }: any) {
   const { t, i18n } = useTranslation();
 
   const [value, setValue] = React.useState("");
@@ -46,6 +48,13 @@ export default function SearchBox({ placeholder, onSearch, onIconClick }: any) {
   return (
     <Grid item container sx={{ justifyContent: "center", padding: 1, alignItems: "center", width: "100%", display: "row" }}>
       <Grid item container maxWidth={"sm"}>
+        {isDemo &&
+          <IconButton >
+            <Link href="/" >
+              <ArrowBackIcon />
+            </Link>
+          </IconButton>
+        }
         <TextField
           InputProps={{
             disableUnderline: true,

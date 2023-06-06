@@ -56,7 +56,7 @@ const MenuItem = ({
       <Grid item container sx={{
         backgroundColor: "#fff", borderRadius: 1.5,
         marginRight: 1, width: "80px", height: "80px",
-        p: 0.7
+        p: 0.5
       }}
         alignItems={"center"} justifyContent="center"
       >

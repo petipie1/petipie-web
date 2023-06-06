@@ -14,6 +14,7 @@ export const businessData = {
     {
       "available": true,
       "name": "Promotions",
+      "url": "promotions",
       "products": [
         {
           "id": "410019d8-bf33-4b38-a74e-6d1f96215ba9",
@@ -25,10 +26,18 @@ export const businessData = {
           "description": ""
         },
         {
+          "id": "309e7cbc-e82a-4074-adbe-6a3aa32ee8d5",
+          "name": "Coca Cola 0.33L",
+          "price": 200,
+          "imageUrl": "/coke.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+        {
           "id": "e4fc709c-52c1-48e5-acf2-fe958a0ccb86",
           "name": "Peja 0.33",
           "price": 300,
-          "imageUrl": "",
+          "imageUrl": "/peja.png",
           "isPromotion": true,
           "available": true,
           "description": ""
@@ -37,38 +46,23 @@ export const businessData = {
           "id": "eabe5371-8176-4971-8191-e1f24e2ad228",
           "name": "Paulaner",
           "price": 500,
-          "imageUrl": "",
+          "imageUrl": "/paulaner.png",
           "available": true,
           "description": ""
         },
-        {
-          "id": "ad6a2985-ba37-45a7-91f5-cd1bc7308a43",
-          "name": "Tirana 0.33",
-          "price": 500,
-          "imageUrl": "/coke.png",
-          "available": true,
-          "description": ""
-        },
-        {
-          "id": "d9413986-3d35-42f1-a958-924890e330fc",
-          "name": "Amstel 0.33",
-          "price": 500,
-          "imgUrl": "/coke.png",
-          "available": true,
-          "description": ""
-        }
       ]
     },
     {
       "available": true,
       "isPromotion": false,
       "name": "Drinks",
+      "icon": "/drinks.png",
       "products": [
         {
           "id": "ec5e0f98-50c3-4c62-8044-8e99a1e6e526",
           "name": "Coca Cola 0.33L",
           "price": 200,
-          "imgUrl": "/coke.png",
+          "imageUrl": "/coke.png",
           "available": true,
           "description": "Coca Cola 0 Sugar"
         },
@@ -76,23 +70,15 @@ export const businessData = {
           "id": "5896e71c-f8eb-4215-9c37-78792af757b2",
           "name": "Pepsi 0.33L",
           "price": 200,
-          "imgUrl": "/coke.png",
-          "available": true,
-          "description": "Coca Cola 0 Sugar"
-        },
-        {
-          "id": "e9ffd4f4-fdcc-4e66-9dd8-af5da387e88e",
-          "name": "Fanta 0.33L",
-          "price": 200,
-          "imgUrl": "/coke.png",
+          "imageUrl": "/pepsi.png",
           "available": true,
           "description": "Coca Cola 0 Sugar"
         },
         {
           "id": "790b8c2a-5a91-4e01-a903-95501fcfb08b",
-          "name": "Uje 0.33L",
+          "name": "Uje Lajthiza 0.5L",
           "price": 200,
-          "imgUrl": "/coke.png",
+          "imageUrl": "/lajthiza.png",
           "available": true,
           "description": "Coca Cola 0 Sugar"
         },
@@ -104,10 +90,80 @@ export const businessData = {
       "name": "Cocktails",
       "products": [
         {
-          "id": "d8422fa1-e381-41aa-af13-33aabcf07b0a",
+          "id": "34138aab-d599-4b94-8ea5-a6e9c18281f9",
           "name": "Pinacolada",
           "price": 200,
-          "imgUrl": "/coke.png",
+          "imageUrl": "/pinacolada.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+      ]
+    },
+    {
+      "available": true,
+      "isPromotion": false,
+      "name": "Coffee",
+      "products": [
+        {
+          "id": "f4810391-002a-4baa-b3a7-c2a9a97fd823",
+          "name": "Espresso",
+          "price": 120,
+          "imageUrl": "/coffee-3.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+        {
+          "id": "ffa510d0-6497-40e5-a4c1-faeae5eede13",
+          "name": "Machiatto",
+          "price": 130,
+          "imageUrl": "/coffee-6.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+        {
+          "id": "c9f83db3-960d-4b51-9703-5d925fa2251e",
+          "name": "Capuchino",
+          "price": 130,
+          "imageUrl": "/coffee-5.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+      ]
+    },
+    {
+      "available": true,
+      "isPromotion": false,
+      "name": "Ice Cream",
+      "url": "icecream",
+      "products": [
+        {
+          "id": "f8a5a7c9-8a02-4556-845d-8a1938b3837b",
+          "name": "Magnum",
+          "price": 320,
+          "imageUrl": "/magnum.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+      ]
+    },
+    {
+      "available": true,
+      "isPromotion": false,
+      "name": "Pizza",
+      "products": [
+        {
+          "id": "3343033c-506e-48f2-bb4b-74f62c5521ff",
+          "name": "Margarita",
+          "price": 620,
+          "imageUrl": "/pizza-1.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+        {
+          "id": "8c09b611-71a1-414f-b4dd-aa59297c8a36",
+          "name": "Capricciosa",
+          "price": 700,
+          "imageUrl": "/pizza-2.png",
           "available": true,
           "description": "Coca Cola 0 Sugar"
         },
@@ -123,23 +179,30 @@ export const categories = [
   {
     text: "Promotions",
     url: "promotions",
+    icon: "/promotions.png"
   },
   {
     text: "Drinks",
     url: "drinks",
+    icon: "/drinks.png"
   },
   {
     text: "Cocktails",
     url: "cocktails",
+    icon: "/cocktails.png"
   }
   , {
     text: "Coffee",
     url: "coffee",
+    icon: "/coffee.png"
+
   }, {
-    text: "Ice cream",
-    url: "ice-cream",
+    text: "Ice Cream",
+    url: "icecream",
+    icon: "/ice-cream.png"
   }, {
     text: "Pizza",
     url: "pizza",
+    icon: "/pizza.png"
   }
 ];
