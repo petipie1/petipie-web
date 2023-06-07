@@ -26,6 +26,7 @@ const MenuItem = ({
   quantity,
   price,
   onCountChange,
+  orderingEnabled
   // animationDelay,
   // description,
   // promoId,
@@ -56,13 +57,12 @@ const MenuItem = ({
       <Grid item container sx={{
         backgroundColor: "#fff", borderRadius: 1.5,
         marginRight: 1, width: "80px", height: "80px",
-        p: 0.5
       }}
         alignItems={"center"} justifyContent="center"
       >
         <Image alt="" src={imageUrl || "/apple-touch-icon.png"}
           width={"100%"} height={"100%"}
-          objectFit='contain'
+          objectFit='contain' style={{ borderRadius: "8%" }}
         />
       </Grid>
     ,
@@ -132,19 +132,23 @@ const MenuItem = ({
         </Typography>
         {itemDetails}
       </Grid>
-      <Grid item container xs={4}
-        sx={{
-          justifyContent: "end",
-          alignContent: "center",
-          alignItems: "center",
-        }}>
-        <StepCount
-          idx={index}
-          value={quantity}
-          onStepValueChange={stepOnChangeHandler}
-          enableDelete
-        />
-      </Grid>
+      {orderingEnabled &&
+        <Grid item container xs={4}
+          sx={{
+            justifyContent: "end",
+            alignContent: "center",
+            alignItems: "center",
+          }}>
+
+          <StepCount
+            idx={index}
+            value={quantity}
+            onStepValueChange={stepOnChangeHandler}
+            enableDelete
+          />
+
+        </Grid>
+      }
     </Grid >);
 
   return (

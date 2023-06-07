@@ -7,6 +7,7 @@ export interface CartState {
   discount: any;
   notes?: string;
   lastOrderTime?: string;
+  lastWaiterTime?: string;
 }
 
 const initialState: CartState = {
@@ -15,7 +16,8 @@ const initialState: CartState = {
   hasPromo: false,
   discount: 0,
   notes: "",
-  lastOrderTime: ""
+  lastOrderTime: "",
+  lastWaiterTime: ""
 };
 
 export const cartSlice = createSlice({
@@ -41,7 +43,6 @@ export const cartSlice = createSlice({
     },
     updateCartNote: (state, action) => {
       const { note } = action.payload;
-      console.log(note);
       state.notes = note;
     },
     clearCart: (state, isDemo) => {
@@ -52,10 +53,14 @@ export const cartSlice = createSlice({
       state.notes = "";
       state.lastOrderTime = isDemo ? "" : new Date().toISOString();
     },
+
+    updateWaiterTime: (state) => {
+      state.lastWaiterTime = new Date().toISOString();
+    }
   },
 });
 
 export const { addProductToCart, updateCartItemQuantity,
-  updateCartNote, clearCart } = cartSlice.actions;
+  updateCartNote, clearCart, updateWaiterTime } = cartSlice.actions;
 
 export default cartSlice.reducer;

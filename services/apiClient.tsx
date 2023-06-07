@@ -37,8 +37,9 @@ export const getBusinessMenu = async (
   umbrella?: number,
 ): Promise<any> => {
   try {
-    var response = await ax.get<any>(`/api/v1/Business/${businessId}/${umbrella}`,
-    );
+    var response = await ax.get<any>(`/api/v1/Business/${businessId}/${umbrella}`, {
+      headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+    });
     return response;//successResponse<PaymentStatus>(response);
   } catch (error) {
     console.log("error", error);
@@ -47,12 +48,17 @@ export const getBusinessMenu = async (
 };
 
 export const postOrder = async (orderRequest: CreateOrderRequest): Promise<Response<any>> => {
-  const response = await ax.post("/api/v1/Order", orderRequest);
+  const response = await ax.post("/api/v1/Order", orderRequest,
+    {
+      headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+    });
   return response.data;
 };
 
 export const callWaiter = async (callWaiterRequest: CallWaiterRequest): Promise<Response<any>> => {
-  const response = await ax.post("/api/v1/Order/callWaiter", callWaiterRequest);
+  const response = await ax.post("/api/v1/Order/callWaiter", callWaiterRequest, {
+    headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+  });
   return response.data;
 };
 

@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
-import * as PropTypes from 'prop-types';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import React, { memo } from "react";
+import * as PropTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import OctoPlaceholder from 'images/icon-512x512.png';
-import InfinityLoader from 'images/Infinity_loader.svg';
+import OctoPlaceholder from "images/icon-512x512.png";
+import InfinityLoader from "images/Infinity_loader.svg";
 
 // const calculate = ({ responsive, value, responsiveValue }) => {
 //   if (value !== null) return responsive ? responsiveValue : `${value}px`;
@@ -62,7 +62,7 @@ const AsyncImage = ({
   return (
     <LazyLoadImage
       style={{
-        display: 'inline',
+        display: "inline",
       }}
       height={height}
       resize
@@ -75,7 +75,7 @@ const AsyncImage = ({
       }
       overflow={overflow}
     >
-      <Image alt={'picture'} />
+      <Image alt={"picture"} />
     </LazyLoadImage>
   );
 };
@@ -94,7 +94,7 @@ AsyncImage.propTypes = {
 AsyncImage.defaultProps = {
   width: null,
   height: null,
-  alt: 'Image',
+  alt: "Image",
   responsive: false,
   overflow: false,
   disabled: false,

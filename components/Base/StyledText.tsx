@@ -1,17 +1,17 @@
 import {
   variants,
   weight as fontWeights,
-} from './constants';
-import * as PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+} from "./constants";
+import * as PropTypes from "prop-types";
+import React, { useMemo } from "react";
 
-import { Typography } from '@mui/material';
+import { Typography } from "@mui/material";
 
 const buildColor = (color: string) => {
-  if (color !== 'default') {
+  if (color !== "default") {
     return color;
   }
-  return 'black';
+  return "black";
 };
 
 export const StyledText = ({
@@ -27,10 +27,10 @@ export const StyledText = ({
   const output = useMemo(
     () =>
       React.Children.map(children, child => {
-        if (typeof child === 'string') {
+        if (typeof child === "string") {
           const newChild = child.replace(
             /®/g,
-            '<span style="font-size: x-small; vertical-align: super">®</span>',
+            "<span style=\"font-size: x-small; vertical-align: super\">®</span>",
           );
           return newChild;
         }
@@ -42,8 +42,8 @@ export const StyledText = ({
     <Typography
       sx={{
         color: buildColor(color),
-        '&:disabled': {
-          color: '#9f9f9f',
+        "&:disabled": {
+          color: "#9f9f9f",
         },
         fontWeight: weight,
         display: display
@@ -58,8 +58,8 @@ export const StyledText = ({
     <Typography
       sx={{
         color: buildColor(color),
-        '&:disabled': {
-          color: '#9f9f9f',
+        "&:disabled": {
+          color: "#9f9f9f",
         },
         fontWeight: weight,
         display: display
@@ -87,8 +87,8 @@ StyledText.propTypes = {
 };
 
 StyledText.defaultProps = {
-  color: 'default',
-  variant: 'body1',
+  color: "default",
+  variant: "body1",
   weight: 400,
   resizeSymbols: false,
 };

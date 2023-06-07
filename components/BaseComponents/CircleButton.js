@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import IconButton from '@mui/material/IconButton';
+import React from "react";
+import PropTypes from "prop-types";
+import IconButton from "@mui/material/IconButton";
 // import { makeStyles } from '@mui/styles';
 
 // const useStyles = makeStyles(theme => {
@@ -59,7 +59,7 @@ CircleButton.defaultProps = {
   width: 40,
   padding: 0,
   border: true,
-  borderColor: 'black',
+  borderColor: "black",
 };
 
 CircleButton.propTypes = {

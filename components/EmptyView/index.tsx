@@ -6,10 +6,11 @@ const EmptyView = () => (
     sx={{
       justifyContent: "center",
       position: "absolute",
-      top: 100,
-      alignItems: "center"
+      alignItems: "center",
+      background: "linear-gradient(#Ffdd74,white)"
+
     }}>
-    <Typography variant="h6">
+    <Typography variant="h6" sx={{ marginTop: 10 }}>
       Nuk ka te dhena!
     </Typography>
     <Typography variant="subtitle2">

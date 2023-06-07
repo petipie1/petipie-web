@@ -1,6 +1,6 @@
-import { Grid } from '@mui/material';
-import Image from 'next/image';
-import React from 'react';
+import { Grid } from "@mui/material";
+import Image from "next/image";
+import React from "react";
 
 const ProductCard = () => {
 
@@ -9,7 +9,7 @@ const ProductCard = () => {
 
       {/* Image */}
       <div className="bg-black rounded-xl items-center justify-center p-3" >
-        <Image src={'https://freepngimg.com/thumb/categories/956.png'} width={120} height={120} alt="somth" />
+        <Image src={"https://freepngimg.com/thumb/categories/956.png"} width={120} height={120} alt="somth" />
       </div>
 
     </Grid>

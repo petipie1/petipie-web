@@ -10,7 +10,7 @@ import Image from "next/image";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 
-export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo }: any) {
+export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo, showWaiterButton }: any) {
   const { t, i18n } = useTranslation();
 
   const [value, setValue] = React.useState("");
@@ -117,13 +117,16 @@ export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo }
               <FilterListIcon htmlColor='white' />
             </Avatar>
           </IconButton>
-          <IconButton onClick={onIconClick}>
-            <Avatar style={{}}
-              sx={{ backgroundColor: "#020f85", margin: -1 }}>
-              <Image alt="waiter" src="/waiterrr.png" width={30} height={30}
-              />
-            </Avatar>
-          </IconButton>
+          {isDemo || showWaiterButton ? (
+            <IconButton onClick={onIconClick}>
+              <Avatar style={{}}
+                sx={{ backgroundColor: "#020f85", margin: -1 }}>
+                <Image alt="waiter" src="/waiterrr.png" width={30} height={30}
+                />
+              </Avatar>
+            </IconButton>
+          ) : null
+          }
         </Grid>
         <Menu
           id="basic-menu"

@@ -7,6 +7,8 @@ import { Grid, Typography } from "@mui/material";
 // import CSSTransition from 'react-transition-group/CSSTransition';
 // import ConfirmationDialog from 'components/ConfirmationDialog/Loadable';
 import StepCount from "../../StepCount";
+import Image from "next/image";
+
 // import ConfirmationDialog from '../../ConfirmationDialog';
 
 // glide({
@@ -44,11 +46,13 @@ const OrderItem = ({
     () =>
       <Grid item container sx={{
         backgroundColor: "#fff", borderRadius: 1.5,
-        marginRight: 1, width: "70px", height: "70px"
+        marginRight: 1, width: "80px", height: "80px",
       }}
         alignItems={"center"} justifyContent="center"
       >
-        <img alt="" src={imageUrl} height={18} width={18} style={{ padding: 1, margin: 1 }}
+        <Image alt="" src={imageUrl || "/apple-touch-icon.png"}
+          width={"100%"} height={"100%"}
+          objectFit='contain' style={{ borderRadius: "8%" }}
         />
       </Grid>
     ,

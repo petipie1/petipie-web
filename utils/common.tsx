@@ -52,8 +52,6 @@ export function getCurrentDayPart(date: Date) {
 export function getPromotionProducts(menu: any) {
   const currentDate = new Date();
   const partOfDay = getCurrentDayPart(currentDate);
-  console.log("Getting promos for: ", partOfDay);
-
   const promotionProducts = menu.reduce((acc: any, category: any) => {
     const products = category.products.filter((product: any) =>
       product?.isPromotion && product?.times?.includes(partOfDay)
@@ -62,4 +60,10 @@ export function getPromotionProducts(menu: any) {
   }, []);
 
   return promotionProducts;
+}
+
+export function isWithinOpeningTime(openingTime: number, closingTime: number) {
+  const currentHour = new Date().getHours();
+  return currentHour > Number(openingTime) && currentHour < Number(closingTime);
+
 }

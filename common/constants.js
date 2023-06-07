@@ -82,6 +82,15 @@ export const businessData = {
           "available": true,
           "description": "Coca Cola 0 Sugar"
         },
+        {
+          "id": "790b8c2a-5a91-4e01-a903-95501fcfb085",
+          "name": "Uje Tepelena 0.33L",
+          "price": 150,
+          "imageUrl": "https://res.cloudinary.com/dq8wk32xl/image/upload/v1686062137/shijevere/categories/localDrinks/tepelena-1_v35rel.png",
+          "available": true,
+          "description": "Coca Cola 0 Sugar"
+        },
+
       ]
     },
     {

@@ -83,7 +83,6 @@ const MenuPage: NextPage = ({ business }: any) => {
   };
 
   const handleCallWaiter = () => {
-    console.log(`Kerkohet kamarieri tek çadra: ${3}`);
     setCallWaiterOpen(false);
     setIsWaiterCommingAlertOpen(true);
   };
@@ -102,7 +101,6 @@ const MenuPage: NextPage = ({ business }: any) => {
         zIndex: -1, height: "100%", width: "100%"
       }} >
       </div>
-
       <SearchBox
         isDemo
         onSearch={handleSearch}
@@ -114,6 +112,7 @@ const MenuPage: NextPage = ({ business }: any) => {
         selectedTabUrlValue={"drinks"}
       />
       <Menu
+        isDemo
         menu={menu}
         onCountChange={onCountChange}
         cartItems={cart?.items}

@@ -7,13 +7,13 @@ import type { NextPage } from "next";
 import { getBusinessMenu, postOrder, callWaiter } from "../../../../services/apiClient";
 import Menu from "components/Menu";
 // import { businessData, categories } from "../../../../common/constants";
-import { clearCart, updateCartItemQuantity, updateCartNote } from "redux/reducers/cartSlice";
+import { clearCart, updateCartItemQuantity, updateCartNote, updateWaiterTime } from "redux/reducers/cartSlice";
 import OrderTotal from "components/OrderTotal";
 import MenuSlider from "components/MenuSlider";
 import OrderSummary from "components/OrderSummary";
 import InfoDialog from "components/InfoDialog";
 import SearchBox from "components/SearchBox";
-import { calculateCartTotal, diffInMinutesFromNow, getPromotionProducts, randomString, scroll } from "utils/common";
+import { calculateCartTotal, diffInMinutesFromNow, getPromotionProducts, isWithinOpeningTime, randomString, scroll } from "utils/common";
 import EmptyView from "components/EmptyView";
 import { useTranslation } from "react-i18next";
 
@@ -24,7 +24,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
 
   const [open, setOpen] = useState(!(cart?.items));
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertData, setAlertData] = useState({ title: "", message: "", open: false });
   const [callWaiterOpen, setCallWaiterOpen] = useState(false);
   const [isWaiterCommingAlertOpen, setIsWaiterCommingAlertOpen] = useState(false);
 
@@ -55,7 +55,12 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
 
   const handleContinue = async () => {
     if (cart?.lastOrderTime && diffInMinutesFromNow(cart?.lastOrderTime) < 3) {
-      setIsAlertOpen(true);
+      setAlertData({
+        title: t("oopsTitle"),
+        message: t("oopsMsg"),
+        open: true
+      });
+
       return;
     }
 
@@ -74,8 +79,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
         note: cart?.notes
       };
 
-      const order = await postOrder(orderRequest);
-      console.log("order", order);
+      await postOrder(orderRequest);
       dispatch(clearCart(false));
       setIsDialogOpen(true);
     }
@@ -103,11 +107,22 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
   };
 
   const handleCallWaiter = () => {
+    if (cart?.lastWaiterTime && diffInMinutesFromNow(cart?.lastWaiterTime) < 3) {
+      setAlertData({
+        title: t("oopsTitle"),
+        message: t("oopsWaiterMsg"),
+        open: true
+      });
+      setCallWaiterOpen(false);
+      return;
+    }
+
     const orderRequest = {
       recipient: business.whatsapp,
       umbrella,
     };
     callWaiter(orderRequest);
+    dispatch(updateWaiterTime());
     setCallWaiterOpen(false);
     setIsWaiterCommingAlertOpen(true);
   };
@@ -117,7 +132,8 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
   const shouldOpen = useMemo(() =>
     Boolean(orderItems?.length && open), [orderItems?.length, open]);
 
-  if (!business?.available)
+  const isWithinOpeningItems = isWithinOpeningTime(business.openingTime, business.closingTime);
+  if (!business?.available || !isWithinOpeningItems)
     return <EmptyView />;
 
   return (
@@ -128,6 +144,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
       }} >
       </div>
       <SearchBox
+        showWaiterButton={business?.waiterRequestFlag}
         onSearch={handleSearch}
         onIconClick={() => setCallWaiterOpen(true)} />
       <MenuSlider
@@ -139,6 +156,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
         menu={menu}
         onCountChange={onCountChange}
         cartItems={cart?.items}
+        orderingEnabled={business?.orderRequestFlag}
       />
 
       <OrderSummary
@@ -159,11 +177,11 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
         isOpen={isDialogOpen}
         isInfo
         handleClose={() => setIsDialogOpen(false)} />
-      <InfoDialog title={t("oopsTitle")}
-        message={t("oopsMsg")}
-        isOpen={isAlertOpen}
+      <InfoDialog title={alertData.title}
+        message={alertData.message}
+        isOpen={alertData.open}
         isInfo
-        handleClose={() => setIsAlertOpen(false)} />
+        handleClose={() => setAlertData({ title: "", message: "", open: false })} />
       <InfoDialog title={t("waiterComingTitle")}
         message={t("waiterComingMsg")}
         isOpen={isWaiterCommingAlertOpen}

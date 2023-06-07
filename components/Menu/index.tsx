@@ -4,7 +4,7 @@ import MenuItem from "./MenuItem";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-const Menu = ({ menu, onCountChange, cartItems }: any) => {
+const Menu = ({ menu, onCountChange, cartItems, orderingEnabled, isDemo }: any) => {
   const { t } = useTranslation();
 
   return (
@@ -23,6 +23,7 @@ const Menu = ({ menu, onCountChange, cartItems }: any) => {
                     key={product.id}
                     {...product}
                     index={product.id}
+                    orderingEnabled={isDemo || orderingEnabled}
                     quantity={cartItems[product.id]?.quantity}
                     onCountChange={(newValue: number) => {
                       onCountChange(product, newValue);
@@ -42,7 +43,9 @@ const Menu = ({ menu, onCountChange, cartItems }: any) => {
 Menu.propTypes = {
   menu: PropTypes.array,
   onCountChange: PropTypes.func,
-  cartItems: PropTypes.object
+  cartItems: PropTypes.object,
+  orderingEnabled: PropTypes.bool,
+  isDemo: PropTypes.bool
 };
 
 export default Menu;
