@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, IconButton, Typography } from "@mui/material";
 
-const EmptyView = () => (
+const EmptyView = ({ alTitle, enTitle }: any) => (
   <Grid item container direction={"column"}
     sx={{
       justifyContent: "center",
@@ -11,10 +11,10 @@ const EmptyView = () => (
 
     }}>
     <Typography variant="h6" sx={{ marginTop: 10 }}>
-      Nuk ka te dhena!
+      {alTitle}
     </Typography>
     <Typography variant="subtitle2">
-      (Page not available!)
+      {enTitle}
     </Typography>
     <input
       accept="image/*"

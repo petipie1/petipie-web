@@ -45,13 +45,13 @@ export const cartSlice = createSlice({
       const { note } = action.payload;
       state.notes = note;
     },
-    clearCart: (state, isDemo) => {
+    clearCart: (state, action) => {
       state.items = {};
       state.promoCode = "";
       state.hasPromo = false;
       state.discount = 0;
       state.notes = "";
-      state.lastOrderTime = isDemo ? "" : new Date().toISOString();
+      state.lastOrderTime = action.payload ? "" : new Date().toISOString();
     },
 
     updateWaiterTime: (state) => {

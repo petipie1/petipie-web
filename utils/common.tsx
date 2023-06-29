@@ -50,6 +50,10 @@ export function getCurrentDayPart(date: Date) {
 }
 
 export function getPromotionProducts(menu: any) {
+
+  if (!menu)
+    return [];
+
   const currentDate = new Date();
   const partOfDay = getCurrentDayPart(currentDate);
   const promotionProducts = menu.reduce((acc: any, category: any) => {

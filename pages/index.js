@@ -65,10 +65,25 @@ export default function Home() {
             </Typography>
           </Grid>
 
+          <Grid item container sx={{
+            justifyContent: "center", alignItems: "center", marginTop: 2,
+            display: { sm: "flex", xs: "none", md: "flex", }
+          }} >
+            {/* aspect ratio: 2198x987 */}
+            <Image src="/banner_desktop.png" alt="dp" width="1099px" height="493.5px" />
+          </Grid>
+
+          <Grid item container sx={{
+            justifyContent: "center", alignItems: "center", marginTop: 2,
+            display: { md: "none", lg: "none", xl: "none", sm: "none" }
+          }} >
+            {/* aspect ratio: 594x3860 */}
+            <Image src="/banner_mobile.png" alt="dp" width="396px" height="2573.3px" />
+          </Grid>
           <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
-            sx={{ marginTop: "30px" }} >
+            sx={{ marginTop: "50px" }} >
             <Typography variant="h6">
-              Menu ne çadrat e plazhit
+              ⚫ Menu ne çadrat e plazhit
             </Typography>
             <p >
               Duke vendosur menune ne cdo çader plazhi, i mundesoni biznesit tuaj ekspozimin e te gjithe menuse se pijeve apo snacks qe mund te sherbehen nga kamarieri ne çader.
@@ -77,7 +92,7 @@ export default function Home() {
           <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "30px" }} >
             <Typography variant="h6">
-              Porosi nga çadra
+              ⚫ Porosi nga çadra
             </Typography>
             <p >
               Pasi menuja eshte e askesueshme ne cdo çader, klientet mund te porosisin lehtesisht nga aty dhe porosia i shkon kamarierit tek kompjuteri apo edhe ne telefon me referencen e çadres nga e cila po vjen porosia.
@@ -86,7 +101,7 @@ export default function Home() {
           <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "30px" }} >
             <Typography variant="h6">
-              Therrit kamarierin tek çadra
+              ⚫ Thirr kamarierin tek çadra
             </Typography>
             <p >
               Klienti mund te therrase kamarierin nga çadra nepermjet nje funksionaliteti te shtuar ne menu.
@@ -95,13 +110,12 @@ export default function Home() {
           <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "30px" }} >
             <Typography variant="h6">
-              Menu dinamike
+              ⚫ Menu dinamike
             </Typography>
             <p >
               {`Ne baze te orarit qe aksesohet menuja (mengjes, dreke, pasdite apo darke), renditen dhe kategorite (sipas preferences tuaj), per shembull:
 `}
             </p>
-
             <p>
               - Kafet shfaqen ne fillim kur menuja aksesohet ne mengjes
             </p>
@@ -111,13 +125,12 @@ export default function Home() {
             </p>
             <p>
               - Koktejlet shfaqen te parat kur menuja skanohet pasdite ose ne darke
-
             </p>
           </Grid>
           <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "30px" }} >
             <Typography variant="h6">
-              Konvertimi automatikisht ne Euro i totalit te porosise
+              ⚫ Konvertimi automatikisht ne Euro i totalit te porosise
             </Typography>
             <p >
               {"Ne momentin qe nje porosi dergohet te kamarieri, shuma totale konvertohet automatikisht ne EUR (ose USD) ne baze te konvertimit qe keni vendosur ju, psh:"}

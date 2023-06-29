@@ -8,14 +8,14 @@ const resources = {
   en: {
     translation: {
       "search": "Search",
-      "callWaiterTitle": "Request the waiter",
-      "callWaiterMsg": "Request a waiter to your umbrella?",
+      "callWaiterTitle": "Call the waiter",
+      "callWaiterMsg": "Call the waiter to your umbrella/sunbed?",
       "oopsTitle": "Oops, by mistake?",
       "oopsMsg": "You just ordered a few moments ago, please let's wait a bit :D",
-      "oopsWaiterMsg": "You just requested the waiter a few moments ago, please let's wait a bit :D",
+      "oopsWaiterMsg": "You just called the waiter a few moments ago, please let's wait a bit :D",
       "orderConfirmedTitle": "Order confirmed.",
       "orderConfirmedMsg": "Waiter is coming, please stay there :)",
-      "waiterComingTitle": "Waiter requested",
+      "waiterComingTitle": "Waiter called",
       "waiterComingMsg": "Please wait for the waiter to come.",
       "yes": "YES",
       "no": "NO",

@@ -59,7 +59,7 @@ const InfoDialog = ({ title, message, isOpen, handleClose, isInfo,
               fontWeight: 400,
               textTransform: "none",
               fontSize: "16px",
-              maxHeight: "45px",
+              height: "45px",
               fontFamily: "sans-serif"
             }}
             style={{ backgroundColor: "#26c48b" }}

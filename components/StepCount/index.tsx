@@ -50,7 +50,7 @@ const StepCount = ({ value, onStepValueChange }: StepCountProps) => {
           height: 35,
           width: 35,
           color: "#D70000",
-          opacity: 0.5
+          opacity: 0.4
 
         }} />
       </CircleButton>
@@ -60,7 +60,7 @@ const StepCount = ({ value, onStepValueChange }: StepCountProps) => {
           height: 35,
           width: 35,
           color: "#26c48b",
-          opacity: 0.7
+          opacity: 0.65
 
         }} />
       </CircleButton>

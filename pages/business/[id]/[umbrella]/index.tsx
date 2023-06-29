@@ -16,6 +16,8 @@ import SearchBox from "components/SearchBox";
 import { calculateCartTotal, diffInMinutesFromNow, getPromotionProducts, isWithinOpeningTime, randomString, scroll } from "utils/common";
 import EmptyView from "components/EmptyView";
 import { useTranslation } from "react-i18next";
+import { Avatar, IconButton } from "@mui/material";
+import Image from "next/image";
 
 const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: any) => {
   const dispatch = useDispatch();
@@ -69,7 +71,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
       const orderRef = `${business?.name.slice(0, 3)}-${randomString(5)}`;
 
       const orderRequest = {
-        businessId: business.id,
+        businessId: business?.id,
         umbrella,
         status: "awaiting",
         orderNumber: orderRef,
@@ -117,11 +119,11 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
       return;
     }
 
-    const orderRequest = {
-      recipient: business.whatsapp,
+    const callWaiterRequest = {
+      recipient: business?.whatsapp,
       umbrella,
     };
-    callWaiter(orderRequest);
+    callWaiter(callWaiterRequest);
     dispatch(updateWaiterTime());
     setCallWaiterOpen(false);
     setIsWaiterCommingAlertOpen(true);
@@ -132,9 +134,23 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
   const shouldOpen = useMemo(() =>
     Boolean(orderItems?.length && open), [orderItems?.length, open]);
 
-  const isWithinOpeningItems = isWithinOpeningTime(business.openingTime, business.closingTime);
-  if (!business?.available || !isWithinOpeningItems)
-    return <EmptyView />;
+  const isWithinOpeningItems = isWithinOpeningTime(business?.openingTime, business?.closingTime);
+
+  let alMessage = "";
+  let enMessage = "";
+  if (!business) {
+    alMessage = "Nuk ka te dhena!";
+    enMessage = "(No data found!)";
+  } else if (!business?.available) {
+    alMessage = "Menu nuk eshte aktive!";
+    enMessage = "(Menu is not available!)";
+  } else if (!isWithinOpeningItems) {
+    alMessage = "Jashte orarit te punes!";
+    enMessage = "(Outside of working hours!)";
+  }
+
+  if (alMessage)
+    return <EmptyView alTitle={alMessage} enTitle={enMessage} />;
 
   return (
     <>
@@ -144,9 +160,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
       }} >
       </div>
       <SearchBox
-        showWaiterButton={business?.waiterRequestFlag}
-        onSearch={handleSearch}
-        onIconClick={() => setCallWaiterOpen(true)} />
+        onSearch={handleSearch} />
       <MenuSlider
         menuItems={categories}
         onClickHandler={onMenuClickHandler}
@@ -192,7 +206,22 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
         isOpen={callWaiterOpen}
         handleConfirm={handleCallWaiter}
         handleCancel={() => setCallWaiterOpen(false)} />
-
+      {business?.waiterRequestFlag &&
+        <IconButton onClick={() => setCallWaiterOpen(true)} sx={{
+          top: "auto",
+          right: 25,
+          bottom: 35,
+          left: "auto",
+          position: "fixed",
+          boxShadow: "0px 17px 10px -10px rgba(0,0,0,0.4)"
+        }} >
+          <Avatar style={{ width: 65, height: 65, margin: -10 }}
+            sx={{ backgroundColor: "#020f85" }}>
+            <Image alt="waiter" src="/waiterrr.png" width={45} height={45}
+            />
+          </Avatar>
+        </IconButton>
+      }
     </>
   );
 };
@@ -203,7 +232,17 @@ export async function getServerSideProps(ctx: any) {
 
   const { umbrella, id } = ctx.query;
 
-  const { data: business } = await getBusinessMenu(id, umbrella);
+  const response = await getBusinessMenu(id, umbrella);
+
+  const business = response?.data;
+
+  if (!business)
+    return {
+      props: {
+        business: null,
+        umbrella,
+      }
+    };
 
   // if(!delivery)
   //return {
@@ -216,7 +255,7 @@ export async function getServerSideProps(ctx: any) {
     .map((category: any) => (
       {
         ...category,
-        products: category?.products.filter((product: any) => product.available)
+        products: category?.products?.filter((product: any) => product?.available)
       }));
 
   let categories = sanitizedMenu?.

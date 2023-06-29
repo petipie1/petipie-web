@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Avatar, Grid, IconButton, ListItemIcon, ListItemText } from "@mui/material";
+import { Grid, IconButton, ListItemIcon, ListItemText } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import ClearIcon from "@mui/icons-material/Clear";
-import FilterListIcon from "@mui/icons-material/FilterList";
+// import FilterListIcon from "@mui/icons-material/FilterList";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useTranslation } from "react-i18next";
@@ -10,12 +10,14 @@ import Image from "next/image";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 
-export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo, showWaiterButton }: any) {
+export default function SearchBox({ placeholder, onSearch, isDemo }: any) {
   const { t, i18n } = useTranslation();
 
   const [value, setValue] = React.useState("");
   const [timer, setTimer]: any = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [icon, setIcon] = React.useState("/english.png");
+
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -43,6 +45,7 @@ export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo, 
   const handleLanguageSelect = async (language: string) => {
     i18n.changeLanguage(language);
     setAnchorEl(null);
+    setIcon(language === "en" ? "/english.png" : "/albanian.png");
   };
 
   return (
@@ -77,7 +80,7 @@ export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo, 
               </IconButton>
             ),
             style: {
-              fontSize: "18px", fontWeight: "400", color: "grey",
+              fontSize: "18px", fontWeight: "400", color: "black",
             }
           }}
 
@@ -109,15 +112,16 @@ export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo, 
         />
         <Grid>
           <IconButton onClick={handleClick}>
-            <Avatar
+            <Image alt="alb" src={icon} width={30} height={30} />
+            {/* <Avatar
               sx={{
                 backgroundColor: "#020f85",
                 marginTop: -1, marginBottom: -1,
               }}>
               <FilterListIcon htmlColor='white' />
-            </Avatar>
+            </Avatar> */}
           </IconButton>
-          {isDemo || showWaiterButton ? (
+          {/* {isDemo || showWaiterButton ? (
             <IconButton onClick={onIconClick}>
               <Avatar style={{}}
                 sx={{ backgroundColor: "#020f85", margin: -1 }}>
@@ -126,7 +130,7 @@ export default function SearchBox({ placeholder, onSearch, onIconClick, isDemo, 
               </Avatar>
             </IconButton>
           ) : null
-          }
+          } */}
         </Grid>
         <Menu
           id="basic-menu"

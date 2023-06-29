@@ -14,7 +14,7 @@ const OrderTotal = ({ total, show, onClick, isPopupOpen }: any) => {
       minHeight: "70px",
       justifyContent: "center",
       opacity: !show ? "0" : "1",
-      transition: "all 0.4s",
+      // transition: "all 0.4s",
       visibility: !show ? "hidden" : "visible",
       zIndex: 4,
 

@@ -12,6 +12,8 @@ import SearchBox from "components/SearchBox";
 import { businessData, categories } from "common/constants";
 import { calculateCartTotal, diffInMinutesFromNow, scroll } from "utils/common";
 import { useTranslation } from "react-i18next";
+import { Avatar, IconButton } from "@mui/material";
+import Image from "next/image";
 
 const MenuPage: NextPage = ({ business }: any) => {
   const dispatch = useDispatch();
@@ -150,6 +152,21 @@ const MenuPage: NextPage = ({ business }: any) => {
         isOpen={callWaiterOpen}
         handleConfirm={handleCallWaiter}
         handleCancel={() => setCallWaiterOpen(false)} />
+      <IconButton onClick={handleCallWaiter} sx={{
+        top: "auto",
+        right: 25,
+        bottom: 35,
+        left: "auto",
+        position: "fixed",
+        boxShadow: "0px 10px 25px 5px rgba(0,0,0,0.4)",
+      }} >
+
+        <Avatar style={{ width: 65, height: 65, margin: -10 }}
+          sx={{ backgroundColor: "#020f85" }}>
+          <Image alt="waiter" src="/waiterrr.png" width={45} height={45}
+          />
+        </Avatar>
+      </IconButton>
     </>
   );
 };

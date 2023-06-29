@@ -1,7 +1,8 @@
 
 import React from "react";
 
-export default function Settings({ apiUrl, version, apiKey }: any) {
+// fe563c91-e3f2-4dbd-9f35-67cce23758ad
+export default function Settings({ apiUrl, apiKey }: any) {
 
   const api = process.env.API_BASE_URL;
   return (
@@ -9,7 +10,6 @@ export default function Settings({ apiUrl, version, apiKey }: any) {
       <p>{`CS: ${api}`}</p>
       <p>{`SSR: ${apiUrl}`}</p>
       <p>{`ApiKey: ${apiKey}`}</p>
-      <p>{`Version: ${version}`}</p>
     </div>);
 }
 
@@ -19,7 +19,6 @@ export async function getServerSideProps() {
     props: {
       apiUrl: process.env.API_BASE_URL,
       apiKey: process.env.API_KEY,
-      version: process.env.REACT_APP_VERSION ?? "nothing"
     }
   };
 }
