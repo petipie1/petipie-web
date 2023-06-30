@@ -58,7 +58,7 @@ const MenuSlider = ({ selectedTabUrlValue, menuItems, onClickHandler }) => {
           menuItems.map((item, idx) => (
             <StyledTab
               key={`tab-main-${item.url}`}
-              icon={<img alt="" src={item?.icon} height={25} width={25} />}
+              icon={item?.icon && (<img alt="" src={item?.icon} height={25} width={25} />)}
               iconPosition='start'
               sx={{
                 height: "40px",

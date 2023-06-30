@@ -1,13 +1,16 @@
 import React, { useCallback } from "react";
 // import { StyledText } from 'components/BaseComponents/StyledText';
 import PropTypes from "prop-types";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, styled } from "@mui/material";
 // import StepCount from 'components/StepCount/Loadable';
 // import { glide } from 'react-tiger-transition/esm/react-tiger-transition';
 // import CSSTransition from 'react-transition-group/CSSTransition';
 // import ConfirmationDialog from 'components/ConfirmationDialog/Loadable';
 import StepCount from "../../StepCount";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 // import ConfirmationDialog from '../../ConfirmationDialog';
 
 // glide({
@@ -19,8 +22,41 @@ import Image from "next/image";
 //   },
 // });
 
+const StyledDescription = styled(Typography)({
+  fontFamily: "Roboto",
+  fontStyle: "normal",
+  fontWeight: "300",
+  marginBottom: "5px",
+  fontSize: "0.85rem",
+  color: "#545454",
+  opacity: 0.6,
+  maxLines: 1,
+  textOverflow: "ellipsis",
+  "-webkit-line-clamp": 1,
+  "-webkit-box-orient": "horizontal",
+  overflow: "hidden",
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  WebkitLineClamp: 1,
+  wordBreak: "break-word",
+  lineHeight: "16px",
+});
+
+const HtmlTooltip = styled(({ className, ...props }: any) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: "1px solid #dadde9",
+  },
+}));
+
 const MenuItem = ({
   name,
+  description,
   imageUrl,
   index,
   quantity,
@@ -28,12 +64,12 @@ const MenuItem = ({
   onCountChange,
   orderingEnabled
   // animationDelay,
-  // description,
   // promoId,
   // discount,
   // addedByPromo,
 }: any) => {
-
+  const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
   // const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
   // const classes = useStyles();
   const stepOnChangeHandler = useCallback(
@@ -43,6 +79,15 @@ const MenuItem = ({
     },
     [onCountChange],
   );
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    if (description)
+      setOpen(true);
+  };
 
   // const [rowPrice, setRowPrice] = useState(quantity * price);
 
@@ -60,7 +105,7 @@ const MenuItem = ({
       }}
         alignItems={"center"} justifyContent="center"
       >
-        <Image alt="" src={imageUrl || "/apple-touch-icon.png"}
+        <Image alt="" src={imageUrl || "/placeholder.png"}
           width={"100%"} height={"100%"}
           objectFit='contain' style={{ borderRadius: "8%" }}
         />
@@ -123,13 +168,48 @@ const MenuItem = ({
         sx={{
           justifyContent: "center",
           alignContent: "start",
-        }}>
-        <Typography sx={{
-          lineHeight: "20px", paddingBottom: "3px",
-          fontSize: "21px"
-        }}>
-          {name}
-        </Typography>
+        }}
+      >
+        <ClickAwayListener onClickAway={handleTooltipClose}>
+          <Tooltip
+            PopperProps={{
+              disablePortal: true,
+            }}
+            onClose={handleTooltipClose}
+            open={open}
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
+            title={
+              <React.Fragment>
+                <Typography color="inherit" variant="h6">{t(`${name}`)}</Typography>
+                <em style={{ fontSize: "0.9rem" }}>{t(`${description}`)}</em>
+              </React.Fragment>
+            }
+            sx={{ marginBottom: -3 }}
+          >
+            <Typography sx={{
+              lineHeight: "20px", paddingBottom: "3px",
+              fontSize: "20px",
+              maxLines: 2,
+              textOverflow: "ellipsis",
+              "-webkit-line-clamp": 2,
+              "-webkit-box-orient": "vertical",
+              overflow: "hidden",
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 2,
+            }}
+              onClick={handleTooltipOpen}>
+              {t(`${name}`)}
+            </Typography>
+          </Tooltip>
+        </ClickAwayListener>
+        {description && (
+          <StyledDescription>
+            {t(`${description}`)}
+          </StyledDescription>
+        )}
         {itemDetails}
       </Grid>
       {orderingEnabled &&
