@@ -234,7 +234,9 @@ const resources = {
       "Panna, spek, mozarella, corn,": "Pana, spek, mozarella, miser.",
       "Summer": "Summer",
       "Tomato sauce, mozzarella, squid, shrimp, mussels.": "Salce domate, mozarella, kallamar, karkalec, midhje.",
-      "Seafood Pizza": "Pizza Fruta Deti"
+      "Seafood Pizza": "Pizza Fruta Deti",
+      // Generic
+      "Please wait...": "Ju lutem prisni..."
     }
   }
 };

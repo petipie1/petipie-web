@@ -18,13 +18,19 @@ import EmptyView from "components/EmptyView";
 import { useTranslation } from "react-i18next";
 import { Avatar, IconButton } from "@mui/material";
 import Image from "next/image";
+import LoadingIndicator from "components/LoadingIndicator";
 
 const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: any) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const cart = useSelector((state: any) => state.cart);
 
+  console.log("business", business);
+  console.log("sanitizedMenu", sanitizedMenu);
+  console.log("categories", categories);
+
   const [open, setOpen] = useState(!(cart?.items));
+  const [isLoading, setIsLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [alertData, setAlertData] = useState({ title: "", message: "", open: false });
   const [callWaiterOpen, setCallWaiterOpen] = useState(false);
@@ -81,7 +87,13 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
         note: cart?.notes
       };
 
-      await postOrder(orderRequest);
+      try {
+        setIsLoading(true);
+        await postOrder(orderRequest);
+      } catch (error) {
+        console.log("Making order error: ", error);
+      }
+      setIsLoading(false);
       dispatch(clearCart(false));
       setIsDialogOpen(true);
     }
@@ -154,6 +166,7 @@ const MenuPage: NextPage = ({ business, umbrella, sanitizedMenu, categories }: a
 
   return (
     <>
+      <LoadingIndicator isLoading={isLoading} />
       <div style={{
         background: "linear-gradient(#Ffdd74,white)", position: "fixed",
         zIndex: -1, height: "100%", width: "100%"

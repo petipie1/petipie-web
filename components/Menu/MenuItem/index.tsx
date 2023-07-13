@@ -9,7 +9,7 @@ import { Grid, Typography, styled } from "@mui/material";
 import StepCount from "../../StepCount";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Tooltip from "@mui/material/Tooltip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 // import ConfirmationDialog from '../../ConfirmationDialog';
 
@@ -42,18 +42,6 @@ const StyledDescription = styled(Typography)({
   lineHeight: "16px",
 });
 
-const HtmlTooltip = styled(({ className, ...props }: any) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "#f5f5f9",
-    color: "rgba(0, 0, 0, 0.87)",
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: "1px solid #dadde9",
-  },
-}));
-
 const MenuItem = ({
   name,
   description,
@@ -62,7 +50,8 @@ const MenuItem = ({
   quantity,
   price,
   onCountChange,
-  orderingEnabled
+  orderingEnabled,
+  readonly
   // animationDelay,
   // promoId,
   // discount,
@@ -212,22 +201,24 @@ const MenuItem = ({
         )}
         {itemDetails}
       </Grid>
-      {orderingEnabled &&
-        <Grid item container xs={4}
-          sx={{
-            justifyContent: "end",
-            alignContent: "center",
-            alignItems: "center",
-          }}>
+      {orderingEnabled && !readonly &&
+        (
+          <Grid item container xs={4}
+            sx={{
+              justifyContent: "end",
+              alignContent: "center",
+              alignItems: "center",
+            }}>
 
-          <StepCount
-            idx={index}
-            value={quantity}
-            onStepValueChange={stepOnChangeHandler}
-            enableDelete
-          />
+            <StepCount
+              idx={index}
+              value={quantity}
+              onStepValueChange={stepOnChangeHandler}
+              enableDelete
+            />
 
-        </Grid>
+          </Grid>
+        )
       }
     </Grid >);
 
@@ -258,7 +249,8 @@ MenuItem.defaultProps = {
   animationDelay: 300,
   description: "",
   quantity: 0,
-  imageUrl: ""
+  imageUrl: "",
+  readonly: false
 };
 
 export default React.memo(
