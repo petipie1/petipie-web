@@ -113,13 +113,12 @@
 }
 
 .logo_text {
-  height: 1em;
-  margin-left: 0.5rem;
+  height: 1.5em;
+  margin-left: 0.1rem;
   color: #2957cb;
 }
 
 .header {
- 
   background-color: #fafafa;
 }
 

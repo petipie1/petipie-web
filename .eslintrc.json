@@ -12,7 +12,7 @@
   "rules": {
     "semi": ["error", "always"],
     "camelcase": "warn",
-    "quotes": [2, "single"],
+    "quotes": [2, "double"],
     "no-multiple-empty-lines": ["error", { "max": 1 }]
   }
   // "globals": {
