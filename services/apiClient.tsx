@@ -17,6 +17,12 @@ interface CreateOrderRequest {
   notes?: any;
 }
 
+interface ActivatePetRequest {
+  data: any;
+  orderCode?: string;
+  status: string;
+}
+
 interface CallWaiterRequest {
   recipient: string;
   umbrella: string;
@@ -32,12 +38,11 @@ const ax = axios.create({
   },
 });
 
-export const getBusinessMenu = async (
-  businessId: number,
-  umbrella?: number,
+export const getPet = async (
+  id: number,
 ): Promise<any> => {
   try {
-    var response = await ax.get<any>(`/api/v1/Business/${businessId}/${umbrella}`, {
+    var response = await ax.get<any>(`/api/v1/Pet/${id}`, {
       headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
     });
     return response;//successResponse<PaymentStatus>(response);
@@ -45,6 +50,14 @@ export const getBusinessMenu = async (
     console.log("error", error);
     return null; //errorResponse<any>(error);
   }
+};
+
+export const activatePet = async (externalId: string, activatePetRequest: ActivatePetRequest): Promise<Response<any>> => {
+  const response = await ax.put(`/api/v1/pet/${externalId}`, activatePetRequest,
+    {
+      headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+    });
+  return response.data;
 };
 
 export const postOrder = async (orderRequest: CreateOrderRequest): Promise<Response<any>> => {

@@ -1,30 +1,30 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { IconButton, Link } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 export default function Home() {
   return (
     <>
       <div style={{
-        background: "linear-gradient(#Ffdd74,white)", position: "fixed",
+        background: "linear-gradient(#FCDF7B, #FF724D)", position: "fixed",
         zIndex: -1, height: "100%", width: "100%"
       }} >
       </div>
       <div className={styles.container}>
 
         <Head>
-          <title>Shije Vere - Scan</title>
-          <meta name="description" content="shijevere.com" />
+          <title>Petipie - Scan</title>
+          <meta name="description" content="petipie.online" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <main className={styles.main}>
 
-          <Image src="/octo-scan.png" alt="Vercel Logo" width={180} height={180} />
+          {/* <Image src="/octo-scan.png" alt="Vercel Logo" width={180} height={180} /> */}
 
           {/* <Button className={styles.scanBtn} variant="outlined" size="medium">Scan QR code.</Button> */}
           <input
@@ -40,7 +40,7 @@ export default function Home() {
               aria-label="upload picture"
               component="span"
               sx={{
-                borderRadius: 2,
+                borderRadius: 8,
                 color: "white",
                 m: 2,
                 fontWeight: 400,
@@ -50,37 +50,37 @@ export default function Home() {
                 minWidth: "160px",
                 fontFamily: "sans-serif"
               }}
-              style={{ backgroundColor: "#020f85" }}
+              style={{ backgroundColor: "#184BFF" }}
             >
-              {"Scan QR Code"}
+              {"Skano QR"}
             </IconButton>
           </label>
 
-          <Grid item direction={"row"}>
+          {/* <Grid item direction={"row"}>
             <Typography sx={{ fontSize: "18px" }}>
               {"Si funksionon? "}
               <Link href="/demo" variant="outlined" size="medium">
                 {"Demo"}
               </Link>
             </Typography>
-          </Grid>
+          </Grid> */}
 
-          <Grid item container sx={{
+          {/* <Grid item container sx={{
             justifyContent: "center", alignItems: "center", marginTop: 2,
             display: { sm: "flex", xs: "none", md: "flex", }
-          }} >
+          }} > */}
             {/* aspect ratio: 2198x987 */}
-            <Image src="/banner_desktop.png" alt="dp" width="1099px" height="493.5px" />
-          </Grid>
+            {/* <Image src="/banner_desktop.png" alt="dp" width="1099px" height="493.5px" /> */}
+          {/* </Grid> */}
 
-          <Grid item container sx={{
+          {/* <Grid item container sx={{
             justifyContent: "center", alignItems: "center", marginTop: 2,
             display: { md: "none", lg: "none", xl: "none", sm: "none" }
-          }} >
+          }} > */}
             {/* aspect ratio: 594x3860 */}
-            <Image src="/banner_mobile.png" alt="dp" width="396px" height="2573.3px" />
-          </Grid>
-          <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
+            {/* <Image src="/banner_mobile.png" alt="dp" width="396px" height="2573.3px" /> */}
+          {/* </Grid> */}
+          {/* <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "50px" }} >
             <Typography variant="h6">
               ⚫ Menu ne çadrat e plazhit
@@ -88,8 +88,8 @@ export default function Home() {
             <p >
               Duke vendosur menune ne cdo çader plazhi, i mundesoni biznesit tuaj ekspozimin e te gjithe menuse se pijeve apo snacks qe mund te sherbehen nga kamarieri ne çader.
             </p>
-          </Grid>
-          <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
+          </Grid> */}
+          {/* <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "30px" }} >
             <Typography variant="h6">
               ⚫ Porosi nga çadra
@@ -97,8 +97,8 @@ export default function Home() {
             <p >
               Pasi menuja eshte e askesueshme ne cdo çader, klientet mund te porosisin lehtesisht nga aty dhe porosia i shkon kamarierit tek kompjuteri apo edhe ne telefon me referencen e çadres nga e cila po vjen porosia.
             </p>
-          </Grid>
-          <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
+          </Grid> */}
+          {/* <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "30px" }} >
             <Typography variant="h6">
               ⚫ Thirr kamarierin tek çadra
@@ -106,8 +106,8 @@ export default function Home() {
             <p >
               Klienti mund te therrase kamarierin nga çadra nepermjet nje funksionaliteti te shtuar ne menu.
             </p>
-          </Grid>
-          <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
+          </Grid> */}
+          {/* <Grid item container direction={"column"} justifyContent={"start"} alignContent="start"
             sx={{ marginTop: "30px" }} >
             <Typography variant="h6">
               ⚫ Menu dinamike
@@ -138,7 +138,7 @@ export default function Home() {
             <p>
               Nese porosia eshte 1200 lek dhe konvertimin ne EURO ju e keni vendosur 120, atehere totali do te shfaqet 1200 lek (10 EUR).
             </p>
-          </Grid>
+          </Grid> */}
         </main>
         <footer >
           <Grid container item sx={{ justifyContent: "center", alignContent: "center" }}>
@@ -146,14 +146,14 @@ export default function Home() {
               <Typography sx={{
                 fontFamily: "sans-serif", height: "1.5em",
                 fontSize: "18px",
-                color: "#2957cb"
+                color: "whitesmoke"
               }}>
-                shijevere@gmail.com
+                petipie1@gmail.com
               </Typography>
               <Typography sx={{
                 fontFamily: "sans-serif", height: "1.5em",
                 fontSize: "18px",
-                color: "#2957cb"
+                color: "whitesmoke"
               }}>
                 +355686284516
               </Typography>

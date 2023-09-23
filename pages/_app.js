@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
-        <title>Shije Vere</title>
-        <meta name="description" content="Summer Vibes" />
+        <title>Petipie | Mbroni miqtë e vegjël</title>
+        <meta name="description" content="Petipie" />
       </Head>
       <Component {...pageProps} />
     </Provider>

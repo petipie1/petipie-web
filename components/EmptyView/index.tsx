@@ -1,49 +1,40 @@
 import React from "react";
-import { Grid, IconButton, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 const EmptyView = ({ alTitle, enTitle }: any) => (
-  <Grid item container direction={"column"}
+  <Grid
+    item
+    container
+    direction={"column"}
     sx={{
       justifyContent: "center",
       position: "absolute",
       alignItems: "center",
-      background: "linear-gradient(#Ffdd74,white)"
-
-    }}>
+    }}
+  >
     <Typography variant="h6" sx={{ marginTop: 10 }}>
       {alTitle}
     </Typography>
-    <Typography variant="subtitle2">
-      {enTitle}
-    </Typography>
-    <input
-      accept="image/*"
-      id="icon-button-file"
-      type="file"
-      capture="environment"
-      style={{ display: "none" }}
-    />
-    <label htmlFor="icon-button-file">
-      <IconButton
-        color="primary"
-        aria-label="upload picture"
-        component="span"
-        sx={{
-          borderRadius: 2,
-          color: "white",
-          m: 2,
-          fontWeight: 400,
-          textTransform: "none",
-          fontSize: "16px",
-          maxHeight: "45px",
-          minWidth: "160px",
-          fontFamily: "sans-serif"
-        }}
-        style={{ backgroundColor: "#020f85" }}
-      >
-        {"Scan QR Code"}
-      </IconButton>
-    </label>
-  </Grid>);
+    <Typography variant="subtitle2">{enTitle}</Typography>
+    {/* <IconButton
+      color="primary"
+      aria-label="upload picture"
+      component="span"
+      sx={{
+        borderRadius: 2,
+        color: "red",
+        m: 2,
+        fontWeight: 500,
+        textTransform: "none",
+        fontSize: "16px",
+        maxHeight: "45px",
+        minWidth: "160px",
+        fontFamily: "sans-serif"
+      }}
+    >
+      {"Home"}
+    </IconButton> */}
+  </Grid>
+);
 
 export default EmptyView;

@@ -1,183 +1,170 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 // import AppBar from '@mui/material/AppBar';
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import type { NextPage } from "next";
-import Menu from "components/Menu";
-import { clearCart, updateCartItemQuantity, updateCartNote } from "redux/reducers/cartSlice";
-import OrderTotal from "components/OrderTotal";
-import MenuSlider from "components/MenuSlider";
-import OrderSummary from "components/OrderSummary";
-import InfoDialog from "components/InfoDialog";
-import SearchBox from "components/SearchBox";
-import { businessData, categories } from "common/constants";
-import { calculateCartTotal, diffInMinutesFromNow, scroll } from "utils/common";
-import { useTranslation } from "react-i18next";
-import { Avatar, IconButton } from "@mui/material";
-import Image from "next/image";
+// import Menu from "components/Menu";
 
-const MenuPage: NextPage = ({ business }: any) => {
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const cart = useSelector((state: any) => state.cart);
+// import OrderTotal from "components/OrderTotal";
+// import MenuSlider from "components/MenuSlider";
+// import OrderSummary from "components/OrderSummary";
+// import InfoDialog from "components/InfoDialog";
+// import SearchBox from "components/SearchBox";
+// import { useTranslation } from "react-i18next";
+// import { Avatar, IconButton } from "@mui/material";
+// import Image from "next/image";
+import EmptyView from "components/EmptyView";
 
-  const [open, setOpen] = useState(!(cart?.items));
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [callWaiterOpen, setCallWaiterOpen] = useState(false);
-  const [isWaiterCommingAlertOpen, setIsWaiterCommingAlertOpen] = useState(false);
+const MenuPage: NextPage = () => {
+  // const dispatch = useDispatch();
+  // const { t } = useTranslation();
+  // const cart = useSelector((state: any) => state.cart);
 
-  const [menu, setMenu] = useState(business?.menu);
+  // const [open, setOpen] = useState(!cart?.items);
 
-  const onCountChange = React.useCallback(
-    (product: any, quantity: number) => {
-      dispatch(updateCartItemQuantity({ product, quantity }));
-    },
-    [dispatch],
-  );
+  // const onCountChange = React.useCallback(
+  //   (product: any, quantity: number) => {
+  //     dispatch(updateCartItemQuantity({ product, quantity }));
+  //   },
+  //   [dispatch]
+  // );
 
-  const onOrderItemCountChange = (product: any, quantity: number) => {
-    dispatch(updateCartItemQuantity({ product, quantity }));
-  };
+  // const onOrderItemCountChange = (product: any, quantity: number) => {
+  //   dispatch(updateCartItemQuantity({ product, quantity }));
+  // };
 
-  useEffect(() => {
-    if (!Object.values(cart?.items)?.length) {
-      setOpen(false);
-    }
-    return () => { };
+  // useEffect(() => {
+  //   if (!Object.values(cart?.items)?.length) {
+  //     setOpen(false);
+  //   }
+  //   return () => {};
+  // }, [cart?.items]);
 
-  }, [cart?.items]);
+  // const onMenuClickHandler = ({ url }: any) => scroll(url);
 
-  const onMenuClickHandler = ({ url }: any) => scroll(url);
+  // const orderTotal = React.useMemo(
+  //   () => calculateCartTotal(cart?.items),
+  //   [cart?.items]
+  // );
 
-  const orderTotal = React.useMemo(() => calculateCartTotal(cart?.items), [cart?.items]);
+  // const filterProduct = (name: string, search: string) =>
+  //   name.toLowerCase().includes(search.toLowerCase());
 
-  const handleContinue = () => {
-    if (cart?.lastOrderTime && diffInMinutesFromNow(cart?.lastOrderTime) < 3) {
-      setIsAlertOpen(true);
-      return;
-    }
+  // const handleNoteChange = (event: any) => {
+  //   const note = event.target.value;
+  //   dispatch(updateCartNote({ note }));
+  // };
 
-    if (open) {
-      dispatch(clearCart(true));
-      setIsDialogOpen(true);
-    }
-    setOpen(!open);
-  };
+  // const handleCallWaiter = () => {
+  //   setCallWaiterOpen(false);
+  //   setIsWaiterCommingAlertOpen(true);
+  // };
 
-  const filterProduct = (name: string, search: string) => name.toLowerCase().includes(search.toLowerCase());
+  // const orderItems = Object.values(cart?.items);
 
-  const handleSearch = (term: string) => {
-    if (!term) {
-      setMenu(business?.menu);
-    } else {
-      const filterdMenu = business?.menu.map((category: any) => ({
-        ...category,
-        products: category?.products.filter((product: any) => filterProduct(product.name, term))
-      }));
-
-      setMenu(filterdMenu);
-    }
-  };
-
-  const handleNoteChange = (event: any) => {
-    const note = event.target.value;
-    dispatch(updateCartNote({ note }));
-  };
-
-  const handleCallWaiter = () => {
-    setCallWaiterOpen(false);
-    setIsWaiterCommingAlertOpen(true);
-  };
-
-  const orderItems = Object.values(cart?.items);
-
-  const shouldOpen = useMemo(() => Boolean(orderItems?.length && open), [orderItems?.length, open]);
+  // const shouldOpen = useMemo(
+  //   () => Boolean(orderItems?.length && open),
+  //   [orderItems?.length, open]
+  // );
 
   // if (business?.available)
-  //   return <EmptyView />;
-
   return (
-    <>
-      <div style={{
-        background: "linear-gradient(#Ffdd74,white)", position: "fixed",
-        zIndex: -1, height: "100%", width: "100%"
-      }} >
-      </div>
-      <SearchBox
-        isDemo
-        onSearch={handleSearch}
-        onIconClick={() => setCallWaiterOpen(true)} />
-
-      <MenuSlider
-        menuItems={categories}
-        onClickHandler={onMenuClickHandler}
-        selectedTabUrlValue={"drinks"}
-      />
-      <Menu
-        isDemo
-        menu={menu}
-        onCountChange={onCountChange}
-        cartItems={cart?.items}
-      />
-
-      <OrderSummary
-        shouldOpen={shouldOpen}
-        orderItems={orderItems}
-        handleNoteChange={handleNoteChange}
-        onCountChange={onOrderItemCountChange}
-        handleClose={() => setOpen(false)}
-        notes={cart?.notes}
-      />
-
-      <OrderTotal total={orderTotal} show={!!(orderTotal)}
-        onClick={handleContinue}
-        isPopupOpen={open} />
-      <InfoDialog title={t("orderConfirmedTitle")}
-        message={t("orderConfirmedMsg")}
-        isOpen={isDialogOpen}
-        isInfo
-        handleClose={() => setIsDialogOpen(false)} />
-      <InfoDialog title={t("oopsTitle")}
-        message={t("oopsMsg")}
-        isOpen={isAlertOpen}
-        isInfo
-        handleClose={() => setIsAlertOpen(false)} />
-      <InfoDialog title={t("waiterComingTitle")}
-        message={t("waiterComingMsg")}
-        isOpen={isWaiterCommingAlertOpen}
-        isInfo
-        handleClose={() => setIsWaiterCommingAlertOpen(false)} />
-      <InfoDialog title={t("callWaiterTitle")}
-        message={t("callWaiterMsg")}
-        isOpen={callWaiterOpen}
-        handleConfirm={handleCallWaiter}
-        handleCancel={() => setCallWaiterOpen(false)} />
-      <IconButton onClick={handleCallWaiter} sx={{
-        top: "auto",
-        right: 25,
-        bottom: 35,
-        left: "auto",
-        position: "fixed",
-        boxShadow: "0px 10px 25px 5px rgba(0,0,0,0.4)",
-      }} >
-
-        <Avatar style={{ width: 65, height: 65, margin: -10 }}
-          sx={{ backgroundColor: "#020f85" }}>
-          <Image alt="waiter" src="/waiterrr.png" width={45} height={45}
-          />
-        </Avatar>
-      </IconButton>
-    </>
+    <EmptyView
+      alTitle="Demo vjen se shpejti :)"
+      enTitle="Demo comming soon :)"
+    />
   );
+
+  //   return (
+  //     <>
+  //       <div
+  //         style={{
+  //           background: "linear-gradient(#Ffdd74,white)",
+  //           position: "fixed",
+  //           zIndex: -1,
+  //           height: "100%",
+  //           width: "100%",
+  //         }}
+  //       ></div>
+  //       {/* <SearchBox
+  //         isDemo
+  //         onSearch={handleSearch}
+  //         onIconClick={() => setCallWaiterOpen(true)} /> */}
+
+  //       {/* <MenuSlider
+  //         menuItems={categories}
+  //         onClickHandler={onMenuClickHandler}
+  //         selectedTabUrlValue={"drinks"}
+  //       /> */}
+  //       {/* <Menu
+  //         isDemo
+  //         menu={menu}
+  //         onCountChange={onCountChange}
+  //         cartItems={cart?.items}
+  //       /> */}
+
+  //       <OrderSummary
+  //         shouldOpen={shouldOpen}
+  //         orderItems={orderItems}
+  //         handleNoteChange={handleNoteChange}
+  //         onCountChange={onOrderItemCountChange}
+  //         handleClose={() => setOpen(false)}
+  //         notes={cart?.notes}
+  //       />
+
+  //       <OrderTotal
+  //         total={orderTotal}
+  //         show={!!orderTotal}
+  //         onClick={handleContinue}
+  //         isPopupOpen={open}
+  //       />
+  //       <InfoDialog
+  //         title={t("orderConfirmedTitle")}
+  //         message={t("orderConfirmedMsg")}
+  //         isOpen={isDialogOpen}
+  //         isInfo
+  //         handleClose={() => setIsDialogOpen(false)}
+  //       />
+  //       <InfoDialog
+  //         title={t("oopsTitle")}
+  //         message={t("oopsMsg")}
+  //         isOpen={isAlertOpen}
+  //         isInfo
+  //         handleClose={() => setIsAlertOpen(false)}
+  //       />
+  //       <InfoDialog
+  //         title={t("waiterComingTitle")}
+  //         message={t("waiterComingMsg")}
+  //         isOpen={isWaiterCommingAlertOpen}
+  //         isInfo
+  //         handleClose={() => setIsWaiterCommingAlertOpen(false)}
+  //       />
+  //       <InfoDialog
+  //         title={t("callWaiterTitle")}
+  //         message={t("callWaiterMsg")}
+  //         isOpen={callWaiterOpen}
+  //         handleConfirm={handleCallWaiter}
+  //         handleCancel={() => setCallWaiterOpen(false)}
+  //       />
+  //       <IconButton
+  //         onClick={handleCallWaiter}
+  //         sx={{
+  //           top: "auto",
+  //           right: 25,
+  //           bottom: 35,
+  //           left: "auto",
+  //           position: "fixed",
+  //           boxShadow: "0px 10px 25px 5px rgba(0,0,0,0.4)",
+  //         }}
+  //       >
+  //         <Avatar
+  //           style={{ width: 65, height: 65, margin: -10 }}
+  //           sx={{ backgroundColor: "#020f85" }}
+  //         >
+  //           <Image alt="waiter" src="/waiterrr.png" width={45} height={45} />
+  //         </Avatar>
+  //       </IconButton>
+  //     </>
+  //   );
+  // };
 };
-
 export default MenuPage;
-
-export async function getServerSideProps() {
-
-  return {
-    props: {
-      business: businessData
-    }
-  };
-}
