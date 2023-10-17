@@ -11,16 +11,9 @@ import OrderModelSection from "./../components/OrderModelSection";
 import OrderForm from "./../components/OrderForm";
 import Footer from "./../components/Footer";
 import { Container } from "@mui/material";
+import { menuItems } from "./../common/constants";
 
 export default function Home() {
-  const menuItems = [
-    { title: "Si funksionon?", url: "some-url" },
-    { title: "Porosit", url: "#order-form" },
-    { title: "Te humbur", url: "some-url" },
-    { title: "Rreth nesh", url: "some-url" },
-    { title: "Kontakto", url: "some-url" },
-  ];
-
   return (
     <>
       <Container sx={{ overflow: "hidden" }}>

@@ -199,7 +199,7 @@ const OrderForm = ({ data }: any) => {
     const { parsedPhone: phone } = values.ownerPhone;
 
     const orderRequest = {
-      status: "Active",
+      status: "Ordered",
       data: {
         name: values.petName,
         city: values.ownerCity,

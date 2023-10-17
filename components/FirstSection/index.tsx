@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 
 import HeaderChimp from "../HeaderChimp";
-import Link from "next/link";
 
 const FirstSection = () => (
   <Grid container maxWidth={"lg"} spacing={2} sx={{ marginTop: 5, padding: 2 }}>
@@ -68,26 +67,26 @@ const FirstSection = () => (
         Petipie eshte platforma me e re qe iu vjen ne ndihme kafsheve shtepiake
         te cilat humbasin çdo dite.
       </Typography>
-      <Link href={"#order-form"}>
-        <Button
-          sx={{
-            borderRadius: "3rem",
-            textTransform: "none",
-            fontFamily: "Product Sans",
-            color: "white",
-            maxHeight: "50px",
-            fontSize: "1.2rem",
-            paddingRight: "1.5rem",
-            paddingLeft: "1.5rem",
-            mt: "1.5rem",
-          }}
-          style={{
-            background: "linear-gradient(to right, #FFDC26, #E0AF00)",
-          }}
-        >
-          Porosit varësen tënde!
-        </Button>
-      </Link>
+      <Button
+        sx={{
+          borderRadius: "3rem",
+          textTransform: "none",
+          fontFamily: "Product Sans",
+          color: "white",
+          maxHeight: "50px",
+          minWidth: "60%",
+          fontSize: "1.2rem",
+          paddingRight: "1.5rem",
+          paddingLeft: "1.5rem",
+          mt: "1.5rem",
+        }}
+        onClick={() => document.querySelector("#order-form")?.scrollIntoView()}
+        style={{
+          background: "linear-gradient(to right, #FFDC26, #E0AF00)",
+        }}
+      >
+        Porosit varësen tënde!
+      </Button>
     </Grid>
   </Grid>
 );

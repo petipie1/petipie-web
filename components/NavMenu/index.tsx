@@ -2,27 +2,9 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-// import { makeStyles } from "@mui/styles";
 import Button from "@mui/material/Button";
 import Hidden from "@mui/material/Hidden";
-import Link from "next/link";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   menuButton: {
-//     marginRight: theme.spacing(2),
-//   },
-//   title: {
-//     flexGrow: 1,
-//   },
-//   menuItem: {
-//     marginLeft: theme.spacing(2),
-//   },
-// }));
+import DrawerMenu from "components/DrawerMenu";
 
 const NavMenu = ({ items, icon }: any) => {
   return (
@@ -33,9 +15,7 @@ const NavMenu = ({ items, icon }: any) => {
       >
         <Toolbar>
           <Hidden smUp>
-            <IconButton edge="start" aria-label="menu" sx={{ marginRight: 2 }}>
-              <MenuIcon htmlColor="#FFDC26" />
-            </IconButton>
+            <DrawerMenu icon={icon} items={items} />
           </Hidden>
           <div style={{ flexGrow: 1 }}>
             <img
@@ -46,20 +26,22 @@ const NavMenu = ({ items, icon }: any) => {
           </div>
           <Hidden smDown>
             {items.map((item: any, idx: number) => (
-              <Link href={item.url} key={`${idx}-${item.title}`}>
-                <Button
-                  color="inherit"
-                  sx={{
-                    textTransform: "none",
-                    marginLeft: 1,
-                    fontSize: 16,
-                    fontFamily: "Product Sans, sans-serif",
-                    color: "#000000",
-                  }}
-                >
-                  {item.title}
-                </Button>
-              </Link>
+              <Button
+                key={`${idx}-${item.title}`}
+                color="inherit"
+                sx={{
+                  textTransform: "none",
+                  marginLeft: 1,
+                  fontSize: 16,
+                  fontFamily: "Product Sans, sans-serif",
+                  color: "#000000",
+                }}
+                onClick={() =>
+                  document.querySelector(item.url)?.scrollIntoView()
+                }
+              >
+                {item.title}
+              </Button>
             ))}
           </Hidden>
         </Toolbar>

@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 
 const WhatIsSection = () => (
   <Grid
+    id="what-is"
     item
     container
     xs={12}

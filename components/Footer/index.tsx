@@ -5,42 +5,26 @@ const Footer = () => {
   const socials = [
     {
       icon: "/ic_contact_insta.png",
-      ur: "url",
+      url: "https://www.instagram.com/nadotwin",
     },
     {
       icon: "/ic_contact_tiktok.png",
-      ur: "url",
+      url: "https://www.instagram.com/nadotwin",
     },
     {
       icon: "/ic_contact_twitter.png",
-      ur: "url",
+      url: "https://www.instagram.com/nadotwin",
     },
     {
       icon: "/ic_contact_web.png",
-      ur: "url",
+      url: "https://www.instagram.com/nadotwin",
     },
   ];
 
   return (
-    // <Box
-    //   // Set the background color
-    //   color="white" // Set the text color
-    //   textAlign="center"
-    //   py={1}
-    //   marginTop={5}
-    // >
-    //   <Typography variant="body1" color={"whitesmoke"}>
-    //     Na kontaktoni:
-    //   </Typography>
-    //   <Typography variant="body2" color={"whitesmoke"}>
-    //     Email: petipie1@gmail.com
-    //   </Typography>
-    //   <Typography variant="body2" color={"whitesmoke"}>
-    //     Tel: +355686284516
-    //   </Typography>
-    // </Box>
     <footer>
       <Grid
+        id="footer"
         container
         item
         sx={{
@@ -65,51 +49,36 @@ const Footer = () => {
           sx={{ justifyContent: "center", nContent: "center" }}
         >
           {socials.map((social: any, idx) => (
-            <Grid
-              item
+            <a
               key={social?.icon - idx}
-              sx={{
-                backgroundColor: "white",
-                borderRadius: 4,
-                boxShadow: "0px 5px 6px 3px rgba(0, 0, 0, 0.1)",
-                padding: 1,
-                m: 0.5,
-              }}
+              href={social?.url}
+              target="_blank"
+              rel="noreferrer"
             >
-              <img
-                src={social.icon}
-                alt="Large"
-                style={{ maxWidth: "40px", height: "auto" }}
-              />
-            </Grid>
+              <Grid
+                item
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: 4,
+                  boxShadow: "0px 5px 6px 3px rgba(0, 0, 0, 0.1)",
+                  padding: 1,
+                  m: 0.5,
+                }}
+              >
+                <img
+                  src={social.icon}
+                  alt="Large"
+                  style={{ maxWidth: "40px", height: "auto" }}
+                />
+              </Grid>
+            </a>
           ))}
         </Grid>
         <Grid
           item
           direction={"column"}
           sx={{ justifyContent: "center", alignContent: "center" }}
-        >
-          {/* <Typography
-                sx={{
-                  fontFamily: "sans-serif",
-                  height: "1.5em",
-                  fontSize: "0.5rem",
-                  color: "whitesmoke",
-                }}
-              >
-                petipie1@gmail.com
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "sans-serif",
-                  height: "1.5em",
-                  fontSize: "0.5rem",
-                  color: "whitesmoke",
-                }}
-              >
-                +355686284516
-              </Typography> */}
-        </Grid>
+        ></Grid>
 
         <Grid
           container
