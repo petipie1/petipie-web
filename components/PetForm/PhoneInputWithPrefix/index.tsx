@@ -31,6 +31,8 @@ const PhoneInputWithPrefix = ({
   error,
   clickPrefix,
   clickIcon,
+  initialPhone,
+  customStyles,
   ...props
 }: any) => {
   const [selectedCountry, setSelectedCountry] = useState({
@@ -44,6 +46,10 @@ const PhoneInputWithPrefix = ({
   useEffect(() => {
     props?.onChange({ prefix: selectedCountry.code, value: phone });
   }, [phone, selectedCountry.code]);
+
+  useEffect(() => {
+    setPhone(initialPhone);
+  }, [initialPhone]);
 
   const handleCountryClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -61,6 +67,7 @@ const PhoneInputWithPrefix = ({
   };
 
   const iconSrc = icon ? icon : selectedCountry?.flag || "/albanian.png";
+  const bgColor = customStyles?.iconBg ?? (isOwner ? "#FFC334" : "#00A6A3");
 
   return (
     <Box sx={{ margin: 1 }}>
@@ -71,15 +78,24 @@ const PhoneInputWithPrefix = ({
           {error}
         </div>
       )}
-      <Grid container alignItems="center">
+      <Grid
+        container
+        alignItems="center"
+        sx={{
+          boxShadow: "0px 3px 6px 1px rgba(0, 0, 0, 0.1)",
+          borderRadius: "8px",
+        }}
+      >
         <Grid
           item
           sx={{
-            color: isOwner ? "#FFC334" : "#1FCFCC",
-            backgroundColor: isOwner ? "#FFC334" : "#1FCFCC",
+            color: bgColor,
+            backgroundColor: bgColor,
             padding: "13px 16px",
             borderTopLeftRadius: "8px",
             borderBottomLeftRadius: "8px",
+            width: "60px",
+            minWidth: "60px",
           }}
         >
           {/* {icon} */}
@@ -119,6 +135,7 @@ const PhoneInputWithPrefix = ({
             value={phone}
             onChange={handleOnChange}
             sx={{
+              borderRadius: "8px",
               marginLeft: "-1px",
               "& .MuiOutlinedInput-root": {
                 backgroundColor: "white",
@@ -129,9 +146,9 @@ const PhoneInputWithPrefix = ({
                   borderWidth: 0,
                 },
                 "&.Mui-focused fieldset": {
-                  borderTopColor: isOwner ? "#FFC334" : "#1FCFCC", // Border color when focused
-                  borderRightColor: isOwner ? "#FFC334" : "#1FCFCC",
-                  borderBottomColor: isOwner ? "#FFC334" : "#1FCFCC",
+                  borderTopColor: bgColor, // Border color when focused
+                  borderRightColor: bgColor,
+                  borderBottomColor: bgColor,
                   borderColor: "transparent",
                 },
               },

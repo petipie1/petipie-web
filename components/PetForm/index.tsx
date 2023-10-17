@@ -10,7 +10,6 @@ import {
   Grid,
   Avatar,
   Menu,
-  Checkbox,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";

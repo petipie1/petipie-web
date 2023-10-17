@@ -8,6 +8,7 @@ const StyledInput = ({
   error,
   value,
   capitalize,
+  customStyles,
   ...props
 }: any) => {
   const capitalizedValue =
@@ -15,6 +16,28 @@ const StyledInput = ({
       ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
       : value;
 
+  const iconBg = isOwner ? "#FFC334" : "#00A6A3";
+
+  const leftIcon = (
+    <InputAdornment
+      sx={{
+        minHeight: customStyles?.minHeight,
+        color: iconBg,
+        backgroundColor: iconBg,
+        padding: "28px 14px",
+        width: "60px",
+        minWidth: "60px",
+        borderColor: "red",
+        borderTopLeftRadius: "8px",
+        borderBottomLeftRadius: "8px",
+        borderBottomColor: "red",
+      }}
+      position="start"
+    >
+      {/* {icon} */}
+      <Image src={icon ?? "/ic_dog.png"} alt="dp" width="32px" height="32px" />
+    </InputAdornment>
+  );
   return (
     <Box sx={{ margin: 1 }}>
       {error && (
@@ -28,13 +51,17 @@ const StyledInput = ({
         fullWidth
         value={capitalizedValue}
         sx={{
+          boxShadow: "0px 3px 6px 1px rgba(0, 0, 0, 0.1)",
+          borderRadius: "8px",
+          textAlign: "start",
           "& .MuiOutlinedInput-root": {
             backgroundColor: "white",
             borderRadius: "8px",
-            paddingLeft: 0,
+            paddingLeft: icon ? 0 : "1rem",
             "& fieldset": {
               borderWidth: 0,
             },
+
             // "&.Mui-focused": {
             //     "& .MuiInputAdornment-root": {
             //         color: "white",
@@ -43,7 +70,7 @@ const StyledInput = ({
             //     borderColor: 'red'
             // },
             "&.Mui-focused fieldset": {
-              borderColor: isOwner ? "#FFC334" : "#1FCFCC", // Border color when focused
+              borderColor: iconBg, // Border color when focused
             },
           },
           // '&:hover': {
@@ -53,32 +80,19 @@ const StyledInput = ({
           //         borderColor: 'red'
           //     },
           // },
+          // ...customStyles,
         }}
         // inputProps={{ style: { textTransform: capitalize && "capitalize" } }}
+        inputProps={{
+          style: {
+            textAlign: "start",
+            justifyContent: "start",
+            alignSelf: "start",
+          },
+        }}
         InputProps={{
           maxLength: 12,
-          startAdornment: (
-            <InputAdornment
-              sx={{
-                color: isOwner ? "#FFC334" : "#1FCFCC",
-                backgroundColor: isOwner ? "#FFC334" : "#1FCFCC",
-                padding: "28px 15px",
-                borderColor: "red",
-                borderTopLeftRadius: "7px",
-                borderBottomLeftRadius: "7px",
-                borderBottomColor: "red",
-              }}
-              position="start"
-            >
-              {/* {icon} */}
-              <Image
-                src={icon ?? "/ic_dog.png"}
-                alt="dp"
-                width="32px"
-                height="32px"
-              />
-            </InputAdornment>
-          ),
+          startAdornment: icon ? leftIcon : null,
         }}
         {...props}
       />
