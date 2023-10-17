@@ -33,7 +33,7 @@ const StyledSelect = ({
       sx={{
         borderRadius: "8px",
         "& .MuiInputLabel-root": {
-          color: isOwner ? "#FFC334" : "#1FCFCC",
+          color: isOwner ? "#FFC334" : "#00A6A3",
         },
         "& .MuiOutlinedInput-root": {
           backgroundColor: "white",
@@ -43,7 +43,7 @@ const StyledSelect = ({
             borderWidth: 0,
           },
           "&.Mui-focused fieldset": {
-            borderColor: isOwner ? "#FFC334" : "#1FCFCC",
+            borderColor: isOwner ? "#FFC334" : "#00A6A3",
             outline: "none",
           },
         },

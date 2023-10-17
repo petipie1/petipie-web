@@ -172,7 +172,7 @@ const PhoneInputWithPrefix = ({
             key={country.code}
             onClick={() => handleCountryClose(country)}
           >
-            <Grid container sx={{}}>
+            <Grid container>
               <Grid item sx={{ marginRight: 1 }}>
                 <Image
                   alt="flag"

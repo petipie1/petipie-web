@@ -8,13 +8,14 @@ export interface Response<TData> {
 }
 
 interface CreateOrderRequest {
-  businessId: string;
+  name: string;
   status: string;
-  orderCode?: string;
-  total: number;
-  currency: string;
-  items: any
-  notes?: any;
+  // orderCode?: string;
+  // total: number;
+  // currency: string;
+  items: any;
+  address: any;
+  phone: any;
 }
 
 interface ActivatePetRequest {
@@ -38,40 +39,50 @@ const ax = axios.create({
   },
 });
 
-export const getPet = async (
-  id: number,
-): Promise<any> => {
+export const getPet = async (id: number): Promise<any> => {
   try {
     var response = await ax.get<any>(`/api/v1/Pet/${id}`, {
-      headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+      headers: { Authorization: `Bearer ${process.env.API_KEY}` },
     });
-    return response;//successResponse<PaymentStatus>(response);
+    return response; //successResponse<PaymentStatus>(response);
   } catch (error) {
     console.log("error", error);
     return null; //errorResponse<any>(error);
   }
 };
 
-export const activatePet = async (externalId: string, activatePetRequest: ActivatePetRequest): Promise<Response<any>> => {
-  const response = await ax.put(`/api/v1/pet/${externalId}`, activatePetRequest,
+export const activatePet = async (
+  externalId: string,
+  activatePetRequest: ActivatePetRequest
+): Promise<Response<any>> => {
+  const response = await ax.put(
+    `/api/v1/pet/${externalId}`,
+    activatePetRequest,
     {
-      headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
-    });
+      headers: { Authorization: `Bearer ${process.env.API_KEY}` },
+    }
+  );
   return response.data;
 };
 
-export const postOrder = async (orderRequest: CreateOrderRequest): Promise<Response<any>> => {
-  const response = await ax.post("/api/v1/Order", orderRequest,
-    {
-      headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
-    });
-  return response.data;
-};
-
-export const callWaiter = async (callWaiterRequest: CallWaiterRequest): Promise<Response<any>> => {
-  const response = await ax.post("/api/v1/Order/callWaiter", callWaiterRequest, {
-    headers: { "Authorization": `Bearer ${process.env.API_KEY}` }
+export const createOrder = async (
+  orderRequest: CreateOrderRequest
+): Promise<Response<any>> => {
+  const response = await ax.post("/api/v1/Order", orderRequest, {
+    headers: { Authorization: `Bearer ${process.env.API_KEY}` },
   });
   return response.data;
 };
 
+export const callWaiter = async (
+  callWaiterRequest: CallWaiterRequest
+): Promise<Response<any>> => {
+  const response = await ax.post(
+    "/api/v1/Order/callWaiter",
+    callWaiterRequest,
+    {
+      headers: { Authorization: `Bearer ${process.env.API_KEY}` },
+    }
+  );
+  return response.data;
+};

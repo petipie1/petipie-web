@@ -39,9 +39,6 @@ const PetForm = ({ data, externalId }: any) => {
     data?.breed ? PetImages[data?.breed] : "/ProfilePicStandard.png"
   );
 
-  // console.log("region", region);
-  // console.log("wpRegion", wpRegion);
-
   const [color, setColor] = useState(
     data?.styles?.avatarBg
       ? colors.find((color) => color.name === data?.styles?.avatarBg)
@@ -159,7 +156,7 @@ const PetForm = ({ data, externalId }: any) => {
       data: {
         name: values.petName,
         city: values.ownerCity,
-        orderCode: "dori1992",
+        orderCode: "ORD123",
         contactUsIntead: false,
         missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
         info: values.petInfo,
@@ -198,7 +195,7 @@ const PetForm = ({ data, externalId }: any) => {
   };
 
   return (
-    <Container maxWidth="xs" sx={{ justifyContent: "center", marginBottom: 5 }}>
+    <Container maxWidth="sm" sx={{ justifyContent: "center", marginBottom: 5 }}>
       {/* Avatar */}
       <Grid container justifyContent="center">
         <Grid item sx={{ marginTop: 5 }}>
@@ -221,12 +218,13 @@ const PetForm = ({ data, externalId }: any) => {
                 onClick={handleEditClick}
                 style={{
                   position: "absolute",
+                  border: "2px solid white",
                   width: "32px",
                   height: "32px",
                   bottom: "4px",
                   right: "12px",
-                  color: "lightGrey",
-                  background: "white",
+                  color: "white",
+                  background: `linear-gradient(${color?.start}, ${color?.end})`,
                 }}
               >
                 <EditOutlinedIcon sx={{ width: "20px", height: "20px" }} />
@@ -250,8 +248,6 @@ const PetForm = ({ data, externalId }: any) => {
             // isSubmitting,
             setFieldValue,
           }) => {
-            console.log("values: ", values);
-            console.log("errors: ", errors);
             return (
               <Form
                 noValidate
@@ -267,6 +263,7 @@ const PetForm = ({ data, externalId }: any) => {
                     margin: "30px 5px 5px 5px",
                     fontWeight: 400,
                     color: "white",
+                    fontFamily: "Cocon",
                   }}
                 >
                   Të dhënat e qenit/maces:
@@ -291,73 +288,83 @@ const PetForm = ({ data, externalId }: any) => {
                   <MenuItem value="Mashkull">Mashkull</MenuItem>
                   <MenuItem value="Femer">Femer</MenuItem>
                 </StyledSelect>
-                <StyledSelect
-                  icon="/ic_breed.png"
-                  label="Rraca"
-                  name="petBreed"
-                  readOnly={!!data?.breed}
-                  onChange={({ target }: any) =>
-                    onChangeCustomHandler(
-                      { name: "petBreed", value: target.value },
-                      setFieldValue
-                    )
-                  }
-                  value={data?.breed || values.petBreed}
-                  error={touched.petBreed && errors.petBreed}
-                >
-                  {Object.values(Breed).map((key: string, idx) => {
-                    return (
-                      <MenuItem sx={{ marginLeft: -1 }} value={key} key={key}>
-                        <Grid>
-                          {idx === 0 && (
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                margin: "30px 5px 5px 5px",
-                                fontWeight: 700,
-                              }}
-                            >
-                              Qen 🐶
-                            </Typography>
-                          )}
-                          {idx === 19 && (
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                margin: "30px 5px 5px 5px",
-                                fontWeight: 700,
-                              }}
-                            >
-                              Mace 🐱
-                            </Typography>
-                          )}
-                          <Grid container alignItems="center">
-                            <Grid item sx={{ margin: 1 }}>
-                              <Image
-                                alt="menu item"
-                                src={BreedIcons[key]}
-                                width={40}
-                                height={40}
-                              />
+                <Grid item container>
+                  <Grid md={6} xs={12} sx={{ mt: -1 }}>
+                    <StyledSelect
+                      icon="/ic_breed.png"
+                      label="Rraca"
+                      name="petBreed"
+                      readOnly={!!data?.breed}
+                      onChange={({ target }: any) =>
+                        onChangeCustomHandler(
+                          { name: "petBreed", value: target.value },
+                          setFieldValue
+                        )
+                      }
+                      value={data?.breed || values.petBreed}
+                      error={touched.petBreed && errors.petBreed}
+                    >
+                      {Object.values(Breed).map((key: string, idx) => {
+                        return (
+                          <MenuItem
+                            sx={{ marginLeft: -1 }}
+                            value={key}
+                            key={key}
+                          >
+                            <Grid>
+                              {idx === 0 && (
+                                <Typography
+                                  variant="h6"
+                                  sx={{
+                                    margin: "30px 5px 5px 5px",
+                                    fontWeight: 700,
+                                  }}
+                                >
+                                  Qen 🐶
+                                </Typography>
+                              )}
+                              {idx === 19 && (
+                                <Typography
+                                  variant="h6"
+                                  sx={{
+                                    margin: "30px 5px 5px 5px",
+                                    fontWeight: 700,
+                                  }}
+                                >
+                                  Mace 🐱
+                                </Typography>
+                              )}
+                              <Grid container alignItems="center">
+                                <Grid item sx={{ margin: 1 }}>
+                                  <Image
+                                    alt="menu item"
+                                    src={BreedIcons[key]}
+                                    width={40}
+                                    height={40}
+                                  />
+                                </Grid>
+                                <Grid item xs>
+                                  {key}
+                                </Grid>
+                              </Grid>
                             </Grid>
-                            <Grid item xs>
-                              {key}
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </MenuItem>
-                    );
-                  })}
-                </StyledSelect>
-                <StyledInput
-                  icon={"/ic_info.png"}
-                  placeholder={"Info/Pershkrim"}
-                  name="petInfo"
-                  capitalize
-                  onChange={handleChange}
-                  value={values.petInfo}
-                  error={touched.petInfo && errors.petInfo}
-                />
+                          </MenuItem>
+                        );
+                      })}
+                    </StyledSelect>
+                  </Grid>
+                  <Grid item md={6} xs={12} sx={{ mt: -1 }}>
+                    <StyledInput
+                      icon={"/ic_info.png"}
+                      placeholder={"Info/Pershkrim"}
+                      name="petInfo"
+                      capitalize
+                      onChange={handleChange}
+                      value={values.petInfo}
+                      error={touched.petInfo && errors.petInfo}
+                    />
+                  </Grid>
+                </Grid>
                 {/* <StyledInput
                 icon={"/ic_info.png"}
                 placeholder={"Mesazhi (nese humb)"}
@@ -374,6 +381,7 @@ const PetForm = ({ data, externalId }: any) => {
                     margin: "30px 5px 5px 5px",
                     fontWeight: 400,
                     color: "whitesmoke",
+                    fontFamily: "Cocon",
                   }}
                 >
                   Të dhënat personale:
@@ -502,18 +510,23 @@ const PetForm = ({ data, externalId }: any) => {
                   value={values.ownerInstagram}
                 />
                 <Button
-                  // type="submit"
                   fullWidth
-                  variant="contained"
-                  color="primary"
                   sx={{
-                    borderRadius: 5,
+                    mt: 3,
+                    borderRadius: "3rem",
                     textTransform: "none",
-                    fontWeight: 400,
-                    minHeight: "40px",
+                    fontFamily: "Product Sans",
+                    color: "white",
+                    maxHeight: "50px",
+                    fontSize: "1.1rem",
+                    paddingRight: "1.5rem",
+                    paddingLeft: "1.5rem",
                   }}
                   onClick={() => setIsDialogOpen(true)}
-                  style={{ backgroundColor: "#1FCFCC" }}
+                  style={{
+                    // background: "linear-gradient(to right, #FFDC26, #E0AF00)",
+                    backgroundColor: "#1FCFCC",
+                  }}
                 >
                   Perfundo
                 </Button>

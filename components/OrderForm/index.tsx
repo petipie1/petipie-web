@@ -27,7 +27,7 @@ import {
   colors,
 } from "common/constants";
 import InfoDialog from "components/InfoDialog";
-// import { activatePet } from "services/apiClient";
+import { createOrder } from "services/apiClient";
 
 import PhoneInputWithPrefix from "../PetForm/PhoneInputWithPrefix";
 import OrderConfirmationModal from "components/OrderConfirmationModal";
@@ -43,9 +43,6 @@ const OrderForm = ({ data }: any) => {
   const [avatar, setAvatar] = useState<string>(
     data?.breed ? PetImages[data?.breed] : "/ProfilePicStandard.png"
   );
-
-  // console.log("region", region);
-  // console.log("wpRegion", wpRegion);
 
   const [color, setColor] = useState(
     data?.styles?.avatarBg
@@ -199,8 +196,11 @@ const OrderForm = ({ data }: any) => {
     const { parsedPhone: phone } = values.ownerPhone;
 
     const orderRequest = {
-      status: "Ordered",
-      data: {
+      status: "Awaiting",
+      name: values.orderName,
+      phone: values.orderPhone?.parsedPhone,
+      address: values.orderAddress,
+      items: {
         name: values.petName,
         city: values.ownerCity,
         orderCode: "dori1992",
@@ -225,10 +225,8 @@ const OrderForm = ({ data }: any) => {
       },
     };
 
-    console.log("Creating order: ", orderRequest);
-
+    await createOrder(orderRequest);
     setConfirmDialogOpen(true);
-    // await activatePet(externalId, activatePetRequest);
     setValues(initialValues);
     setChecked(false);
   };
@@ -309,7 +307,6 @@ const OrderForm = ({ data }: any) => {
           setValues,
         }) => {
           //   console.log("values: ", values);
-          console.log("touched: ", touched);
           return (
             <Grid item container justifyContent="center" paddingBottom={10}>
               <Grid md={5.5} container justifyContent="center">
@@ -341,7 +338,7 @@ const OrderForm = ({ data }: any) => {
                     error={touched.petName && errors.petName}
                   />
                   <Grid item container>
-                    <Grid item md={6} xs={12}>
+                    <Grid item md={6} xs={12} sx={{ mt: -1 }}>
                       <StyledSelect
                         icon="/ic_breed.png"
                         label="Rraca"
@@ -406,7 +403,7 @@ const OrderForm = ({ data }: any) => {
                         })}
                       </StyledSelect>
                     </Grid>
-                    <Grid item md={6} xs={12}>
+                    <Grid item md={6} xs={12} sx={{ mt: -1 }}>
                       <StyledSelect
                         icon="/ic_gender.png"
                         label="Gjinia"
@@ -421,17 +418,19 @@ const OrderForm = ({ data }: any) => {
                       </StyledSelect>
                     </Grid>
                   </Grid>
-                  <StyledInput
-                    icon={"/ic_info.png"}
-                    placeholder={"Info/Pershkrim"}
-                    name="petInfo"
-                    capitalize
-                    onChange={handleChange}
-                    onFocus={() => setFieldTouched("petInfo")}
-                    value={values.petInfo}
-                    error={touched.petInfo && errors.petInfo}
-                    // customStyles={{ minHeight: "80px" }}
-                  />
+                  <Grid sx={{ mt: -1 }}>
+                    <StyledInput
+                      icon={"/ic_info.png"}
+                      placeholder={"Info/Pershkrim"}
+                      name="petInfo"
+                      capitalize
+                      onChange={handleChange}
+                      onFocus={() => setFieldTouched("petInfo")}
+                      value={values.petInfo}
+                      error={touched.petInfo && errors.petInfo}
+                      // customStyles={{ minHeight: "80px" }}
+                    />
+                  </Grid>
 
                   {/* Owner */}
                   <Typography
@@ -448,7 +447,6 @@ const OrderForm = ({ data }: any) => {
                     icon={"/ic_name.png"}
                     placeholder={"Emri"}
                     isOwner
-                    capitalize
                     name="ownerName"
                     onChange={handleChange}
                     onFocus={() => setFieldTouched("ownerName")}
@@ -480,7 +478,7 @@ const OrderForm = ({ data }: any) => {
                     icon={"/ic_address.png"}
                     placeholder={"Adresa (opsional)"}
                     isOwner
-                    capitalize
+                    // capitalize
                     // customStyles={{ minHeight: "80px" }}
                     name="ownerAddress"
                     onChange={handleChange}
@@ -620,7 +618,7 @@ const OrderForm = ({ data }: any) => {
                   <StyledInput
                     placeholder={"Emri"}
                     name="orderName"
-                    capitalize
+                    // capitalize
                     onChange={handleChange}
                     onFocus={() => setFieldTouched("orderName")}
                     value={values.orderName}
@@ -650,7 +648,7 @@ const OrderForm = ({ data }: any) => {
                   />
                   <StyledInput
                     placeholder={"Adresa"}
-                    capitalize
+                    // capitalize
                     multiline
                     name="orderAddress"
                     onFocus={() => setFieldTouched("orderAddress")}

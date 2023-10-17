@@ -8,7 +8,7 @@ import {
   Container,
 } from "@mui/material";
 // import { useTranslation } from "react-i18next";
-import Footer from "components/Footer";
+// import Footer from "components/Footer";
 import MissingAlert from "components/MissingAlert";
 import Contacts from "components/Contacts";
 import { PetImages, colors, petipieContact } from "common/constants";
@@ -135,7 +135,6 @@ const Pet = ({ pet, status }: any) => {
         </Grid>
       </Grid>
       {/* Footer*/}
-      <Footer />
     </Container>
   );
 };
