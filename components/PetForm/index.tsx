@@ -525,7 +525,7 @@ const PetForm = ({ data, externalId }: any) => {
                   onClick={() => setIsDialogOpen(true)}
                   style={{
                     // background: "linear-gradient(to right, #FFDC26, #E0AF00)",
-                    backgroundColor: "#1FCFCC",
+                    backgroundColor: "#00A6A3",
                   }}
                 >
                   Perfundo

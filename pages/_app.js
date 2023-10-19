@@ -10,6 +10,7 @@ const theme = createTheme({
   palette: {
     yellow: "#FFDC26",
     cream: "#FFF9F4",
+    turquoise: "#00A6A3",
   },
 });
 
