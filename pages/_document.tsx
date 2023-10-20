@@ -12,12 +12,30 @@ export default function Document() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
-        <link rel="apple-touch-icon" sizes="120x120" href="/ProfilePlaceholder.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/ProfilePlaceholder.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/ProfilePlaceholder.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="/ProfilePlaceholder.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/ProfilePlaceholder.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/ProfilePlaceholder.png"
+        />
         <link rel="manifest" href="/site.webmanifest" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Product+Sans&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-      <body >
+      <body>
         <Main />
         <NextScript />
       </body>

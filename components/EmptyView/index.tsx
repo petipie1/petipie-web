@@ -2,21 +2,33 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 
 const EmptyView = ({ alTitle, enTitle }: any) => (
-  <Grid
-    item
-    container
-    direction={"column"}
-    sx={{
-      justifyContent: "center",
-      position: "absolute",
-      alignItems: "center",
-    }}
-  >
-    <Typography variant="h6" sx={{ marginTop: 10 }}>
-      {alTitle}
-    </Typography>
-    <Typography variant="subtitle2">{enTitle}</Typography>
-    {/* <IconButton
+  <>
+    <div
+      style={{
+        background: "linear-gradient(#FCDF7B, #FF724D)",
+        position: "fixed",
+        zIndex: -1,
+        height: "100%",
+        width: "100%",
+      }}
+    />
+    <Grid
+      item
+      container
+      direction={"column"}
+      sx={{
+        justifyContent: "center",
+        position: "absolute",
+        alignItems: "center",
+      }}
+    >
+      <Typography variant="h6" sx={{ marginTop: 10, fontFamily: "Cocon" }}>
+        {alTitle}
+      </Typography>
+      <Typography variant="subtitle2" sx={{ fontFamily: "Cocon" }}>
+        {enTitle}
+      </Typography>
+      {/* <IconButton
       color="primary"
       aria-label="upload picture"
       component="span"
@@ -34,7 +46,8 @@ const EmptyView = ({ alTitle, enTitle }: any) => (
     >
       {"Home"}
     </IconButton> */}
-  </Grid>
+    </Grid>
+  </>
 );
 
 export default EmptyView;

@@ -5,7 +5,7 @@ import EmptyView from "components/EmptyView";
 import LoadingIndicator from "components/LoadingIndicator";
 import Pet from "components/Pet";
 import PetForm from "components/PetForm";
-import { getPet } from "services/apiClient";
+// import { getPet } from "services/apiClient";
 import { petResponse } from "common/constants";
 
 const MenuPage: NextPage = ({ pet }: any) => {
@@ -17,7 +17,7 @@ const MenuPage: NextPage = ({ pet }: any) => {
   if (!pet) {
     alMessage = "Nuk ka te dhena!";
     enMessage = "(No data found!)";
-  } else if (pet?.status === "Inactive") {
+  } else if (pet.status == "Inactive" || pet.status == "Awaiting") {
     alMessage = "Nuk eshte aktiv!";
     enMessage = "(Not available!)";
   }

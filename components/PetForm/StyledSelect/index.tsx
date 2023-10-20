@@ -31,8 +31,9 @@ const StyledSelect = ({
       required
       fullWidth
       sx={{
+        borderRadius: "8px",
         "& .MuiInputLabel-root": {
-          color: isOwner ? "#FFC334" : "#1FCFCC",
+          color: isOwner ? "#FFC334" : "#00A6A3",
         },
         "& .MuiOutlinedInput-root": {
           backgroundColor: "white",
@@ -42,10 +43,11 @@ const StyledSelect = ({
             borderWidth: 0,
           },
           "&.Mui-focused fieldset": {
-            borderColor: isOwner ? "#FFC334" : "#1FCFCC",
+            borderColor: isOwner ? "#FFC334" : "#00A6A3",
             outline: "none",
           },
         },
+        boxShadow: "0px 3px 6px 1px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Select
@@ -59,9 +61,10 @@ const StyledSelect = ({
         startAdornment={
           <InputAdornment
             sx={{
-              color: isOwner ? "#FFC334" : "#1FCFCC",
-              backgroundColor: isOwner ? "#FFC334" : "#1FCFCC",
+              color: isOwner ? "#FFC334" : "#00A6A3",
+              backgroundColor: isOwner ? "#FFC334" : "#00A6A3",
               padding: "28px 16px",
+              minWidth: "60px",
               borderTopLeftRadius: "8px",
               borderBottomLeftRadius: "8px",
             }}
@@ -84,7 +87,7 @@ const StyledSelect = ({
             borderBottomColor: "red",
           },
           "& .MuiSelect-icon": {
-            color: isOwner ? "#FFC334" : "#1FCFCC",
+            color: isOwner ? "#FFC334" : "#00A6A3",
           },
         }}
         {...props}
