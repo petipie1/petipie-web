@@ -792,10 +792,8 @@ const OrderForm = ({ data }: any) => {
                           mt: "2rem",
                         }}
                       >
-                        Ndihmoni miqte e vegjel te gjejen shtepine e tyre ne
-                        rast se humbin. Petipie eshte platforma me e re qe iu
-                        vjen ne ndihme kafsheve shtepiake te cilat humbasin çdo
-                        dite.
+                        Ne momentin qe ju do te merrni varesen, ajo eshte e
+                        aktivizuar dhe nuk ka nevoje per konfigurime shtese.
                       </Typography>
                     </Grid>
                   </Form>

@@ -47,18 +47,20 @@ const NavMenu = ({ items, icon }: any) => {
         </Toolbar>
       </AppBar>
       <Hidden smDown>
-        <Typography
-          sx={{
-            textAlign: "right",
-            marginTop: -2,
-            marginRight: 4,
-            fontSize: 16,
-            backgroundColor: "transparent",
-            color: "#FFDC26",
-          }}
-        >
-          +355 68 88 03 602
-        </Typography>
+        <a href="tel:+355688803602">
+          <Typography
+            sx={{
+              textAlign: "right",
+              marginRight: 4,
+              marginTop: -1.5,
+              fontSize: 16,
+              backgroundColor: "transparent",
+              color: "#FFDC26",
+            }}
+          >
+            +355 68 88 03 602
+          </Typography>
+        </a>
       </Hidden>
     </div>
   );

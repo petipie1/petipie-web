@@ -179,7 +179,7 @@ export const Citites = ["Tirane", "Durres", "Vlore", "Elbasan", "Berat"];
 export const menuItems = [
   { title: "Si funksionon?", url: "#what-is" },
   { title: "Porosit", url: "#order-form" },
-  { title: "Te humbur", url: "some-url" },
-  { title: "Rreth nesh", url: "some-url" },
+  // { title: "Te humbur", url: "some-url" },
+  // { title: "Rreth nesh", url: "some-url" },
   { title: "Kontakt", url: "#footer" },
 ];

@@ -8,17 +8,25 @@ const Footer = () => {
       url: "https://www.instagram.com/nadotwin",
     },
     {
-      icon: "/ic_contact_tiktok.png",
-      url: "https://www.instagram.com/nadotwin",
-    },
-    {
-      icon: "/ic_contact_twitter.png",
-      url: "https://www.instagram.com/nadotwin",
+      icon: "/ic_phone.png",
+      url: "tel:+355688803602",
     },
     {
       icon: "/ic_contact_web.png",
+      url: "mailto:petipie1@gmail.com",
+    },
+    {
+      icon: "/ic_contact_tiktok.png",
       url: "https://www.instagram.com/nadotwin",
     },
+    // {
+    //   icon: "/ic_contact_twitter.png",
+    //   url: "https://www.instagram.com/nadotwin",
+    // },
+    // {
+    //   icon: "/ic_contact_web.png",
+    //   url: "https://www.instagram.com/nadotwin",
+    // },
   ];
 
   return (

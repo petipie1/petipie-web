@@ -50,9 +50,9 @@ const OrderModelSection = () => (
         </Typography>
       </Grid>
       <Typography sx={{ fontFamily: "Product sans", fontSize: "1rem" }}>
-        Ndihmoni miqte e vegjel te gjejen shtepine e tyre ne rast se humbin.
-        Petipie eshte platforma me e re qe iu vjen ne ndihme kafsheve shtepiake
-        te cilat humbasin çdo dite.
+        Ju mund te perzgjidhni modelin me ngjyren tuaj te preferuar te varsese
+        duke zgjedhur disa nga opsionet me poshte. Gjithashtu do t’ju duhet te
+        plotesoni informacionet e kerkuara personale dhe te qenit/maces.
       </Typography>
       <Button
         sx={{
@@ -83,7 +83,7 @@ const OrderModelSection = () => (
         }}
         gutterBottom
       >
-        Modele Shembuj
+        Disa Modele
       </Typography>
       <Divider
         sx={{

@@ -31,16 +31,15 @@ const WhatIsSection = () => (
         fontWeight: 700,
       }}
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris integer
-      neque fermentum fermentum volutpat a sed cursus. Lorem sed urna sed
-      gravida aliquet. Felis lectus id dignissim magna vehicula felis. Sociis
-      suscipit et nunc, etiam. Proin sit vitae amet nunc habitasse euismod. Elit
-      vitae hendrerit mattis sit urna sit fermentum lorem. Sed magna nunc
-      ultrices at in a, est. In metus lectus cursus interdum elementum. A metus
-      adipiscing odio proin enim amet semper. Ultrices eget adipiscing quam sed
-      nunc, aliquet eget vitae. Id nunc tortor natoque vel eget augue laoreet.
-      Id quisque sit gravida facilisis massa, vel non nisl. Nullam cursus massa
-      enim mi arcu a blandit. Pellentesque phasellus tempor et felis.
+      Petipie eshte nje platforme e thjeshte inovative qe ka per qellim te
+      ndihmoje ne gjetjen sa me shpejte te kafsheve te humbura shtepiake me ane
+      te nje varese te thejshte qe mund ti vendoset qenit ose maces tuaj.
+      Varesja ka te stampuar nje QR kod i cili po te skanohet, shfaq
+      informacionet e qenit/maces dhe informacionet mbi te zotin/zonjen si
+      nr.kontakti, emer, adrese etj (varet nga konfigurimet). Ne rast se
+      qeni/macja juaj humb dhe ka te vendosur varesen e Petipie, sapo dikush te
+      gjeje, do ta skanoje dhe do t’ju kontaktoje menjehere tek numri apo
+      profilet sociale (nese i keni konfiguruar).
     </Typography>
   </Grid>
 );
