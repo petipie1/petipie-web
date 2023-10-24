@@ -201,14 +201,14 @@ const OrderForm = ({ data }: any) => {
     const { parsedPhone: phone } = values.ownerPhone;
 
     const orderRequest = {
-      status: "Awaiting",
+      status: "New",
       name: values.orderName,
       phone: values.orderPhone?.parsedPhone,
       address: values.orderAddress,
       items: {
         name: values.petName,
         city: values.ownerCity,
-        orderCode: "dori1992",
+        orderCode: "111",
         contactUsIntead: false,
         missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
         info: values.petInfo,

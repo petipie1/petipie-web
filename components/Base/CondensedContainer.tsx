@@ -7,21 +7,27 @@ const CondensedContainer = ({ children, ...props }: any) => {
   const smDownValue = props.smDown || 10;
 
   return (
-    <Container {...props} style={{ margin: "auto" }} >
-      <Grid container >
+    <Container {...props} style={{ margin: "auto" }}>
+      <Grid container>
         <Hidden smDown={isSmDown}>
           <Grid item sm={1} />
         </Hidden>
-        <Grid item style={{
-          justifyContent: "center"
-        }} container xs={"auto"} sm={isSmDown ? smDownValue : 12} >
+        <Grid
+          item
+          style={{
+            justifyContent: "center",
+          }}
+          container
+          xs={"auto"}
+          sm={isSmDown ? smDownValue : 12}
+        >
           {children}
         </Grid>
         <Hidden smDown={isSmDown}>
           <Grid item sm={1} />
         </Hidden>
       </Grid>
-    </Container >
+    </Container>
   );
 };
 CondensedContainer.propTypes = {

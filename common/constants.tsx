@@ -183,3 +183,42 @@ export const menuItems = [
   // { title: "Rreth nesh", url: "some-url" },
   { title: "Kontakt", url: "#footer" },
 ];
+
+export const orderData = [
+  {
+    petId: "fd8e2442-7fbb-4839-ad01-dfd9cdb1f8cf",
+    status: "Awaiting",
+    orderCode: null,
+    name: "Dorian",
+    phone: "+355686284516",
+    address: "Rruga Mine Peza",
+    items: {
+      city: "Vlore",
+      info: "esht i bukur",
+      name: "Bernard",
+      breed: "Dalmatian",
+      gender: "Femer",
+      styles: {
+        avatarBg: "Sweet Morning",
+      },
+      orderCode: "dori1992",
+      ownerInfo: {
+        name: "Dorian",
+        address: "Rruga Mine Peza",
+        contact: {
+          email: "",
+          phone: "+355686284516",
+          whatsapp: "",
+          instagram: "",
+        },
+      },
+      missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
+      contactUsIntead: false,
+    },
+    total: 0,
+    currency: null,
+    id: "bda987b9-a63b-41b6-87c7-168449f6ba07",
+    createdAt: "2023-10-21T17:42:44.574506Z",
+    updatedAt: "2023-10-21T17:42:44.581812Z",
+  },
+];
