@@ -160,7 +160,7 @@ const OrderForm = ({ data }: any) => {
     ownerName: "",
     ownerCity: "",
     ownerAddress: "",
-    ownerPhone: "",
+    ownerPhone: { value: "", prefix: "" },
     ownerInstagram: "",
     ownerWhatsapp: "",
     ownerEmail: "",
@@ -197,13 +197,14 @@ const OrderForm = ({ data }: any) => {
   const onSubmit = async (values: any, { setValues }: any) => {
     setIsLoading(true);
 
-    const { value, parsedPhone } = values.ownerWhatsapp;
-    const { parsedPhone: phone } = values.ownerPhone;
+    const { prefix: wpPrefix, value: wpValue } = values.ownerWhatsapp;
+    const { prefix: ownerPrefix, value: ownerValue } = values.ownerPhone;
+    const { prefix: orderPrefix, value: orderValue } = values.orderPhone;
 
     const orderRequest = {
       status: "New",
       name: values.orderName,
-      phone: values.orderPhone?.parsedPhone,
+      phone: orderPrefix + orderValue,
       address: values.orderAddress,
       items: {
         name: values.petName,
@@ -217,8 +218,8 @@ const OrderForm = ({ data }: any) => {
         ownerInfo: {
           name: values.ownerName,
           contact: {
-            phone,
-            whatsapp: value ? parsedPhone : "",
+            phone: ownerPrefix + ownerValue,
+            whatsapp: wpValue ? wpPrefix + wpValue : "",
             instagram: values.ownerInstagram,
             email: values.ownerEmail,
           },
@@ -248,7 +249,7 @@ const OrderForm = ({ data }: any) => {
     setAvatar(PetImages[data.value]);
   };
 
-  const onWpPhoneChange = (data: any, setFieldValue: any) => {
+  const onPhoneChange = (data: any, setFieldValue: any) => {
     const { prefix, value } = data;
     setFieldValue(data.name, { prefix, value });
   };
@@ -507,7 +508,7 @@ const OrderForm = ({ data }: any) => {
                       clickPrefix
                       clickIcon
                       onChange={({ prefix, value }: any) =>
-                        onWpPhoneChange(
+                        onPhoneChange(
                           {
                             name: "ownerPhone",
                             prefix,
@@ -537,7 +538,7 @@ const OrderForm = ({ data }: any) => {
                       placeholder="Whatsapp"
                       clickPrefix
                       onChange={({ prefix, value }: any) =>
-                        onWpPhoneChange(
+                        onPhoneChange(
                           {
                             name: "ownerWhatsapp",
                             prefix,
@@ -647,7 +648,7 @@ const OrderForm = ({ data }: any) => {
                       clickPrefix
                       clickIcon
                       onChange={({ prefix, value }: any) =>
-                        onWpPhoneChange(
+                        onPhoneChange(
                           {
                             name: "orderPhone",
                             prefix,
