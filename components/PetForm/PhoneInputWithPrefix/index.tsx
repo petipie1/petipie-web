@@ -130,6 +130,7 @@ const PhoneInputWithPrefix = ({
         </Grid>
         <Grid item xs alignItems="center">
           <TextField
+            {...props}
             fullWidth
             type="tel"
             value={phone}
@@ -156,7 +157,6 @@ const PhoneInputWithPrefix = ({
             InputProps={{
               type: "tel",
             }}
-            // {...props}
           />
         </Grid>
       </Grid>
