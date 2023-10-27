@@ -5,7 +5,7 @@ import EmptyView from "components/EmptyView";
 import LoadingIndicator from "components/LoadingIndicator";
 import Pet from "components/Pet";
 import PetForm from "components/PetForm";
-import { getPet } from "services/apiClient";
+// import { getPet } from "services/apiClient";
 // import { petResponse } from "common/constants";
 
 const MenuPage: NextPage = ({ pet }: any) => {
@@ -23,7 +23,7 @@ const MenuPage: NextPage = ({ pet }: any) => {
   } else if (
     pet.status == "Inactive" ||
     pet.status == "Awaiting" ||
-    !dateNotPassed
+    (pet.status !== "New" && !dateNotPassed)
   ) {
     alMessage = "Nuk eshte aktiv!";
     enMessage = "(Not available!)";
