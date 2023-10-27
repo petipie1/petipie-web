@@ -27,6 +27,7 @@ export const petResponse = {
   externalId: "a12d4614-962e-4310-8b89-3262f0847436",
   id: "a12d4614-962e-4310-8b89-3262f0847436",
   status: "New",
+  subscriptionEndDate: "2024-10-27 12:03:06.111 +0100",
   data: petData,
 };
 

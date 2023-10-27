@@ -277,19 +277,21 @@ const PetForm = ({ data, externalId }: any) => {
                   value={values.petName}
                   error={touched.petName && errors.petName}
                 />
-                <StyledSelect
-                  icon="/ic_gender.png"
-                  label="Gjinia"
-                  name="petGender"
-                  onChange={handleChange}
-                  value={values.petGender}
-                  error={touched.petGender && errors.petGender}
-                >
-                  <MenuItem value="Mashkull">Mashkull</MenuItem>
-                  <MenuItem value="Femer">Femer</MenuItem>
-                </StyledSelect>
                 <Grid item container>
                   <Grid md={6} xs={12} sx={{ mt: -1 }}>
+                    <StyledSelect
+                      icon="/ic_gender.png"
+                      label="Gjinia"
+                      name="petGender"
+                      onChange={handleChange}
+                      value={values.petGender}
+                      error={touched.petGender && errors.petGender}
+                    >
+                      <MenuItem value="Mashkull">Mashkull</MenuItem>
+                      <MenuItem value="Femer">Femer</MenuItem>
+                    </StyledSelect>
+                  </Grid>
+                  <Grid item md={6} xs={12} sx={{ mt: -1 }}>
                     <StyledSelect
                       icon="/ic_breed.png"
                       label="Rraca"
@@ -353,18 +355,16 @@ const PetForm = ({ data, externalId }: any) => {
                       })}
                     </StyledSelect>
                   </Grid>
-                  <Grid item md={6} xs={12} sx={{ mt: -1 }}>
-                    <StyledInput
-                      icon={"/ic_info.png"}
-                      placeholder={"Info/Pershkrim"}
-                      name="petInfo"
-                      capitalize
-                      onChange={handleChange}
-                      value={values.petInfo}
-                      error={touched.petInfo && errors.petInfo}
-                    />
-                  </Grid>
                 </Grid>
+                <StyledInput
+                  icon={"/ic_info.png"}
+                  placeholder={"Info/Pershkrim"}
+                  name="petInfo"
+                  capitalize
+                  onChange={handleChange}
+                  value={values.petInfo}
+                  error={touched.petInfo && errors.petInfo}
+                />
                 {/* <StyledInput
                 icon={"/ic_info.png"}
                 placeholder={"Mesazhi (nese humb)"}
