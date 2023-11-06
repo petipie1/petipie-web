@@ -40,7 +40,11 @@ const StyledSelect = ({
     <Box sx={{ margin: 1 }}>
       {error && (
         <div
-          style={{ color: "#c90000", fontSize: "14px", fontFamily: "cursive" }}
+          style={{
+            color: "#c90000",
+            fontSize: "14px",
+            fontFamily: "Product Sans",
+          }}
         >
           {error}
         </div>

@@ -248,6 +248,8 @@ const PetForm = ({ data, externalId }: any) => {
             // isSubmitting,
             setFieldValue,
           }) => {
+            console.log("errors", errors);
+
             return (
               <Form
                 noValidate
@@ -272,7 +274,6 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_dog.png"}
                   placeholder={"Emri i qenit/maces"}
                   name="petName"
-                  capitalize
                   onChange={handleChange}
                   value={values.petName}
                   error={touched.petName && errors.petName}
@@ -360,10 +361,9 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_info.png"}
                   placeholder={"Info/Pershkrim"}
                   name="petInfo"
-                  capitalize
                   onChange={handleChange}
                   value={values.petInfo}
-                  error={touched.petInfo && errors.petInfo}
+                  error={errors.petInfo}
                 />
                 {/* <StyledInput
                 icon={"/ic_info.png"}
@@ -390,7 +390,6 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_name.png"}
                   placeholder={"Emri"}
                   isOwner
-                  capitalize
                   name="ownerName"
                   onChange={handleChange}
                   value={values.ownerName}
@@ -417,10 +416,10 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_address.png"}
                   placeholder={"Adresa (opsional)"}
                   isOwner
-                  capitalize
                   name="ownerAddress"
                   onChange={handleChange}
                   value={values.ownerAddress}
+                  error={errors.ownerAddress}
                 />
                 {/* <PhoneInput
                   country={"al"}
@@ -570,7 +569,7 @@ const PetForm = ({ data, externalId }: any) => {
       <InfoDialog
         title={"Konfirmoni te dhenat?"}
         message={`Jeni te sigurt te vazhdoni?
-                 Pas ketij hapi te dhenat nuk mund te ndryshohen nga ju por duhet te kontaktoni suportin: +355686284516`}
+                 Pas ketij hapi te dhenat nuk mund te ndryshohen nga ju por duhet te kontaktoni suportin: +355688803602`}
         isOpen={isDialogOpen}
         handleConfirm={handleSubmit}
         handleCancel={() => setIsDialogOpen(false)}

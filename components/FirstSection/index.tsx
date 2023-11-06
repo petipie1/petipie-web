@@ -40,7 +40,7 @@ const FirstSection = () => (
           left: 20,
           zIndex: 1,
         }}
-        icon="/icons/ic_corgi.png"
+        icon="/qr_tag_1_1.png"
         title={"Shiko modelet"}
         description={
           "Ne ju ofrojme shumellojshmeri modelesh per varesen e qenushit apo maces tuaj"
@@ -60,7 +60,7 @@ const FirstSection = () => (
         sx={{ fontFamily: "Cocon" }}
         color="yellow"
       >
-        Per miqtë e vegjël
+        Për miqtë e vegjël
       </Typography>
       <Typography sx={{ fontFamily: "Product sans", fontSize: "1.1rem" }}>
         Ndihmoni miqtë e vegjël të gjejnë shtëpine e tyre në rast se humbin.

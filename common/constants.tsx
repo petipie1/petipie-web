@@ -40,33 +40,34 @@ export const petipieContact = {
 
 export const Breed = {
   // Dog: {
-  Rottweiler: "Rottweiler",
+  Bulldog: "Bulldog",
+  Bullmastiff: "Bullmastiff",
   Chihuahua: "Chihuahua",
-  Husky: "Husky",
-  Golden: "Golden",
-  Maltese: "Maltese",
-  Eskimo: "Eskimo",
+  "Chow chow": "Chow chow",
+  Corgi: "Corgi",
   Dalmatian: "Dalmatian",
+  Doberman: "Doberman",
+  Husky: "Husky",
+  "German Shepherd": "German Shepherd",
+  Golden: "Golden",
+  Eskimo: "Eskimo",
+  Maltese: "Maltese",
   Poodle: "Poodle",
-  Pug: "Pug",
   Pomerian: "Pomerian",
   Pitbull: "Pitbull",
+  Pug: "Pug",
+  Rottweiler: "Rottweiler",
   "Yorkshire Terrier": "Yorkshire Terrier",
-  Doberman: "Doberman",
-  Corgi: "Corgi",
-  "Chow chow": "Chow chow",
-  Bullmastiff: "Bullmastiff",
-  "German Shepherd": "German Shepherd",
-  Bulldog: "Bulldog",
   Tjeter: "Tjeter",
   // },
   // Cat: {
+  British: "British",
+  Ginger: "Ginger",
   MaineCoon: "MaineCoon",
   Persian: "Persian",
-  Ginger: "Ginger",
   Scotish: "Scotish",
-  Tuxedo: "Tuxedo",
   Siamese: "Siamese",
+  Tuxedo: "Tuxedo",
   Tjetër: "Tjetër",
   // }
 };
@@ -90,6 +91,7 @@ export const BreedIcons: KeyValueObject = {
   "Chow chow": "/icons/ic_chow-chow.png",
   "German Shepherd": "/icons/ic_german-sheperd.png",
   Bulldog: "/icons/ic_bullmastiff.png",
+  British: "/icons/ic_british.png",
   MaineCoon: "/icons/ic_maine-coon.png",
   Persian: "/icons/ic_persian.png",
   Ginger: "/icons/ic_ginger.png",
@@ -97,7 +99,7 @@ export const BreedIcons: KeyValueObject = {
   Tuxedo: "/icons/ic_tuxedo.png",
   Siamese: "/icons/ic_siamese.png",
   Tjeter: "/ProfilePicStandard.png",
-  Tjetër: "/icons/ic_tjeter.png",
+  Tjetër: "/ProfilePicStandard.png",
 };
 
 type KeyValueObject = {
@@ -108,58 +110,59 @@ export const PetImages: KeyValueObject = {
   // Dogs
 
   Rottweiler:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155600/dog/rottweiler_frecgk.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699265527/dog/rottweiler_zabdqj.png",
   Chihuahua:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155601/dog/chihuahua_dak1sp.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266773/dog/chihuahua_nzhks8.png",
   Husky:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155609/dog/husky_yxvh7z.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266780/dog/husky_hafn0s.png",
   Golden:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1694863024/dog/golden_retriever_hr2x6h.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266779/dog/golden_eljawm.png",
   Bullmastiff:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695157719/dog/bullmastiff_n29jju.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266772/dog/bullmastiff_eamqmd.png",
   Maltese:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155598/dog/maltese_juc6ci.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266768/dog/maltese_szwmmg.png",
   Eskimo:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155597/dog/eskimo_juljlb.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266777/dog/eskimo_jwpllr.png",
   Dalmatian:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155602/dog/dalmatian_wvlxee.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266775/dog/dalmatian_svtew0.png",
   Poodle:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155599/dog/poodle_phwrjm.png",
-  Pug: "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155600/dog/pugy_u9i1mx.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267547/dog/poodle-dog_wrbqir.png",
+  Pug: "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266770/dog/pugy_rz4ljx.png",
   Pomerian:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155599/dog/pomerian_fggfsa.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266769/dog/pomerian_gh1hh7.png",
   Pitbull:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155598/dog/pitbull_whai4p.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266768/dog/pitbull_sejqnh.png",
   "Yorkshire Terrier":
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695157720/dog/yorkshire-terrier_i2wfue.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266771/dog/yorkshire-terrier_i2wfue_ybeuk0.png",
   Doberman:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155597/dog/doberman_vicsnz.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266776/dog/doberman_t6psik.png",
   Corgi:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695157719/dog/corgi_rcffad.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266774/dog/corgi_nr7hhl.png",
   "Chow chow":
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155602/dog/chow-chow_bccmzh.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266773/dog/chow-chow_nnolzj.png",
   "German Shepherd":
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695155597/dog/german-sheperd_zgooxn.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266778/dog/german-sheperd_krxu6z.png",
   Bulldog:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695157719/dog/bullmastiff_n29jju.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266772/dog/bullmastiff_eamqmd.png",
   Tjeter: "/ProfilePicStandard.png",
 
   // Cats
 
+  British:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267400/cat/british-shorthair_rkyjy8.png",
   MaineCoon:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695412091/cat/cat_xxeqys.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267274/cat/maine_coon_bv074u.png",
   Persian:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695412092/cat/cat-5_d3umsr.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267273/cat/persian_l0aztq.png",
   Siamese:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695412092/cat/cat-6_aatusy.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267276/cat/cat-6_y1pfxr.png",
   Ginger:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695412092/cat/cat-4_jhy1op.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267273/cat/ginger_y9czeq.png",
   Scotish:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695412092/cat/cat-3_e6lmtv.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267274/cat/scotish_hpiuh0.png",
   Tuxedo:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695412091/cat/cat-2_bvmtgo.png",
-  Tjetër:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1695414596/cat/dog_1_jnzmqo.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267275/cat/tuxedo_uzg3ut.png",
+  Tjetër: "/ProfilePicStandard.png",
 };
 
 export const colors = [

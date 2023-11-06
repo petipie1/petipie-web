@@ -5,7 +5,7 @@ const Footer = () => {
   const socials = [
     {
       icon: "/ic_contact_insta.png",
-      url: "https://www.instagram.com/nadotwin",
+      url: "https://www.instagram.com/ptpanml",
     },
     {
       icon: "/ic_phone.png",
@@ -17,7 +17,7 @@ const Footer = () => {
     },
     {
       icon: "/ic_contact_tiktok.png",
-      url: "https://www.instagram.com/nadotwin",
+      url: "https://www.tiktok.com/@petipie.online?_t=8h7KKv1wzzi&_r=1",
     },
     // {
     //   icon: "/ic_contact_twitter.png",

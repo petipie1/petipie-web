@@ -41,7 +41,7 @@ const UsageSection = () => (
       />
       <HowItWorksCard
         icon="/how_works_3.png"
-        title={"3. Dorezojeni"}
+        title={"3. Dorëzo"}
         description={
           "Duke ju falenderuar, më pas është në dorën tuaj nëse do ta dorëzoni apo të prisni pronarin të vijë tek ju."
         }

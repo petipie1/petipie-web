@@ -346,7 +346,6 @@ const OrderForm = ({ data }: any) => {
                       icon={"/ic_dog.png"}
                       placeholder={"Emri i qenit/maces"}
                       name="petName"
-                      capitalize
                       onChange={handleChange}
                       error={touched.petName && errors.petName}
                       // helperText={touched.petName && errors.petName}
@@ -438,11 +437,10 @@ const OrderForm = ({ data }: any) => {
                         icon={"/ic_info.png"}
                         placeholder={"Info/Pershkrim"}
                         name="petInfo"
-                        capitalize
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.petInfo}
-                        error={touched.petInfo && errors.petInfo}
+                        error={errors.petInfo}
                         // customStyles={{ minHeight: "80px" }}
                       />
                     </Grid>
@@ -498,6 +496,7 @@ const OrderForm = ({ data }: any) => {
                       name="ownerAddress"
                       onChange={handleChange}
                       value={values.ownerAddress}
+                      error={errors.ownerAddress}
                     />
                     <PhoneInputWithPrefix
                       country={"al"}
@@ -575,6 +574,7 @@ const OrderForm = ({ data }: any) => {
                       name="ownerInstagram"
                       onChange={handleChange}
                       value={values.ownerInstagram}
+                      error={errors.ownerInstagram}
                     />
                   </Form>
                 </Grid>
@@ -608,7 +608,7 @@ const OrderForm = ({ data }: any) => {
                         fontFamily: "Cocon",
                       }}
                     >
-                      Addresa (ku dergohet porosia):
+                      Adresa (ku dërgohet porosia):
                     </Typography>
                     <Grid
                       item
@@ -693,7 +693,7 @@ const OrderForm = ({ data }: any) => {
                         variant="body2"
                         sx={{ fontFamily: "Product Sans" }}
                       >
-                        Përdor të njejtat të dhëna për dërgesen e porosise?
+                        Përdor të njejtat të dhëna për porosinë?
                         {/* <span style={{ color: "grey", fontSize: "0.8rem" }}>
                         {" "}
                         (Te dhenat do te kopjohen nga )
@@ -790,8 +790,12 @@ const OrderForm = ({ data }: any) => {
                           mt: "2rem",
                         }}
                       >
-                        Në momentin qe ju do të merrni varesen, ajo është e
+                        Në momentin qe ju do të merrni varësen, ajo është e
                         aktivizuar dhe nuk ka nevojë për konfigurime shtesë.
+                        <br></br>
+                        <strong>
+                          *Porosia kushton 3.500 L (për periudhen 1 vjeçare)
+                        </strong>
                       </Typography>
                     </Grid>
                   </Form>
@@ -835,7 +839,7 @@ const OrderForm = ({ data }: any) => {
         <InfoDialog
           title={"Konfirmoni te dhenat?"}
           message={`Jeni te sigurt te vazhdoni?
-                 Pas ketij hapi te dhenat nuk mund te ndryshohen nga ju por duhet te kontaktoni suportin: +355686284516`}
+                 Pas ketij hapi te dhenat nuk mund te ndryshohen nga ju por duhet te kontaktoni suportin: +355688803602`}
           isOpen={isDialogOpen}
           handleConfirm={handleSubmit}
           handleCancel={() => setIsDialogOpen(false)}

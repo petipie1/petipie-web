@@ -23,14 +23,7 @@ const WhatIsSection = () => (
       Çfarë është
       <span style={{ color: "black" }}> Petipie</span>?
     </Typography>
-    <Typography
-      variant="body2"
-      sx={{
-        fontFamily: "Product sans",
-        fontSize: "1rem",
-        fontWeight: 700,
-      }}
-    >
+    <Typography sx={{ fontFamily: "Product sans", fontSize: "1.1rem" }}>
       Petipie është një platformë inovative dhe e thjeshtë që synon të ndihmojë
       në gjetjen sa më efikase dhe të shpejtë të kafshëve të humbura shtëpiake,
       përmes një varese që mund të vendoset te qeni ose macja juaj. Kjo varëse
