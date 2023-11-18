@@ -89,6 +89,10 @@ const PetForm = ({ data, externalId }: any) => {
       .required(requiredFieldMessage)
       .max(30, "Jo me shume se 30 karaktere"),
     petBreed: Yup.string().required(requiredSelectMessage),
+    petBreedManual: Yup.string().when(["petBreed"], {
+      is: (petBreed: string) => petBreed?.includes("Tjet"),
+      then: () => Yup.string().required(requiredFieldMessage),
+    }),
     petGender: Yup.string().required(requiredSelectMessage),
     petInfo: Yup.string().max(50, "Jo me shume se 50 karaktere"),
     // petMissingMessage: Yup.string().max(100, "Jo me shume se 100 karaktere"),
@@ -126,6 +130,7 @@ const PetForm = ({ data, externalId }: any) => {
   const initialValues = {
     petName: "",
     petBreed: "",
+    petBreedManual: "",
     petGender: "",
     petInfo: "",
     // petMissingMessage: "",
@@ -151,6 +156,10 @@ const PetForm = ({ data, externalId }: any) => {
     const { value, parsedPhone } = values.ownerWhatsapp;
     const { parsedPhone: phone } = values.ownerPhone;
 
+    const breed = values.petBreed.includes("Tjet")
+      ? values.petBreedManual
+      : values.petBreed;
+
     const activatePetRequest = {
       status: "Active",
       data: {
@@ -160,7 +169,7 @@ const PetForm = ({ data, externalId }: any) => {
         contactUsIntead: false,
         missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
         info: values.petInfo,
-        breed: values.petBreed,
+        breed: breed,
         gender: values.petGender,
         ownerInfo: {
           name: values.ownerName,
@@ -356,6 +365,18 @@ const PetForm = ({ data, externalId }: any) => {
                       })}
                     </StyledSelect>
                   </Grid>
+                  {values.petBreed.includes("Tjet") && (
+                    <Grid item xs={12} sx={{ mt: -1 }}>
+                      <StyledInput
+                        icon={"/ic_breed.png"}
+                        placeholder={"Specifiko rracen"}
+                        name="petBreedManual"
+                        onChange={handleChange}
+                        value={values.petBreedManual}
+                        error={errors.petBreedManual}
+                      />
+                    </Grid>
+                  )}
                 </Grid>
                 <StyledInput
                   icon={"/ic_info.png"}

@@ -55,7 +55,7 @@ const OrderCard = ({ order, updateOrder }: OrderCardProps) => {
     ? colors.find((color) => color.name === pet?.styles?.avatarBg)
     : { name: "Sweet Morning", start: "#FF5F6D", end: "#FFC371" };
 
-  const avatarImage = PetImages[pet.breed];
+  const avatarImage = PetImages[pet?.breed] ?? "/ProfilePicStandard.png";
 
   const inputDateString = order.createdAt;
   const inputDate = new Date(inputDateString);

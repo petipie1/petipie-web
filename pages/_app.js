@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         domain={process.env.AUTH0_DOMAIN}
         clientId={process.env.AUTH0_CLIENT_ID}
         authorizationParams={{
-          redirect_uri: "https://petipie/online/admin",
+          redirect_uri: "https://petipie.online/admin",
           // redirect_uri: "http://localhost:3000/admin", // FOR TESTING LOCALLY
           audience: process.env.AUTH0_AUDIENCE,
         }}
