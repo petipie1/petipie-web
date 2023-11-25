@@ -40,31 +40,50 @@ export const petipieContact = {
 
 export const Breed = {
   // Dog: {
+  Akita: "Akita",
+  "Bichon Frise": "Bichon Frise",
+  "Border Collie": "Border Collie",
+  "Boston Terrier": "Boston Terrier",
+  "Brussels Griffon": "Brussels Griffon",
   Bulldog: "Bulldog",
   Bullmastiff: "Bullmastiff",
+  Boxer: "Boxer",
+  "Cairn Terrier": "Cairn Terrier",
+  "Cane Corso": "Cane Corso",
   Chihuahua: "Chihuahua",
   "Chow chow": "Chow chow",
   Corgi: "Corgi",
   Dalmatian: "Dalmatian",
   Doberman: "Doberman",
-  Husky: "Husky",
-  "German Shepherd": "German Shepherd",
-  Golden: "Golden",
   Eskimo: "Eskimo",
+  "German Shepherd": "German Shepherd",
+  "Golden Retriever": "Golden Retriever",
+  Husky: "Husky",
   Maltese: "Maltese",
+  Mastiff: "Mastiff",
+  "Mini Spitz - Bardhe": "Mini Spitz - Bardhe",
+  "Mini Spitz - Kafe": "Mini Spitz - Kafe",
+  Newfoundland: "Newfoundland",
+  Pekingese: "Pekingese",
+  "Pekingese - Bardhe": "Pekingese - Bardhe",
   Poodle: "Poodle",
-  Pomerian: "Pomerian",
+  "Poodle - Zi": "Poodle - Zi",
+  // Pomerian: "Pomerian",
   Pitbull: "Pitbull",
   Pug: "Pug",
   Rottweiler: "Rottweiler",
+  "Shiba Inu": "Shiba Inu",
+  "Shorthaired Pointer": "Shorthaired Pointer",
   "Yorkshire Terrier": "Yorkshire Terrier",
   Tjeter: "Tjeter",
   // },
   // Cat: {
   British: "British",
+  "E Bardhe": "E Bardhe",
   Ginger: "Ginger",
   MaineCoon: "MaineCoon",
   Persian: "Persian",
+  Ragdoll: "Ragdoll",
   Scotish: "Scotish",
   Siamese: "Siamese",
   Tuxedo: "Tuxedo",
@@ -73,31 +92,50 @@ export const Breed = {
 };
 
 export const BreedIcons: KeyValueObject = {
+  Akita: "/icons/ic_akita.png",
+  "Bichon Frise": "/icons/ic_bichon-frise.png",
+  "Border Collie": "/icons/ic_border-collie.png",
+  "Boston Terrier": "/icons/ic_boston-terrier.png",
+  Boxer: "/icons/ic_boxer-dog.png",
+  "Brussels Griffon": "/icons/ic_brussels-griffon.png",
+  "Cairn Terrier": "/icons/ic_cairn-terrier.png",
+  "Cane Corso": "/icons/ic_cane-corso.png",
+  "Mini Spitz - Bardhe": "/icons/ic_german-spitz-white.png",
+  "Mini Spitz - Kafe": "/icons/ic_german-spitz-brown.png",
+  Mastiff: "/icons/ic_mastiff.png",
+  Newfoundland: "/icons/ic_newfoundland.png",
+  Pekingese: "/icons/ic_pekingese.png",
+  "Pekingese - Bardhe": "/icons/ic_pekingese-white.png",
   Rottweiler: "/icons/ic_rottweiler.png",
   Chihuahua: "/icons/ic_chihuahua.png",
   Husky: "/icons/ic_husky.png",
-  Golden: "/icons/ic_golden.png",
+  "Golden Retriever": "/icons/ic_golden.png",
   Bullmastiff: "/icons/ic_bullmastiff.png",
   Maltese: "/icons/ic_maltese.png",
   Eskimo: "/icons/ic_eskimo.png",
   Dalmatian: "/icons/ic_dalmatian.png",
   Poodle: "/icons/ic_poodle.png",
+  "Poodle - Zi": "/icons/ic_poodle-black.png",
+  "Shiba Inu": "/icons/ic_shiba-inu.png",
+  "Shorthaired Pointer": "/icons/ic_shorthaired-pointer.png",
   Pug: "/icons/ic_pugy.png",
-  Pomerian: "/icons/ic_pomerian.png",
+  // Pomerian: "/icons/ic_pomerian.png",
   Pitbull: "/icons/ic_pitbull.png",
   "Yorkshire Terrier": "/icons/ic_yorkshire-terrier.png",
   Doberman: "/icons/ic_doberman.png",
   Corgi: "/icons/ic_corgi.png",
   "Chow chow": "/icons/ic_chow-chow.png",
-  "German Shepherd": "/icons/ic_german-sheperd.png",
-  Bulldog: "/icons/ic_bullmastiff.png",
+  "German Shepherd": "/icons/ic_german-shepherd.png",
+  Bulldog: "/icons/ic_bulldog.png",
   British: "/icons/ic_british.png",
+  Ginger: "/icons/ic_ginger.png",
   MaineCoon: "/icons/ic_maine-coon.png",
   Persian: "/icons/ic_persian.png",
-  Ginger: "/icons/ic_ginger.png",
+  Ragdoll: "/icons/ic_ragdoll.png",
+  "E Bardhe": "/icons/ic_white-cat.png",
+  Siamese: "/icons/ic_siamese.png",
   Scotish: "/icons/ic_scotish.png",
   Tuxedo: "/icons/ic_tuxedo.png",
-  Siamese: "/icons/ic_siamese.png",
   Tjeter: "/ProfilePicStandard.png",
   Tjetër: "/ProfilePicStandard.png",
 };
@@ -109,18 +147,52 @@ type KeyValueObject = {
 export const PetImages: KeyValueObject = {
   // Dogs
 
+  Akita:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925981/dog/akita-1_p5cbuk.png",
+  "Bichon Frise":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925982/dog/bichon-frise-1_iuqs70.png",
+  "Border Collie":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925982/dog/border-collie-1_snccwn.png",
+  "Boston Terrier":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925982/dog/boston-terrier-1_v9usue.png",
+  Pekingese:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925994/dog/pekingese-1_ttqqht.png",
+  "Pekingese - Bardhe":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925995/dog/pekingese-2_xncoir.png",
+  "Poodle - Zi":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925996/dog/poodle-black_ahdclq.png",
+  Mastiff:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925993/dog/mastiff-2_igmfno.png",
+  "Mini Spitz - Bardhe":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925991/dog/german-spitz-1_tlfnve.png",
+  "Mini Spitz - Kafe":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925991/dog/german-spitz-2_s4wfky.png",
+  Newfoundland:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925994/dog/newfoundland_xnxmcv.png",
+  "Cane Corso":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925988/dog/cane-corso-2_xokdac.png",
+  "Cairn Terrier":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925987/dog/cairn-terrier-2_ufwnhp.png",
+  "Brussels Griffon":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925985/dog/brussels-griffon-2_qujukh.png",
+  Boxer:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925982/dog/boxer-dog-1_nwn0vq.png",
+  "Shiba Inu":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925998/dog/shiba-inu-1_igufau.png",
+  "Shorthaired Pointer":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700926002/dog/shorthaired-pointer-2_xvf7tj.png",
   Rottweiler:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699265527/dog/rottweiler_zabdqj.png",
   Chihuahua:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266773/dog/chihuahua_nzhks8.png",
   Husky:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266780/dog/husky_hafn0s.png",
-  Golden:
+  "Golden Retriever":
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266779/dog/golden_eljawm.png",
   Bullmastiff:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266772/dog/bullmastiff_eamqmd.png",
   Maltese:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266768/dog/maltese_szwmmg.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700943181/dog/zajg1vumqtwcrpsndast.png",
   Eskimo:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266777/dog/eskimo_jwpllr.png",
   Dalmatian:
@@ -128,8 +200,8 @@ export const PetImages: KeyValueObject = {
   Poodle:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267547/dog/poodle-dog_wrbqir.png",
   Pug: "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266770/dog/pugy_rz4ljx.png",
-  Pomerian:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266769/dog/pomerian_gh1hh7.png",
+  // Pomerian:
+  //   "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266769/dog/pomerian_gh1hh7.png",
   Pitbull:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266768/dog/pitbull_sejqnh.png",
   "Yorkshire Terrier":
@@ -141,19 +213,23 @@ export const PetImages: KeyValueObject = {
   "Chow chow":
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266773/dog/chow-chow_nnolzj.png",
   "German Shepherd":
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266778/dog/german-sheperd_krxu6z.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925998/dog/shepherd-2_hyreul.png",
   Bulldog:
-    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266772/dog/bullmastiff_eamqmd.png",
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700925986/dog/bulldog_kc2jlf.png",
   Tjeter: "/ProfilePicStandard.png",
 
   // Cats
 
   British:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267400/cat/british-shorthair_rkyjy8.png",
+  "E Bardhe":
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700944348/cat/hgwad5b9ziijvrxs6ebw.png",
   MaineCoon:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267274/cat/maine_coon_bv074u.png",
   Persian:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267273/cat/persian_l0aztq.png",
+  Ragdoll:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1700944348/cat/lh5v5uzlttflgcxfceut.png",
   Siamese:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267276/cat/cat-6_y1pfxr.png",
   Ginger:

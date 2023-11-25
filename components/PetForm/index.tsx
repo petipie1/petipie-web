@@ -129,7 +129,7 @@ const PetForm = ({ data, externalId }: any) => {
   // Initial form values
   const initialValues = {
     petName: "",
-    petBreed: "",
+    petBreed: data?.breed || "",
     petBreedManual: "",
     petGender: "",
     petInfo: "",
@@ -335,7 +335,7 @@ const PetForm = ({ data, externalId }: any) => {
                                   Qen 🐶
                                 </Typography>
                               )}
-                              {idx === 19 && (
+                              {idx === 35 && (
                                 <Typography
                                   variant="h6"
                                   sx={{
@@ -487,7 +487,6 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_whatsapp.png"}
                   error={touched.ownerWhatsapp && errors.ownerWhatsapp}
                   name="ownerWhatsapp"
-                  label="Whatsapp"
                   clickPrefix
                   setRegion={setWpRegion}
                   onChange={({ prefix, value }: any) =>
@@ -588,9 +587,15 @@ const PetForm = ({ data, externalId }: any) => {
         ))}
       </Menu>
       <InfoDialog
-        title={"Konfirmoni te dhenat?"}
-        message={`Jeni te sigurt te vazhdoni?
-                 Pas ketij hapi te dhenat nuk mund te ndryshohen nga ju por duhet te kontaktoni suportin: +355688803602`}
+        title={"Konfirmoni të dhënat?"}
+        message={
+          <span>
+            Jeni të sigurt të vazhdoni? Pas këtij hapi të dhënat nuk mund të
+            ndryshohen nga ju por duhet të kontaktoni suportin
+            <strong> 0688803602 </strong>
+            ose email <strong>petipie.contact@gmail.com </strong>
+          </span>
+        }
         isOpen={isDialogOpen}
         handleConfirm={handleSubmit}
         handleCancel={() => setIsDialogOpen(false)}

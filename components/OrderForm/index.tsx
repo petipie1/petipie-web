@@ -409,7 +409,7 @@ const OrderForm = ({ data }: any) => {
                                       Qen 🐶
                                     </Typography>
                                   )}
-                                  {idx === 19 && (
+                                  {idx === 35 && (
                                     <Typography
                                       variant="h6"
                                       sx={{
