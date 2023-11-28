@@ -335,7 +335,7 @@ const PetForm = ({ data, externalId }: any) => {
                                   Qen 🐶
                                 </Typography>
                               )}
-                              {idx === 35 && (
+                              {idx === 36 && (
                                 <Typography
                                   variant="h6"
                                   sx={{

@@ -68,7 +68,7 @@ export const Breed = {
   "Pekingese - Bardhe": "Pekingese - Bardhe",
   Poodle: "Poodle",
   "Poodle - Zi": "Poodle - Zi",
-  // Pomerian: "Pomerian",
+  Pomeranian: "Pomeranian",
   Pitbull: "Pitbull",
   Pug: "Pug",
   Rottweiler: "Rottweiler",
@@ -119,7 +119,7 @@ export const BreedIcons: KeyValueObject = {
   "Shiba Inu": "/icons/ic_shiba-inu.png",
   "Shorthaired Pointer": "/icons/ic_shorthaired-pointer.png",
   Pug: "/icons/ic_pugy.png",
-  // Pomerian: "/icons/ic_pomerian.png",
+  Pomeranian: "/icons/ic_pomerian.png",
   Pitbull: "/icons/ic_pitbull.png",
   "Yorkshire Terrier": "/icons/ic_yorkshire-terrier.png",
   Doberman: "/icons/ic_doberman.png",
@@ -200,8 +200,8 @@ export const PetImages: KeyValueObject = {
   Poodle:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699267547/dog/poodle-dog_wrbqir.png",
   Pug: "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266770/dog/pugy_rz4ljx.png",
-  // Pomerian:
-  //   "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266769/dog/pomerian_gh1hh7.png",
+  Pomeranian:
+    "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266769/dog/pomerian_gh1hh7.png",
   Pitbull:
     "https://res.cloudinary.com/dps35nlwa/image/upload/v1699266768/dog/pitbull_sejqnh.png",
   "Yorkshire Terrier":

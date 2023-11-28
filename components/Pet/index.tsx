@@ -17,7 +17,8 @@ const Pet = ({ pet, status }: any) => {
   // const { t } = useTranslation();
   const owner = pet?.ownerInfo;
   const contact = pet?.contactUsIntead ? petipieContact : owner?.contact;
-  const avatar = PetImages[pet?.breed] ?? "/ProfilePicStandard.png";
+  const avatar =
+    pet?.image ?? PetImages[pet?.breed] ?? "/ProfilePicStandard.png";
   const color = pet?.styles?.avatarBg
     ? colors.find((color) => color.name === pet?.styles?.avatarBg)
     : { name: "Default", start: "red", end: "yellow" };
