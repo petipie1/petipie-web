@@ -24,11 +24,6 @@ interface ActivatePetRequest {
   status: string;
 }
 
-interface CallWaiterRequest {
-  recipient: string;
-  umbrella: string;
-}
-
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const ax = axios.create({
@@ -71,18 +66,5 @@ export const createOrder = async (
   const response = await ax.post("/api/v1/Order", orderRequest, {
     headers: { Authorization: `Bearer ${process.env.API_KEY}` },
   });
-  return response.data;
-};
-
-export const callWaiter = async (
-  callWaiterRequest: CallWaiterRequest
-): Promise<Response<any>> => {
-  const response = await ax.post(
-    "/api/v1/Order/callWaiter",
-    callWaiterRequest,
-    {
-      headers: { Authorization: `Bearer ${process.env.API_KEY}` },
-    }
-  );
   return response.data;
 };

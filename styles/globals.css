@@ -33,4 +33,11 @@ a {
   /* src: url('../asset/OpenSans/OpenSans-Medium.ttf'); */
   font-weight: 400;
   font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Product Sans';
+    src: url('../asset/fonts/product-sans-regular.ttf');
+    font-weight: 400;
+    font-style: normal;
   }

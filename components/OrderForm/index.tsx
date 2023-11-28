@@ -37,8 +37,6 @@ const requiredFieldMessage = "Ju lutem plotesoni fushen!";
 const requiredSelectMessage = "Ju lutem zgjidhni fushen!";
 
 const OrderForm = ({ data }: any) => {
-  const [region, setRegion] = useState("");
-  const [wpRegion, setWpRegion] = useState("");
   const [checked, setChecked] = useState(false);
 
   const [avatar, setAvatar] = useState<string>(
@@ -67,14 +65,15 @@ const OrderForm = ({ data }: any) => {
     setColor(color);
   };
 
-  function validatePhone(value: string, regionCode: string) {
+  function validatePhone(prefix: string, value: string) {
     if (!value) {
-      return false; // Allow empty values, you can customize this behavior
+      return false;
     }
 
     const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
     try {
-      const parsedPhoneNumber = phoneUtil.parse(value, regionCode);
+      const parsedPhone = prefix + value;
+      const parsedPhoneNumber = phoneUtil.parse(parsedPhone, prefix);
       const isValid = phoneUtil.isValidNumber(parsedPhoneNumber);
       return isValid;
     } catch (error) {
@@ -93,11 +92,29 @@ const OrderForm = ({ data }: any) => {
     return Boolean(isValid);
   };
 
+  const validatePhoneNumber = (data: any) => {
+    const { prefix, value } = data || {};
+    if (!value) return false;
+    const isValid = validatePhone(prefix, value);
+    return isValid;
+  };
+
+  const validateWhastappNumber = (data: any) => {
+    const { prefix, value } = data || {};
+    if (!value) return true;
+    const isValid = validatePhone(prefix, value);
+    return isValid;
+  };
+
   const validationSchema = Yup.object().shape({
     petName: Yup.string()
       .required(requiredFieldMessage)
       .max(30, "Jo me shume se 30 karaktere"),
     petBreed: Yup.string().required(requiredSelectMessage),
+    petBreedManual: Yup.string().when(["petBreed"], {
+      is: (petBreed: string) => petBreed?.includes("Tjet"),
+      then: () => Yup.string().required(requiredFieldMessage),
+    }),
     petGender: Yup.string().required(requiredSelectMessage),
     petInfo: Yup.string().max(50, "Jo me shume se 50 karaktere"),
     // petMissingMessage: Yup.string().max(100, "Jo me shume se 100 karaktere"),
@@ -106,22 +123,14 @@ const OrderForm = ({ data }: any) => {
     ownerAddress: Yup.string().max(50, "Jo me shume se 50 karaktere"),
     ownerPhone: Yup.object()
       .required(requiredFieldMessage)
-      .test(
-        "phone-validation",
-        "Phone invalid!",
-        function ({ parsedPhone }: any) {
-          if (!parsedPhone) return false;
-          return validatePhone(parsedPhone, region);
-        }
+      .test("phone-validation", "Phone invalid!", (data: any) =>
+        validatePhoneNumber(data)
       ),
     ownerInstagram: Yup.string().max(30, "Jo me shume se 30 karaktere"),
     ownerWhatsapp: Yup.object().test(
       "wp-validation",
       "Phone invalid!",
-      function (data: any) {
-        if (!data?.value) return true;
-        return validatePhone(data.parsedPhone, wpRegion);
-      }
+      (data: any) => validateWhastappNumber(data)
     ),
     ownerEmail: Yup.string().test(
       "email-validation",
@@ -136,13 +145,8 @@ const OrderForm = ({ data }: any) => {
 
     orderPhone: Yup.object()
       .required(requiredFieldMessage)
-      .test(
-        "phone-validation",
-        "Phone invalid!",
-        function ({ parsedPhone }: any) {
-          if (!parsedPhone) return false;
-          return validatePhone(parsedPhone, region);
-        }
+      .test("phone-validation", "Phone invalid!", (data: any) =>
+        validatePhoneNumber(data)
       ),
 
     orderAddress: Yup.string()
@@ -154,13 +158,14 @@ const OrderForm = ({ data }: any) => {
   const initialValues = {
     petName: "",
     petBreed: "",
+    petBreedManual: "",
     petGender: "",
     petInfo: "",
     // petMissingMessage: "",
     ownerName: "",
     ownerCity: "",
     ownerAddress: "",
-    ownerPhone: "",
+    ownerPhone: { value: "", prefix: "" },
     ownerInstagram: "",
     ownerWhatsapp: "",
     ownerEmail: "",
@@ -194,31 +199,35 @@ const OrderForm = ({ data }: any) => {
   };
 
   // Submit function
-  const onSubmit = async (values: any, { setValues }: any) => {
+  const onSubmit = async (values: any, { resetForm }: any) => {
     setIsLoading(true);
 
-    const { value, parsedPhone } = values.ownerWhatsapp;
-    const { parsedPhone: phone } = values.ownerPhone;
+    const { prefix: wpPrefix, value: wpValue } = values.ownerWhatsapp;
+    const { prefix: ownerPrefix, value: ownerValue } = values.ownerPhone;
+    const { prefix: orderPrefix, value: orderValue } = values.orderPhone;
+    const breed = values.petBreed.includes("Tjet")
+      ? values.petBreedManual
+      : values.petBreed;
 
     const orderRequest = {
-      status: "Awaiting",
+      status: "New",
       name: values.orderName,
-      phone: values.orderPhone?.parsedPhone,
+      phone: orderPrefix + orderValue,
       address: values.orderAddress,
       items: {
         name: values.petName,
         city: values.ownerCity,
-        orderCode: "dori1992",
+        orderCode: "111",
         contactUsIntead: false,
         missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
         info: values.petInfo,
-        breed: values.petBreed,
+        breed: breed,
         gender: values.petGender,
         ownerInfo: {
           name: values.ownerName,
           contact: {
-            phone,
-            whatsapp: value ? parsedPhone : "",
+            phone: ownerPrefix + ownerValue,
+            whatsapp: wpValue ? wpPrefix + wpValue : "",
             instagram: values.ownerInstagram,
             email: values.ownerEmail,
           },
@@ -234,7 +243,7 @@ const OrderForm = ({ data }: any) => {
       await createOrder(orderRequest);
 
       setConfirmDialogOpen(true);
-      setValues(initialValues);
+      resetForm();
       setChecked(false);
     } catch (error) {
       setErrorDialogOpen(true);
@@ -248,10 +257,9 @@ const OrderForm = ({ data }: any) => {
     setAvatar(PetImages[data.value]);
   };
 
-  const onWpPhoneChange = (data: any, setFieldValue: any) => {
+  const onPhoneChange = (data: any, setFieldValue: any) => {
     const { prefix, value } = data;
-    const parsedPhone = prefix + value;
-    setFieldValue(data.name, { value, parsedPhone });
+    setFieldValue(data.name, { prefix, value });
   };
 
   return (
@@ -315,8 +323,8 @@ const OrderForm = ({ data }: any) => {
             errors,
             touched,
             handleChange,
-            setFieldTouched,
             // isSubmitting,
+            handleBlur,
             setFieldValue,
             setValues,
           }) => {
@@ -342,21 +350,36 @@ const OrderForm = ({ data }: any) => {
                       1. Të dhënat e qenit/maces:
                     </Typography>
                     <StyledInput
+                      onBlur={handleBlur}
                       icon={"/ic_dog.png"}
                       placeholder={"Emri i qenit/maces"}
                       name="petName"
-                      capitalize
                       onChange={handleChange}
-                      onFocus={() => setFieldTouched("petName")}
-                      value={values.petName}
                       error={touched.petName && errors.petName}
+                      // helperText={touched.petName && errors.petName}
+                      value={values.petName}
                     />
                     <Grid item container>
+                      <Grid item md={6} xs={12} sx={{ mt: -1 }}>
+                        <StyledSelect
+                          icon="/ic_gender.png"
+                          label="Gjinia"
+                          name="petGender"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.petGender}
+                          error={touched.petGender && errors.petGender}
+                        >
+                          <MenuItem value="Mashkull">Mashkull</MenuItem>
+                          <MenuItem value="Femer">Femer</MenuItem>
+                        </StyledSelect>
+                      </Grid>
                       <Grid item md={6} xs={12} sx={{ mt: -1 }}>
                         <StyledSelect
                           icon="/ic_breed.png"
                           label="Rraca"
                           name="petBreed"
+                          onBlur={handleBlur}
                           readOnly={!!data?.breed}
                           onChange={({ target }: any) =>
                             onChangeCustomHandler(
@@ -364,7 +387,6 @@ const OrderForm = ({ data }: any) => {
                               setFieldValue
                             )
                           }
-                          onFocus={() => setFieldTouched("petBreed")}
                           value={data?.breed || values.petBreed}
                           error={touched.petBreed && errors.petBreed}
                         >
@@ -387,7 +409,7 @@ const OrderForm = ({ data }: any) => {
                                       Qen 🐶
                                     </Typography>
                                   )}
-                                  {idx === 19 && (
+                                  {idx === 36 && (
                                     <Typography
                                       variant="h6"
                                       sx={{
@@ -417,31 +439,28 @@ const OrderForm = ({ data }: any) => {
                           })}
                         </StyledSelect>
                       </Grid>
-                      <Grid item md={6} xs={12} sx={{ mt: -1 }}>
-                        <StyledSelect
-                          icon="/ic_gender.png"
-                          label="Gjinia"
-                          name="petGender"
-                          onChange={handleChange}
-                          onFocus={() => setFieldTouched("petGender")}
-                          value={values.petGender}
-                          error={touched.petGender && errors.petGender}
-                        >
-                          <MenuItem value="Mashkull">Mashkull</MenuItem>
-                          <MenuItem value="Femer">Femer</MenuItem>
-                        </StyledSelect>
-                      </Grid>
+                      {values.petBreed.includes("Tjet") && (
+                        <Grid item xs={12} sx={{ mt: -1 }}>
+                          <StyledInput
+                            icon={"/ic_breed.png"}
+                            placeholder={"Specifiko rracen"}
+                            name="petBreedManual"
+                            onChange={handleChange}
+                            value={values.petBreedManual}
+                            error={errors.petBreedManual}
+                          />
+                        </Grid>
+                      )}
                     </Grid>
                     <Grid sx={{ mt: -1 }}>
                       <StyledInput
                         icon={"/ic_info.png"}
                         placeholder={"Info/Pershkrim"}
                         name="petInfo"
-                        capitalize
                         onChange={handleChange}
-                        onFocus={() => setFieldTouched("petInfo")}
+                        onBlur={handleBlur}
                         value={values.petInfo}
-                        error={touched.petInfo && errors.petInfo}
+                        error={errors.petInfo}
                         // customStyles={{ minHeight: "80px" }}
                       />
                     </Grid>
@@ -463,7 +482,7 @@ const OrderForm = ({ data }: any) => {
                       isOwner
                       name="ownerName"
                       onChange={handleChange}
-                      onFocus={() => setFieldTouched("ownerName")}
+                      onBlur={handleBlur}
                       value={values.ownerName}
                       error={touched.ownerName && errors.ownerName}
                     />
@@ -497,18 +516,18 @@ const OrderForm = ({ data }: any) => {
                       name="ownerAddress"
                       onChange={handleChange}
                       value={values.ownerAddress}
+                      error={errors.ownerAddress}
                     />
                     <PhoneInputWithPrefix
                       country={"al"}
                       isOwner
                       error={touched.ownerPhone && errors.ownerPhone}
-                      onFocus={() => setFieldTouched("ownerPhone")}
+                      onBlur={handleBlur}
                       name="ownerPhone"
-                      setRegion={setRegion}
                       clickPrefix
                       clickIcon
                       onChange={({ prefix, value }: any) =>
-                        onWpPhoneChange(
+                        onPhoneChange(
                           {
                             name: "ownerPhone",
                             prefix,
@@ -524,7 +543,7 @@ const OrderForm = ({ data }: any) => {
                       isOwner
                       name="ownerEmail"
                       onChange={handleChange}
-                      onFocus={() => setFieldTouched("ownerEmail")}
+                      onBlur={handleBlur}
                       value={values.ownerEmail}
                       error={touched.ownerEmail && errors.ownerEmail}
                     />
@@ -532,14 +551,13 @@ const OrderForm = ({ data }: any) => {
                       country={"al"}
                       isOwner
                       icon={"/ic_whatsapp.png"}
-                      onFocus={() => setFieldTouched("ownerWhatsapp")}
+                      onBlur={handleBlur}
                       error={touched.ownerWhatsapp && errors.ownerWhatsapp}
                       name="ownerWhatsapp"
                       placeholder="Whatsapp"
                       clickPrefix
-                      setRegion={setWpRegion}
                       onChange={({ prefix, value }: any) =>
-                        onWpPhoneChange(
+                        onPhoneChange(
                           {
                             name: "ownerWhatsapp",
                             prefix,
@@ -576,6 +594,7 @@ const OrderForm = ({ data }: any) => {
                       name="ownerInstagram"
                       onChange={handleChange}
                       value={values.ownerInstagram}
+                      error={errors.ownerInstagram}
                     />
                   </Form>
                 </Grid>
@@ -609,7 +628,7 @@ const OrderForm = ({ data }: any) => {
                         fontFamily: "Cocon",
                       }}
                     >
-                      Addresa (ku dergohet porosia):
+                      Adresa (ku dërgohet porosia):
                     </Typography>
                     <Grid
                       item
@@ -634,7 +653,7 @@ const OrderForm = ({ data }: any) => {
                       name="orderName"
                       // capitalize
                       onChange={handleChange}
-                      onFocus={() => setFieldTouched("orderName")}
+                      onBlur={handleBlur}
                       value={values.orderName}
                       error={touched.orderName && errors.orderName}
                     />
@@ -642,15 +661,14 @@ const OrderForm = ({ data }: any) => {
                       country={"al"}
                       placeholder="Tel"
                       error={touched.orderPhone && errors.orderPhone}
-                      onFocus={() => setFieldTouched("orderPhone")}
+                      onBlur={handleBlur}
                       name="orderPhone"
                       initialPhone={checked ? values.ownerPhone?.value : ""}
-                      setRegion={setRegion}
                       customStyles={{ iconBg: "white" }}
                       clickPrefix
                       clickIcon
                       onChange={({ prefix, value }: any) =>
-                        onWpPhoneChange(
+                        onPhoneChange(
                           {
                             name: "orderPhone",
                             prefix,
@@ -665,7 +683,7 @@ const OrderForm = ({ data }: any) => {
                       // capitalize
                       multiline
                       name="orderAddress"
-                      onFocus={() => setFieldTouched("orderAddress")}
+                      onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.orderAddress}
                       error={touched.orderAddress && errors.orderAddress}
@@ -695,7 +713,7 @@ const OrderForm = ({ data }: any) => {
                         variant="body2"
                         sx={{ fontFamily: "Product Sans" }}
                       >
-                        Perdor te njejtat te dhena per dergesen porosise?
+                        Përdor të njejtat të dhëna për porosinë?
                         {/* <span style={{ color: "grey", fontSize: "0.8rem" }}>
                         {" "}
                         (Te dhenat do te kopjohen nga )
@@ -792,8 +810,13 @@ const OrderForm = ({ data }: any) => {
                           mt: "2rem",
                         }}
                       >
-                        Ne momentin qe ju do te merrni varesen, ajo eshte e
-                        aktivizuar dhe nuk ka nevoje per konfigurime shtese.
+                        Në momentin qe ju do të merrni varësen, ajo është e
+                        aktivizuar dhe nuk ka nevojë për konfigurime shtesë.
+                        <br></br>
+                        <strong>
+                          *Porosia kushton 3500 Lek (QR kodi është i vlefshëm
+                          për periudhen 1 vjeçare)
+                        </strong>
                       </Typography>
                     </Grid>
                   </Form>
@@ -835,9 +858,15 @@ const OrderForm = ({ data }: any) => {
           ))}
         </Menu>
         <InfoDialog
-          title={"Konfirmoni te dhenat?"}
-          message={`Jeni te sigurt te vazhdoni?
-                 Pas ketij hapi te dhenat nuk mund te ndryshohen nga ju por duhet te kontaktoni suportin: +355686284516`}
+          title={"Konfirmoni të dhënat?"}
+          message={
+            <span>
+              Jeni të sigurt të vazhdoni? Pas këtij hapi të dhënat nuk mund të
+              ndryshohen nga ju por duhet të kontaktoni suportin
+              <strong> 0688803602 </strong>
+              ose email <strong>petipie.contact@gmail.com </strong>
+            </span>
+          }
           isOpen={isDialogOpen}
           handleConfirm={handleSubmit}
           handleCancel={() => setIsDialogOpen(false)}

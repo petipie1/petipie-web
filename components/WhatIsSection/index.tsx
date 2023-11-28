@@ -23,23 +23,17 @@ const WhatIsSection = () => (
       Çfarë është
       <span style={{ color: "black" }}> Petipie</span>?
     </Typography>
-    <Typography
-      variant="body2"
-      sx={{
-        fontFamily: "Product sans",
-        fontSize: "1rem",
-        fontWeight: 700,
-      }}
-    >
-      Petipie eshte nje platforme e thjeshte inovative qe ka per qellim te
-      ndihmoje ne gjetjen sa me shpejte te kafsheve te humbura shtepiake me ane
-      te nje varese te thejshte qe mund ti vendoset qenit ose maces tuaj.
-      Varesja ka te stampuar nje QR kod i cili po te skanohet, shfaq
-      informacionet e qenit/maces dhe informacionet mbi te zotin/zonjen si
-      nr.kontakti, emer, adrese etj (varet nga konfigurimet). Ne rast se
-      qeni/macja juaj humb dhe ka te vendosur varesen e Petipie, sapo dikush te
-      gjeje, do ta skanoje dhe do t’ju kontaktoje menjehere tek numri apo
-      profilet sociale (nese i keni konfiguruar).
+    <Typography sx={{ fontFamily: "Product sans", fontSize: "1.1rem" }}>
+      Petipie është një platformë inovative dhe e thjeshtë që synon të ndihmojë
+      në gjetjen sa më efikase dhe të shpejtë të kafshëve të humbura shtëpiake,
+      përmes një varese që mund të vendoset te qeni ose macja juaj. Kjo varëse
+      ka një QR kod të personalizuar i cili në rast se skanohet, shfaq
+      informacionin e detajuar të kafshës dhe të pronarit, duke përfshirë numrin
+      e kontaktit, emrin, adresën dhe të tjera informacione të rëndësishme
+      (bazuar në konfigurimet dhe preferencat individuale). Në rast se kafsha
+      juaj humbet dhe është pajisur me varësen e Petipie, kur dikush e gjen atë,
+      do të skanojë kodin dhe do të kontaktojë menjëherë me ju përmes numrit të
+      kontaktit ose përmes rrjeteve sociale (nëse i keni konfiguruar).
     </Typography>
   </Grid>
 );

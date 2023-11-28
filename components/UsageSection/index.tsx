@@ -29,22 +29,22 @@ const UsageSection = () => (
         icon="/how_works_1.png"
         title={"1. Skano kodin QR"}
         description={
-          "Ndihmo qenin/macen qe ka humbur duke skanuar kodin QR ne varese."
+          "Skano QR kodin ne varëse me anë te kameras të smartphone-it tuaj."
         }
       />
       <HowItWorksCard
         icon="/how_works_2.png"
         title={"2. Kontakto pronarin"}
-        description={`Zgjidhni nje prej formave te kontaktit
+        description={`Zgjidhni një prej formave të kontaktit
         (telefon, WhatsApp, Instagram etj)
-        te pronarint te qenit/maces.`}
+        të pronarit të qenit ose maces.`}
       />
       <HowItWorksCard
         icon="/how_works_3.png"
-        title={"3. Dorezojeni"}
-        description={`Me pas ju mbetet per ta dorezuar
-        qenin/macen tek pronari ose kontakto
-        plaftorment tone direkt.`}
+        title={"3. Dorëzo"}
+        description={
+          "Duke ju falenderuar, më pas është në dorën tuaj nëse do ta dorëzoni apo të prisni pronarin të vijë tek ju."
+        }
       />
     </Grid>
   </Grid>

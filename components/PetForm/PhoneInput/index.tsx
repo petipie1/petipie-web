@@ -45,7 +45,13 @@ const PhoneInput = ({ icon, isOwner, error, value, name, ...props }: any) => {
   console.log("error", error);
   return (
     <Box sx={{ margin: 1 }}>
-      {error && <div style={{ color: "red", fontSize: "12px" }}>{error}</div>}
+      {error && (
+        <div
+          style={{ color: "red", fontSize: "12px", fontFamily: "Product Sans" }}
+        >
+          {error}
+        </div>
+      )}
       <TextField
         fullWidth
         name="ownerPhone"

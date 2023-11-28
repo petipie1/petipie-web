@@ -89,6 +89,10 @@ const PetForm = ({ data, externalId }: any) => {
       .required(requiredFieldMessage)
       .max(30, "Jo me shume se 30 karaktere"),
     petBreed: Yup.string().required(requiredSelectMessage),
+    petBreedManual: Yup.string().when(["petBreed"], {
+      is: (petBreed: string) => petBreed?.includes("Tjet"),
+      then: () => Yup.string().required(requiredFieldMessage),
+    }),
     petGender: Yup.string().required(requiredSelectMessage),
     petInfo: Yup.string().max(50, "Jo me shume se 50 karaktere"),
     // petMissingMessage: Yup.string().max(100, "Jo me shume se 100 karaktere"),
@@ -125,7 +129,8 @@ const PetForm = ({ data, externalId }: any) => {
   // Initial form values
   const initialValues = {
     petName: "",
-    petBreed: "",
+    petBreed: data?.breed || "",
+    petBreedManual: "",
     petGender: "",
     petInfo: "",
     // petMissingMessage: "",
@@ -151,6 +156,10 @@ const PetForm = ({ data, externalId }: any) => {
     const { value, parsedPhone } = values.ownerWhatsapp;
     const { parsedPhone: phone } = values.ownerPhone;
 
+    const breed = values.petBreed.includes("Tjet")
+      ? values.petBreedManual
+      : values.petBreed;
+
     const activatePetRequest = {
       status: "Active",
       data: {
@@ -160,7 +169,7 @@ const PetForm = ({ data, externalId }: any) => {
         contactUsIntead: false,
         missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
         info: values.petInfo,
-        breed: values.petBreed,
+        breed: breed,
         gender: values.petGender,
         ownerInfo: {
           name: values.ownerName,
@@ -248,6 +257,8 @@ const PetForm = ({ data, externalId }: any) => {
             // isSubmitting,
             setFieldValue,
           }) => {
+            console.log("errors", errors);
+
             return (
               <Form
                 noValidate
@@ -272,24 +283,25 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_dog.png"}
                   placeholder={"Emri i qenit/maces"}
                   name="petName"
-                  capitalize
                   onChange={handleChange}
                   value={values.petName}
                   error={touched.petName && errors.petName}
                 />
-                <StyledSelect
-                  icon="/ic_gender.png"
-                  label="Gjinia"
-                  name="petGender"
-                  onChange={handleChange}
-                  value={values.petGender}
-                  error={touched.petGender && errors.petGender}
-                >
-                  <MenuItem value="Mashkull">Mashkull</MenuItem>
-                  <MenuItem value="Femer">Femer</MenuItem>
-                </StyledSelect>
                 <Grid item container>
                   <Grid md={6} xs={12} sx={{ mt: -1 }}>
+                    <StyledSelect
+                      icon="/ic_gender.png"
+                      label="Gjinia"
+                      name="petGender"
+                      onChange={handleChange}
+                      value={values.petGender}
+                      error={touched.petGender && errors.petGender}
+                    >
+                      <MenuItem value="Mashkull">Mashkull</MenuItem>
+                      <MenuItem value="Femer">Femer</MenuItem>
+                    </StyledSelect>
+                  </Grid>
+                  <Grid item md={6} xs={12} sx={{ mt: -1 }}>
                     <StyledSelect
                       icon="/ic_breed.png"
                       label="Rraca"
@@ -323,7 +335,7 @@ const PetForm = ({ data, externalId }: any) => {
                                   Qen 🐶
                                 </Typography>
                               )}
-                              {idx === 19 && (
+                              {idx === 36 && (
                                 <Typography
                                   variant="h6"
                                   sx={{
@@ -353,18 +365,27 @@ const PetForm = ({ data, externalId }: any) => {
                       })}
                     </StyledSelect>
                   </Grid>
-                  <Grid item md={6} xs={12} sx={{ mt: -1 }}>
-                    <StyledInput
-                      icon={"/ic_info.png"}
-                      placeholder={"Info/Pershkrim"}
-                      name="petInfo"
-                      capitalize
-                      onChange={handleChange}
-                      value={values.petInfo}
-                      error={touched.petInfo && errors.petInfo}
-                    />
-                  </Grid>
+                  {values.petBreed.includes("Tjet") && (
+                    <Grid item xs={12} sx={{ mt: -1 }}>
+                      <StyledInput
+                        icon={"/ic_breed.png"}
+                        placeholder={"Specifiko rracen"}
+                        name="petBreedManual"
+                        onChange={handleChange}
+                        value={values.petBreedManual}
+                        error={errors.petBreedManual}
+                      />
+                    </Grid>
+                  )}
                 </Grid>
+                <StyledInput
+                  icon={"/ic_info.png"}
+                  placeholder={"Info/Pershkrim"}
+                  name="petInfo"
+                  onChange={handleChange}
+                  value={values.petInfo}
+                  error={errors.petInfo}
+                />
                 {/* <StyledInput
                 icon={"/ic_info.png"}
                 placeholder={"Mesazhi (nese humb)"}
@@ -390,7 +411,6 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_name.png"}
                   placeholder={"Emri"}
                   isOwner
-                  capitalize
                   name="ownerName"
                   onChange={handleChange}
                   value={values.ownerName}
@@ -417,10 +437,10 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_address.png"}
                   placeholder={"Adresa (opsional)"}
                   isOwner
-                  capitalize
                   name="ownerAddress"
                   onChange={handleChange}
                   value={values.ownerAddress}
+                  error={errors.ownerAddress}
                 />
                 {/* <PhoneInput
                   country={"al"}
@@ -467,7 +487,6 @@ const PetForm = ({ data, externalId }: any) => {
                   icon={"/ic_whatsapp.png"}
                   error={touched.ownerWhatsapp && errors.ownerWhatsapp}
                   name="ownerWhatsapp"
-                  label="Whatsapp"
                   clickPrefix
                   setRegion={setWpRegion}
                   onChange={({ prefix, value }: any) =>
@@ -568,9 +587,15 @@ const PetForm = ({ data, externalId }: any) => {
         ))}
       </Menu>
       <InfoDialog
-        title={"Konfirmoni te dhenat?"}
-        message={`Jeni te sigurt te vazhdoni?
-                 Pas ketij hapi te dhenat nuk mund te ndryshohen nga ju por duhet te kontaktoni suportin: +355686284516`}
+        title={"Konfirmoni të dhënat?"}
+        message={
+          <span>
+            Jeni të sigurt të vazhdoni? Pas këtij hapi të dhënat nuk mund të
+            ndryshohen nga ju por duhet të kontaktoni suportin
+            <strong> 0688803602 </strong>
+            ose email <strong>petipie.contact@gmail.com </strong>
+          </span>
+        }
         isOpen={isDialogOpen}
         handleConfirm={handleSubmit}
         handleCancel={() => setIsDialogOpen(false)}

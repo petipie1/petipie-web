@@ -41,21 +41,19 @@ const WhyNeedItSection = () => (
       }}
     >
       <Testimonial
-        icon="/ProfilePlaceholder.png"
+        icon="/icons/ic_testimonial_1.png"
         title={"Alesia"}
         description={
-          "“ Me kishte humbur macja ime e shtrenjte dhe vetem fale varses me kodin QR qe i kisha vendosur maces time, zoteria me telefonoi pasi kishte gjetur numrin e tel aty... “"
+          "“Me kishte humbur macja ime e shtrenjte dhe vetem fale varses me kodin QR qe i kisha vendosur, zoteria me telefonoi pasi kishte gjetur numrin e tel aty... “"
         }
       />
       <Testimonial
-        icon="/ProfilePlaceholder.png"
+        icon="/icons/ic_testimonial_2.png"
         title={"Sara"}
-        description={
-          "“E gjet biskotin fale jush, ju falenderoj nga zemraaa ❤️“"
-        }
+        description={"“E gjeta Rokon fale jush, ju falenderoj nga zemraaa ❤️“"}
       />
       <Testimonial
-        icon="/ProfilePlaceholder.png"
+        icon="/icons/ic_testimonial_3.png"
         title={"Indrit"}
         description={"“Jeni super fantastik!“"}
       />

@@ -5,19 +5,26 @@ import EmptyView from "components/EmptyView";
 import LoadingIndicator from "components/LoadingIndicator";
 import Pet from "components/Pet";
 import PetForm from "components/PetForm";
-// import { getPet } from "services/apiClient";
-import { petResponse } from "common/constants";
+import { getPet } from "services/apiClient";
+// import { petResponse } from "common/constants";
 
 const MenuPage: NextPage = ({ pet }: any) => {
   // const { t } = useTranslation();
   const [isLoading] = useState(false);
+
+  const dateNotPassed =
+    new Date(pet.subscriptionEndDate).getTime() > new Date().getTime();
 
   let alMessage = "";
   let enMessage = "";
   if (!pet) {
     alMessage = "Nuk ka te dhena!";
     enMessage = "(No data found!)";
-  } else if (pet.status == "Inactive" || pet.status == "Awaiting") {
+  } else if (
+    pet.status == "Inactive" ||
+    pet.status == "Awaiting" ||
+    (pet.status !== "New" && !dateNotPassed)
+  ) {
     alMessage = "Nuk eshte aktiv!";
     enMessage = "(Not available!)";
   }
@@ -49,12 +56,12 @@ export default MenuPage;
 
 export async function getServerSideProps(ctx: any) {
   const { id } = ctx.query;
-  // const response = await getPet(id);
-  // const pet = response?.data;
+  const response = await getPet(id);
+  const pet = response?.data;
 
   // TESTING
-  const response = petResponse;
-  const pet = response;
+  // const response = petResponse;
+  // const pet = response;
 
   return {
     props: {

@@ -31,7 +31,7 @@ const OrderModelSection = () => (
     >
       <Grid item container sx={{ justifyContent: "center" }}>
         <Typography
-          sx={{ fontFamily: "Product sans", fontSize: "1rem" }}
+          sx={{ fontFamily: "Product Sans", fontSize: "1rem" }}
           color="yellow"
         >
           Vareset me kodin <strong>QR</strong>
@@ -49,10 +49,10 @@ const OrderModelSection = () => (
           Porosit modelin
         </Typography>
       </Grid>
-      <Typography sx={{ fontFamily: "Product sans", fontSize: "1rem" }}>
-        Ju mund te perzgjidhni modelin me ngjyren tuaj te preferuar te varsese
-        duke zgjedhur disa nga opsionet me poshte. Gjithashtu do t’ju duhet te
-        plotesoni informacionet e kerkuara personale dhe te qenit/maces.
+      <Typography sx={{ fontFamily: "Product Sans", fontSize: "1rem" }}>
+        Ju mund të përzgjidhni modelin me ngjyren tuaj të preferuar të varsëses
+        duke zgjedhur disa nga opsionet më poshte. Gjithashtu do t’ju duhet të
+        plotesoni informacionet e kërkuara personale dhe të qenit (ose maces).
       </Typography>
       <Button
         sx={{

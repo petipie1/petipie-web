@@ -40,7 +40,7 @@ const FirstSection = () => (
           left: 20,
           zIndex: 1,
         }}
-        icon="/icons/ic_corgi.png"
+        icon="/qr_tag_1_1.png"
         title={"Shiko modelet"}
         description={
           "Ne ju ofrojme shumellojshmeri modelesh per varesen e qenushit apo maces tuaj"
@@ -60,12 +60,12 @@ const FirstSection = () => (
         sx={{ fontFamily: "Cocon" }}
         color="yellow"
       >
-        Per miqtë e vegjël
+        Për miqtë e vegjël
       </Typography>
       <Typography sx={{ fontFamily: "Product sans", fontSize: "1.1rem" }}>
-        Ndihmoni miqte e vegjel te gjejen shtepine e tyre ne rast se humbin.
-        Petipie eshte platforma me e re qe iu vjen ne ndihme kafsheve shtepiake
-        te cilat humbasin çdo dite.
+        Ndihmoni miqtë e vegjël të gjejnë shtëpine e tyre në rast se humbin.
+        Petipie është platforma më e re që ju vjen në ndihmë kafshëve shtëpiake
+        të cilat humbasin çdo ditë.
       </Typography>
       <Button
         sx={{
