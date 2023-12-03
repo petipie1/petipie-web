@@ -90,6 +90,40 @@ const DrawerMenu = (props: any) => {
                 </Typography>
               </ListItem>
             ))}
+            <ListItem>
+              <a href="tel:+355683303005">
+                <Typography
+                  sx={{
+                    textAlign: "right",
+                    marginRight: 4,
+                    marginTop: -1.5,
+                    fontSize: 16,
+                    backgroundColor: "transparent",
+                    fontStyle: "italic",
+                    color: "#FFDC26",
+                  }}
+                >
+                  +355 68 33 03 005
+                </Typography>
+              </a>
+            </ListItem>
+            <ListItem>
+              <a href="`mailto:petipie.contact@gmail.com">
+                <Typography
+                  sx={{
+                    textAlign: "right",
+                    marginRight: 4,
+                    marginTop: -1.5,
+                    fontSize: 16,
+                    backgroundColor: "transparent",
+                    fontStyle: "italic",
+                    color: "#FFDC26",
+                  }}
+                >
+                  petipie.contact@gmail.com
+                </Typography>
+              </a>
+            </ListItem>
           </List>
           <Grid
             container

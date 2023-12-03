@@ -11,7 +11,7 @@ const petData = {
     name: "Ada",
     contact: {
       phone: "0686284516",
-      whatsapp: "+355688803602",
+      whatsapp: "+355683303005",
       instagram: "desara_ndreko",
       email: "dorianmusaj@gmail.com",
     },

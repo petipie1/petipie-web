@@ -592,8 +592,8 @@ const PetForm = ({ data, externalId }: any) => {
           <span>
             Jeni të sigurt të vazhdoni? Pas këtij hapi të dhënat nuk mund të
             ndryshohen nga ju por duhet të kontaktoni suportin
-            <strong> 0688803602 </strong>
-            ose email <strong>petipie.contact@gmail.com </strong>
+            <strong> 0683303005 </strong>
+            ose ne email <strong>petipie.contact@gmail.com </strong>
           </span>
         }
         isOpen={isDialogOpen}

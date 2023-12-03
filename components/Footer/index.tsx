@@ -9,7 +9,7 @@ const Footer = () => {
     },
     {
       icon: "/ic_phone.png",
-      url: "tel:+355688803602",
+      url: "tel:+355683303005",
     },
     {
       icon: "/ic_contact_web.png",
