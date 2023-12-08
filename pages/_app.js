@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
         <Provider store={store}>
           <Head>
             <title>Petipie | Mbroni miqtë e vegjël</title>
-            <meta name="description" content="Petipie" />
+            <meta name="title" content="Petipie" />
           </Head>
           <Component {...pageProps} />
         </Provider>

@@ -814,7 +814,7 @@ const OrderForm = ({ data }: any) => {
                         aktivizuar dhe nuk ka nevojë për konfigurime shtesë.
                         <br></br>
                         <strong>
-                          *Porosia kushton 3500 Lek (QR kodi është i vlefshëm
+                          *Porosia kushton 2500 Lek (QR kodi është i vlefshëm
                           për periudhen 1 vjeçare)
                         </strong>
                       </Typography>
