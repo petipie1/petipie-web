@@ -1,12 +1,14 @@
 const petData = {
   name: "Roko",
   city: "Tirane",
+  gender: "Mashkull",
   orderCode: "dori1992",
   contactUsIntead: false,
+  sendLocationEnabled: true,
   missingMessage: "Please contact me ASAP!!!",
   imageUrl: null,
   info: "Hi, I am Roko and I am using Petipie to be safe. In case I went missing, please contact my owner, she is very kind and will give you a tip.",
-  breed: "",
+  breed: "Maltese",
   ownerInfo: {
     name: "Ada",
     contact: {
@@ -26,8 +28,8 @@ const petData = {
 export const petResponse = {
   externalId: "a12d4614-962e-4310-8b89-3262f0847436",
   id: "a12d4614-962e-4310-8b89-3262f0847436",
-  status: "New",
-  subscriptionEndDate: "2024-10-27 12:03:06.111 +0100",
+  status: "Active",
+  subscriptionEndDate: "2024-05-31T16:09:15.655003Z",
   data: petData,
 };
 

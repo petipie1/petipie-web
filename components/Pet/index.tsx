@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Grid,
@@ -6,15 +6,30 @@ import {
   Card,
   CardContent,
   Container,
+  Button,
 } from "@mui/material";
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 // import Footer from "components/Footer";
 import MissingAlert from "components/MissingAlert";
 import Contacts from "components/Contacts";
 import { PetImages, colors, petipieContact } from "common/constants";
+import InfoDialog from "components/InfoDialog";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import notyificationService from "./../../services/noitifcation.service";
+
+const Alert = React.forwardRef<HTMLDivElement, any>(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Pet = ({ pet, status }: any) => {
-  // const { t } = useTranslation();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [alert, setAlert] = useState<{ open: boolean; severity: any }>({
+    open: false,
+    severity: "error",
+  });
+
+  const { t } = useTranslation();
   const owner = pet?.ownerInfo;
   const contact = pet?.contactUsIntead ? petipieContact : owner?.contact;
   const avatar =
@@ -22,6 +37,51 @@ const Pet = ({ pet, status }: any) => {
   const color = pet?.styles?.avatarBg
     ? colors.find((color) => color.name === pet?.styles?.avatarBg)
     : { name: "Default", start: "red", end: "yellow" };
+
+  async function success(position: any) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    setAlert({ open: true, severity: "success" });
+    // const googleMapsLocation = `https://maps.google.com/?q=${latitude},${longitude}`;
+    const googleMapsLocation = `http://www.google.com/maps/place/${latitude},${longitude}`;
+    console.log(googleMapsLocation);
+
+    // Make API call to OpenWeatherMap
+    // await notifyOwner();
+    const email = owner?.contact?.email ?? petipieContact?.email;
+    if (email)
+      await notyificationService.sendEmailNotification({
+        locationLink: googleMapsLocation,
+        email,
+      });
+  }
+
+  function error() {
+    setAlert({ open: true, severity: "error" });
+  }
+
+  const handleSubmit = () => {
+    if (navigator?.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      console.log("Geolocation not supported");
+    }
+    // if (formRef.current) {
+    //   formRef.current?.handleSubmit();
+    // }
+    setIsDialogOpen(false);
+  };
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setAlert({ open: false, severity: "success" });
+  };
 
   return (
     <Container maxWidth="sm">
@@ -60,7 +120,7 @@ const Pet = ({ pet, status }: any) => {
             color={"white"}
             sx={{ fontWeight: 500 }}
           >
-            {`${pet.name} (${pet?.gender})`}
+            {`${pet.name} (${t(pet?.gender)})`}
           </Typography>
         </Grid>
         <Grid item>
@@ -91,17 +151,17 @@ const Pet = ({ pet, status }: any) => {
                   fontWeight: 700,
                 }}
               >
-                INFORMACION
+                {t("information")}
               </Typography>
               <div style={{ marginTop: "16px" }}>
                 {owner?.name && (
                   <Typography variant="body1">
-                    <strong>I perket: </strong> {owner?.name}
+                    <strong>{t("belongsTo")}: </strong> {owner?.name}
                   </Typography>
                 )}
                 {pet?.city && (
                   <Typography variant="body1">
-                    <strong>Qyteti: </strong> {pet?.city}
+                    <strong>{t("city")}: </strong> {pet?.city}
                   </Typography>
                 )}
                 {pet.ownerInfo?.address && (
@@ -114,7 +174,7 @@ const Pet = ({ pet, status }: any) => {
                       WebkitLineClamp: 5,
                     }}
                   >
-                    <strong>Adresa: </strong> {pet.ownerInfo?.address}
+                    <strong>{t("address")}: </strong> {pet.ownerInfo?.address}
                   </Typography>
                 )}
                 {pet.info && (
@@ -133,8 +193,54 @@ const Pet = ({ pet, status }: any) => {
               </div>
             </CardContent>
           </Card>
+          {pet?.sendLocationEnabled && (
+            <Button
+              fullWidth
+              sx={{
+                mt: 3,
+                borderRadius: "3rem",
+                // border: "2px solid black",
+                textTransform: "none",
+                fontFamily: "Product Sans",
+                color: "whitesmoke",
+                maxHeight: "50px",
+                fontSize: "1.1rem",
+                paddingRight: "1.5rem",
+                paddingLeft: "1.5rem",
+              }}
+              onClick={() => setIsDialogOpen(true)}
+              style={{
+                // background: "linear-gradient(to right, #FFDC26, #E0AF00)",
+                backgroundColor: "black",
+              }}
+            >
+              {t("sendLocationButton")}
+            </Button>
+          )}
         </Grid>
       </Grid>
+      <InfoDialog
+        title={t("sendLocationTitle")}
+        message={<span>{t("sendLocationMessage")}</span>}
+        isOpen={isDialogOpen}
+        handleConfirm={handleSubmit}
+        handleCancel={() => setIsDialogOpen(false)}
+      />
+      <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity={alert.severity}
+          sx={{
+            width: "100%",
+            fontFamily: "Product Sans",
+            fontSize: "1rem",
+          }}
+        >
+          {alert.severity === "success"
+            ? t("locationSentMessage")
+            : t("locationNotSentMessage")}
+        </Alert>
+      </Snackbar>
       {/* Footer*/}
     </Container>
   );
