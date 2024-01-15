@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import EmptyView from "components/EmptyView";
-// import { useTranslation } from "react-i18next";
 import LoadingIndicator from "components/LoadingIndicator";
 import Pet from "components/Pet";
 import PetForm from "components/PetForm";
 import { getPet } from "services/apiClient";
 import { useTranslation } from "react-i18next";
-// import { petResponse } from "common/constants";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HelpDialog from "components/HelpDialog";
 
 const MenuPage: NextPage = ({ pet, lang }: any) => {
-  // const { t } = useTranslation();
   const [isLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(pet.status === "New");
 
   const { i18n } = useTranslation();
 
@@ -23,19 +23,15 @@ const MenuPage: NextPage = ({ pet, lang }: any) => {
     }
   }, []);
 
-  const dateNotPassed =
-    new Date(pet.subscriptionEndDate).getTime() > new Date().getTime();
+  // const dateNotPassed =
+  //   new Date(pet.subscriptionEndDate).getTime() > new Date().getTime();
 
   let alMessage = "";
   let enMessage = "";
   if (!pet) {
     alMessage = "Nuk ka te dhena!";
     enMessage = "(No data found!)";
-  } else if (
-    pet.status == "Inactive" ||
-    pet.status == "Awaiting" ||
-    (pet.status !== "New" && !dateNotPassed)
-  ) {
+  } else if (pet.status == "Inactive" || pet.status == "Awaiting") {
     alMessage = "Nuk eshte aktiv!";
     enMessage = "(Not available!)";
   }
@@ -43,6 +39,14 @@ const MenuPage: NextPage = ({ pet, lang }: any) => {
   if (!mounted) return <div>Loading...</div>;
 
   if (alMessage) return <EmptyView alTitle={alMessage} enTitle={enMessage} />;
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
   return (
     <>
@@ -56,6 +60,23 @@ const MenuPage: NextPage = ({ pet, lang }: any) => {
           width: "100%",
         }}
       />
+      {/* Info Icon */}
+      <InfoOutlinedIcon
+        sx={{
+          position: "absolute",
+          top: "15px",
+          right: "15px",
+          cursor: "pointer",
+          opacity: 0.55,
+          color: "black",
+        }}
+        onClick={handleDialogOpen}
+      />
+
+      {/* Help Dialog */}
+      <HelpDialog open={dialogOpen} handleClose={handleDialogClose} />
+
+      {/* Pet info or form */}
       {pet.status == "New" ? (
         <PetForm {...pet} />
       ) : (
@@ -72,21 +93,10 @@ export async function getServerSideProps(ctx: any) {
   const response = await getPet(id);
   const pet = response?.data;
 
-  // TESTING
-  // const response = petResponse;
-  // const pet = response;
-
   return {
     props: {
       pet,
-      lang: lang ?? "al",
+      lang: lang ?? pet?.data?.lang ?? "al",
     },
   };
-
-  // if(!pet)
-  //return {
-  //   redirect: {
-  //     destination: '/pet-not-found'
-  //   }
-  // }
 }

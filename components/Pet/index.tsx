@@ -48,7 +48,7 @@ const Pet = ({ pet, status }: any) => {
 
     // Make API call to OpenWeatherMap
     // await notifyOwner();
-    const email = owner?.contact?.email ?? petipieContact?.email;
+    const email = owner?.contact?.email || petipieContact?.email;
     if (email)
       await notyificationService.sendEmailNotification({
         locationLink: googleMapsLocation,
@@ -62,13 +62,30 @@ const Pet = ({ pet, status }: any) => {
 
   const handleSubmit = () => {
     if (navigator?.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error);
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      };
+
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then(function (result) {
+          console.log(result);
+          if (result.state === "granted") {
+            //If granted then you can directly call your function here
+            navigator.geolocation.getCurrentPosition(success, error, options);
+          } else if (result.state === "prompt") {
+            //If prompt then the user will be asked to give permission
+            navigator.geolocation.getCurrentPosition(success, error, options);
+          } else if (result.state === "denied") {
+            //If denied then you have to show instructions to enable location
+            setAlert({ open: true, severity: "error" });
+          }
+        });
     } else {
-      console.log("Geolocation not supported");
+      console.log("Geolocation is not supported by this browser.");
     }
-    // if (formRef.current) {
-    //   formRef.current?.handleSubmit();
-    // }
     setIsDialogOpen(false);
   };
 
@@ -193,7 +210,7 @@ const Pet = ({ pet, status }: any) => {
               </div>
             </CardContent>
           </Card>
-          {pet?.sendLocationEnabled && (
+          {owner?.contact?.email && (
             <Button
               fullWidth
               sx={{
