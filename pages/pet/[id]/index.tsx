@@ -8,6 +8,7 @@ import { getPet } from "services/apiClient";
 import { useTranslation } from "react-i18next";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import HelpDialog from "components/HelpDialog";
+// import { petResponse } from "common/constants";
 
 const MenuPage: NextPage = ({ pet, lang }: any) => {
   const [isLoading] = useState(false);
@@ -67,8 +68,8 @@ const MenuPage: NextPage = ({ pet, lang }: any) => {
           top: "15px",
           right: "15px",
           cursor: "pointer",
-          opacity: 0.55,
-          color: "black",
+          // opacity: 0.75,
+          color: "white",
         }}
         onClick={handleDialogOpen}
       />
@@ -92,6 +93,7 @@ export async function getServerSideProps(ctx: any) {
   const { id, lang } = ctx.query;
   const response = await getPet(id);
   const pet = response?.data;
+  // const pet = petResponse;
 
   return {
     props: {

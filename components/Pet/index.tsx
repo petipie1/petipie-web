@@ -16,14 +16,38 @@ import { PetImages, colors, petipieContact } from "common/constants";
 import InfoDialog from "components/InfoDialog";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import VaccinesOutlinedIcon from "@mui/icons-material/VaccinesOutlined";
 import notyificationService from "./../../services/noitifcation.service";
+import vaccinesService from "./../../services/vaccines.service";
+import reminderService from "./../../services/reminder.service";
+
+import VaccinesModal from "components/VaccinesModal";
+import AddVaccineModal from "components/VaccinesModal/AddVaccineModal";
+import VerificationModal from "components/VaccinesModal/VerificationModal";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 
 const Alert = React.forwardRef<HTMLDivElement, any>(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const Pet = ({ pet, status }: any) => {
+  const clinics: any = {
+    "123456": {
+      available: true,
+      name: "Vet Clinic",
+    },
+  };
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [addVaccineModalOpen, setAddVaccineModalOpen] = useState(false);
+  const [verificationModalOpen, setVerificationModalOpen] = useState(false);
+  const [opCodeError, setOpCodeError] = useState<string>("");
+
+  const [vaccinesData, setVaccinesData] = useState<any>({
+    data: [],
+    open: false,
+  });
+  const [reminders, setReminders] = useState([]);
+
   const [alert, setAlert] = useState<{ open: boolean; severity: any }>({
     open: false,
     severity: "error",
@@ -98,6 +122,56 @@ const Pet = ({ pet, status }: any) => {
     }
 
     setAlert({ open: false, severity: "success" });
+  };
+
+  const onAddVaccineClick = () => {
+    setVerificationModalOpen(true);
+    // setAddVaccineModalOpen(true);
+  };
+
+  const handleAddVaccine = (vaccine: any) => {
+    // setVerificationModalOpen(true);
+    console.log("Adding vaccine: ", vaccine);
+    setAddVaccineModalOpen(false);
+    setVaccinesData({ open: true, data: [...vaccinesData.data, vaccine] });
+  };
+
+  async function handleFetchVaccines() {
+    // Make API call to fetch vaccines
+    // await notifyOwner();
+    // const res = await vaccinesService.getVaccines(pet.id);
+    // setLoading(true);
+    try {
+      const [vaccinesData, remindersData]: any = await Promise.all([
+        vaccinesService.getVaccines(pet.id),
+        reminderService.getReminders(pet.id),
+      ]);
+      setVaccinesData({ data: vaccinesData?.data ?? [], open: true });
+      setReminders(remindersData?.data ?? []);
+
+      // setLoading(false);
+    } catch (error) {
+      // setLoading(false);
+    }
+
+    // setVaccinesData({ data: res?.data ?? [], open: true });
+    // setLoading(false);
+  }
+
+  const handleVerificationModalClose = () => {
+    setVerificationModalOpen(false);
+    setOpCodeError("");
+  };
+
+  const handleConfirmOpCode = (opCode: string) => {
+    if (clinics[opCode]?.available) {
+      setVerificationModalOpen(false);
+      setAddVaccineModalOpen(true);
+      setOpCodeError("");
+    } else {
+      const erroMessage = t("opCodeInvalid");
+      setOpCodeError(erroMessage);
+    }
   };
 
   return (
@@ -209,29 +283,48 @@ const Pet = ({ pet, status }: any) => {
                 )}
               </div>
             </CardContent>
+            {owner?.contact?.email && (
+              <Button
+                fullWidth
+                endIcon={<LocationOnOutlinedIcon fontSize="large" />}
+                sx={{
+                  mt: 1,
+                  textAlign: "center",
+                  // border: "2px solid black",
+                  textTransform: "none",
+                  fontFamily: "Product Sans",
+                  color: "black",
+                  maxHeight: "50px",
+                  fontSize: "1.2rem",
+                }}
+                onClick={() => setIsDialogOpen(true)}
+              >
+                {t("sendLocationButton")}
+              </Button>
+            )}
           </Card>
-          {owner?.contact?.email && (
+          {pet?.vaccinesEnabled && (
             <Button
               fullWidth
+              endIcon={<VaccinesOutlinedIcon />}
               sx={{
                 mt: 3,
-                borderRadius: "3rem",
                 // border: "2px solid black",
                 textTransform: "none",
                 fontFamily: "Product Sans",
                 color: "whitesmoke",
-                maxHeight: "50px",
+                height: "50px",
                 fontSize: "1.1rem",
                 paddingRight: "1.5rem",
                 paddingLeft: "1.5rem",
               }}
-              onClick={() => setIsDialogOpen(true)}
+              onClick={handleFetchVaccines}
               style={{
                 // background: "linear-gradient(to right, #FFDC26, #E0AF00)",
                 backgroundColor: "black",
               }}
             >
-              {t("sendLocationButton")}
+              {t("vaccines")}
             </Button>
           )}
         </Grid>
@@ -243,6 +336,28 @@ const Pet = ({ pet, status }: any) => {
         handleConfirm={handleSubmit}
         handleCancel={() => setIsDialogOpen(false)}
       />
+
+      <VaccinesModal
+        open={vaccinesData.open}
+        handleClose={() => setVaccinesData({ ...vaccinesData, open: false })}
+        vaccines={vaccinesData.data}
+        reminders={reminders}
+        onAddVaccineClick={onAddVaccineClick}
+      />
+
+      <AddVaccineModal
+        open={addVaccineModalOpen}
+        handleClose={() => setAddVaccineModalOpen(false)}
+        handleAddVaccine={handleAddVaccine}
+      />
+
+      <VerificationModal
+        open={verificationModalOpen}
+        handleClose={handleVerificationModalClose}
+        error={opCodeError}
+        confirmCode={handleConfirmOpCode}
+      />
+
       <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleClose}>
         <Alert
           onClose={handleClose}

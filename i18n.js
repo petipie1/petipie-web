@@ -52,6 +52,7 @@ const resources = {
       formPetConfirmMessagePhone: "+355683303005 ",
       formPetConfirmMessageEmail: "petipie.contact@gmail.com",
       sendLocationButton: "Send location",
+      vaccines: "Vaccines",
       sendLocationTitle: "Send Location?",
       sendLocationMessage:
         "By confirming you will send the GPS location to the pet owner.",
@@ -93,11 +94,49 @@ const resources = {
       important: "Important: ",
       clarification: "Clarification: ",
 
-      //
+      // vaccines
+      addReminder: "Add Reminder",
+      add: "Add",
+      addVaccine: "Add Vaccine",
+      allVaccines: "All Vaccines",
+      allReminders: "Add Reminders",
+      sixDigits: `Operation code is given to you at the moment of registration from
+      Petipie’s platform.`,
+      dontHaveCode: "I don’t have the code. ",
+      callUs: "Call Us here",
+      addNewVaccine: "Add New Vaccine",
+      chooseVaccine: "Choose Vaccine",
+      image: "Image",
+      date: "Date",
+      operatinCode: "Add operation code",
+      sixDigitsCode: "6-digits code",
+      opCodeInvalid: "Operation code is not valid.",
+      vaccine: "Vaccine",
+      chooseImage: "Choose image",
     },
   },
   al: {
     translation: {
+      // vaccines
+      chooseImage: "Zgjidh imazhin",
+
+      opCodeInvalid: "Kodi i operimit nuk eshte i sakte.",
+      operatinCode: "Kodi i operimit",
+      sixDigitsCode: "Kodi 6-shifror",
+      add: "Shto",
+      image: "Imazhi",
+      date: "Data",
+      chooseVaccine: "Zgjidh vaksinen",
+      addReminder: "Shto Reminder",
+      addVaccine: "Shto Vaksine",
+      allVaccines: "Vaksinat",
+      vaccine: "Vaksina",
+      allReminders: "Vaksinat e ardhshme",
+      sixDigits:
+        "Kodi i operimit ju është dhëne në momentin e regjistrimit në platformë.",
+      dontHaveCode: "Nuk e kam kodin. ",
+      addNewVaccine: "Shto vaksine te re",
+      callUs: "Na kontakoni",
       search: "Kerko",
       oopsTitle: "Oops, gabimisht?",
       orderConfirmedTitle: "Porosia u konfirmua.",
@@ -132,6 +171,7 @@ const resources = {
       formPetConfirmMessagePhone: "0683303005",
       formPetConfirmMessageEmail: "petipie.contact@gmail.com",
       sendLocationButton: "Dergo lokacionin",
+      vaccines: "Vaksinat",
       sendLocationTitle: "Dergo lokacionin?",
       sendLocationMessage:
         "Duke konfirmuar, ju do te dergoni lokacionin e GPS tek pronari/pronarja.",

@@ -4,7 +4,7 @@ const petData = {
   gender: "Mashkull",
   orderCode: "dori1992",
   contactUsIntead: false,
-  sendLocationEnabled: true,
+  vaccinesEnabled: true,
   missingMessage: "Please contact me ASAP!!!",
   imageUrl: null,
   info: "Hi, I am Roko and I am using Petipie to be safe. In case I went missing, please contact my owner, she is very kind and will give you a tip.",

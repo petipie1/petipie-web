@@ -17,6 +17,7 @@ const StyledSelect = ({
   value,
   error,
   readOnly,
+  customStyles,
   ...props
 }: any) => {
   const leftIcon = (
@@ -58,7 +59,7 @@ const StyledSelect = ({
             color: isOwner ? "#FFC334" : "#00A6A3",
           },
           "& .MuiOutlinedInput-root": {
-            backgroundColor: "white",
+            backgroundColor: customStyles?.backgroundColor ?? "white",
             borderRadius: "8px",
             paddingLeft: 0,
             "& fieldset": {
@@ -69,7 +70,8 @@ const StyledSelect = ({
               outline: "none",
             },
           },
-          boxShadow: "0px 3px 6px 1px rgba(0, 0, 0, 0.1)",
+          boxShadow:
+            customStyles?.boxShadow ?? "0px 3px 6px 1px rgba(0, 0, 0, 0.1)",
         }}
       >
         <Select
