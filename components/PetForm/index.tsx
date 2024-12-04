@@ -164,7 +164,7 @@ const PetForm = ({ data, ExternalId }: any) => {
       ? values.petBreedManual
       : values.petBreed;
 
-    const activatePetData = {
+    const activatePetData: any = {
       name: values.petName,
       city: values.ownerCity,
       orderCode: "ORD123",
@@ -189,13 +189,11 @@ const PetForm = ({ data, ExternalId }: any) => {
       },
     };
 
+    const datato: any = { activatePetData };
     // await activatePet(externalId, activatePetRequest);
-    activatePet(
-      { activatePetData },
-      {
-        onSuccess: () => router.replace(`/pet/${ExternalId}`),
-      }
-    );
+    activatePet(datato, {
+      onSuccess: () => router.replace(`/pet/${ExternalId}`),
+    });
     // resetForm();
   };
 
