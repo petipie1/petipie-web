@@ -109,8 +109,6 @@ const AddVaccineModal = ({ open, handleClose, handleAddVaccine }: any) => {
             handleChange,
             // isSubmitting,
           }) => {
-            console.log("errors", errors);
-
             return (
               <Form
                 noValidate

@@ -12,11 +12,11 @@ const EmptyView = () => (
         alignItems: "center",
       }}
     >
-      <Typography variant="caption" sx={{ fontSize: 16, width: "90%" }}>
-        You don’t have any vaccine record added so far. <strong>Only</strong> a
-        vet clinic can add a vaccine record.
+      <Typography variant="caption" sx={{ fontSize: 16, width: "90%", mb: 3 }}>
+        Ju nuk keni asnjë vaksinë të ruajtur. <strong>Vetëm</strong> klinikat
+        veterinare mund të shtojnë një vaksinë.
       </Typography>
-      <Image alt="empty" src={"/ic_empty.png"} width={"100%"} height={"100%"} />
+      <Image alt="empty" src={"/ic_empty.png"} width={"80%"} height={"80%"} />
 
       {/* <IconButton
       color="primary"

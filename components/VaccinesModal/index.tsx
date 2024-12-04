@@ -27,13 +27,13 @@ const VaccinesModal = ({
         <Typography variant="h4"> {t("howItWorks")}</Typography>
       </DialogTitle> */}
       <DialogContent>
+        {showEmptyView && <EmptyView />}
         {vaccines?.length > 0 && <VaccinesList vaccines={vaccines} />}
         {reminders?.length > 0 && <ReminderList reminders={reminders} />}
 
-        {showEmptyView && <EmptyView />}
-
         <Button
           fullWidth
+          disabled
           sx={{
             mt: 3,
             borderRadius: 2,
@@ -42,18 +42,21 @@ const VaccinesModal = ({
             color: "whitesmoke",
             height: "50px",
             fontSize: "1.1rem",
+            opacity: 0.2,
             paddingRight: "1.5rem",
             paddingLeft: "1.5rem",
           }}
           // onClick={handleFetchVaccines}
           style={{
             backgroundColor: "black",
+            color: "whitesmoke",
           }}
         >
           {t("addReminder")}
         </Button>
         <Button
           fullWidth
+          disabled
           sx={{
             mt: 1,
             mb: 2,
@@ -69,6 +72,8 @@ const VaccinesModal = ({
           onClick={onAddVaccineClick}
           style={{
             backgroundColor: "#2FD9A6",
+            color: "whitesmoke",
+            opacity: 0.4,
           }}
         >
           {t("addVaccine")}
