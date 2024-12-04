@@ -28,15 +28,18 @@ import InfoDialog from "components/InfoDialog";
 import { activatePet } from "services/apiClient";
 import { useRouter } from "next/router";
 import PhoneInputWithPrefix from "./PhoneInputWithPrefix";
+import { useTranslation } from "react-i18next";
 
 const requiredFieldMessage = "Ju lutem plotesoni fushen!";
 const requiredSelectMessage = "Ju lutem zgjidhni fushen!";
 
 const PetForm = ({ data, externalId }: any) => {
+  const { t } = useTranslation();
+
   const [region, setRegion] = useState("");
   const [wpRegion, setWpRegion] = useState("");
   const [avatar, setAvatar] = useState<string>(
-    data?.breed ? PetImages[data?.breed] : "/ProfilePicStandard.png"
+    data?.image ?? PetImages[data?.breed] ?? "/ProfilePicStandard.png"
   );
 
   const [color, setColor] = useState(
@@ -170,6 +173,7 @@ const PetForm = ({ data, externalId }: any) => {
         missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
         info: values.petInfo,
         breed: breed,
+        image: data?.image ?? null,
         gender: values.petGender,
         ownerInfo: {
           name: values.ownerName,
@@ -277,11 +281,11 @@ const PetForm = ({ data, externalId }: any) => {
                     fontFamily: "Cocon",
                   }}
                 >
-                  Të dhënat e qenit/maces:
+                  {t("formPetData")}
                 </Typography>
                 <StyledInput
                   icon={"/ic_dog.png"}
-                  placeholder={"Emri i qenit/maces"}
+                  placeholder={t("formPetName")}
                   name="petName"
                   onChange={handleChange}
                   value={values.petName}
@@ -291,20 +295,20 @@ const PetForm = ({ data, externalId }: any) => {
                   <Grid md={6} xs={12} sx={{ mt: -1 }}>
                     <StyledSelect
                       icon="/ic_gender.png"
-                      label="Gjinia"
+                      label={t("formPetGender")}
                       name="petGender"
                       onChange={handleChange}
                       value={values.petGender}
                       error={touched.petGender && errors.petGender}
                     >
-                      <MenuItem value="Mashkull">Mashkull</MenuItem>
-                      <MenuItem value="Femer">Femer</MenuItem>
+                      <MenuItem value={t("Male")}>{t("Male")}</MenuItem>
+                      <MenuItem value={t("Female")}>{t("Female")}</MenuItem>
                     </StyledSelect>
                   </Grid>
                   <Grid item md={6} xs={12} sx={{ mt: -1 }}>
                     <StyledSelect
                       icon="/ic_breed.png"
-                      label="Rraca"
+                      label={t("formPetBreed")}
                       name="petBreed"
                       readOnly={!!data?.breed}
                       onChange={({ target }: any) =>
@@ -332,7 +336,7 @@ const PetForm = ({ data, externalId }: any) => {
                                     fontWeight: 700,
                                   }}
                                 >
-                                  Qen 🐶
+                                  {t("formPetBreedDog")}
                                 </Typography>
                               )}
                               {idx === 36 && (
@@ -343,7 +347,7 @@ const PetForm = ({ data, externalId }: any) => {
                                     fontWeight: 700,
                                   }}
                                 >
-                                  Mace 🐱
+                                  {t("formPetBreedCat")}
                                 </Typography>
                               )}
                               <Grid container alignItems="center">
@@ -380,7 +384,7 @@ const PetForm = ({ data, externalId }: any) => {
                 </Grid>
                 <StyledInput
                   icon={"/ic_info.png"}
-                  placeholder={"Info/Pershkrim"}
+                  placeholder={t("formPetInfo")}
                   name="petInfo"
                   onChange={handleChange}
                   value={values.petInfo}
@@ -405,11 +409,11 @@ const PetForm = ({ data, externalId }: any) => {
                     fontFamily: "Cocon",
                   }}
                 >
-                  Të dhënat personale:
+                  {t("formOwnerInfo")}
                 </Typography>
                 <StyledInput
                   icon={"/ic_name.png"}
-                  placeholder={"Emri"}
+                  placeholder={t("formOwnerName")}
                   isOwner
                   name="ownerName"
                   onChange={handleChange}
@@ -418,7 +422,7 @@ const PetForm = ({ data, externalId }: any) => {
                 />
                 <StyledSelect
                   icon="/ic_city.png"
-                  label="Qyteti (opsional)"
+                  label={t("formOwnerCity")}
                   name="ownerCity"
                   isOwner
                   optional
@@ -435,7 +439,7 @@ const PetForm = ({ data, externalId }: any) => {
                 </StyledSelect>
                 <StyledInput
                   icon={"/ic_address.png"}
-                  placeholder={"Adresa (opsional)"}
+                  placeholder={t("formOwnerAddress")}
                   isOwner
                   name="ownerAddress"
                   onChange={handleChange}
@@ -474,7 +478,7 @@ const PetForm = ({ data, externalId }: any) => {
                 />
                 <StyledInput
                   icon={"/ic_mail.png"}
-                  placeholder={"Email (opsional)"}
+                  placeholder={t("formOwnerEmail")}
                   isOwner
                   name="ownerEmail"
                   onChange={handleChange}
@@ -522,7 +526,7 @@ const PetForm = ({ data, externalId }: any) => {
               /> */}
                 <StyledInput
                   icon={"/ic_instagram.png"}
-                  placeholder={"Instagram (opsional)"}
+                  placeholder={t("formOwnerInstagram")}
                   isOwner
                   name="ownerInstagram"
                   onChange={handleChange}
@@ -547,7 +551,7 @@ const PetForm = ({ data, externalId }: any) => {
                     backgroundColor: "#00A6A3",
                   }}
                 >
-                  Perfundo
+                  {t("finish")}
                 </Button>
               </Form>
             );
@@ -587,13 +591,13 @@ const PetForm = ({ data, externalId }: any) => {
         ))}
       </Menu>
       <InfoDialog
-        title={"Konfirmoni të dhënat?"}
+        title={t("formPetConfirmTitle")}
         message={
           <span>
-            Jeni të sigurt të vazhdoni? Pas këtij hapi të dhënat nuk mund të
-            ndryshohen nga ju por duhet të kontaktoni suportin
-            <strong> 0688803602 </strong>
-            ose email <strong>petipie.contact@gmail.com </strong>
+            {t("formPetConfirmMessage1")}
+            <strong> {t("formPetConfirmMessagePhone")} </strong>
+            {t("formPetConfirmMessage2")}
+            <strong> {t("formPetConfirmMessageEmail")} </strong>
           </span>
         }
         isOpen={isDialogOpen}

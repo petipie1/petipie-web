@@ -47,7 +47,7 @@ const NavMenu = ({ items, icon }: any) => {
         </Toolbar>
       </AppBar>
       <Hidden smDown>
-        <a href="tel:+355688803602">
+        <a href="tel:+355683303005">
           <Typography
             sx={{
               textAlign: "right",
@@ -58,7 +58,7 @@ const NavMenu = ({ items, icon }: any) => {
               color: "#FFDC26",
             }}
           >
-            +355 68 88 03 602
+            +355 68 33 03 005
           </Typography>
         </a>
       </Hidden>

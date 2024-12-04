@@ -814,8 +814,7 @@ const OrderForm = ({ data }: any) => {
                         aktivizuar dhe nuk ka nevojë për konfigurime shtesë.
                         <br></br>
                         <strong>
-                          *Porosia kushton 3500 Lek (QR kodi është i vlefshëm
-                          për periudhen 1 vjeçare)
+                          *Porosia kushton 3500 Lek (Transporti falas brenda TR)
                         </strong>
                       </Typography>
                     </Grid>
@@ -863,7 +862,7 @@ const OrderForm = ({ data }: any) => {
             <span>
               Jeni të sigurt të vazhdoni? Pas këtij hapi të dhënat nuk mund të
               ndryshohen nga ju por duhet të kontaktoni suportin
-              <strong> 0688803602 </strong>
+              <strong> 0683303005 </strong>
               ose email <strong>petipie.contact@gmail.com </strong>
             </span>
           }

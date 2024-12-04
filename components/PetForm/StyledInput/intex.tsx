@@ -55,43 +55,29 @@ const StyledInput = ({
         fullWidth
         value={capitalizedValue}
         sx={{
-          boxShadow: "0px 3px 6px 1px rgba(0, 0, 0, 0.1)",
+          boxShadow:
+            customStyles?.boxShadow ?? "0px 3px 6px 1px rgba(0, 0, 0, 0.1)",
           borderRadius: "8px",
           textAlign: "start",
           "& .MuiOutlinedInput-root": {
-            backgroundColor: "white",
+            backgroundColor: customStyles?.backgroundColor ?? "white",
             borderRadius: "8px",
             paddingLeft: icon ? 0 : "1rem",
             "& fieldset": {
               borderWidth: 0,
             },
-
-            // "&.Mui-focused": {
-            //     "& .MuiInputAdornment-root": {
-            //         color: "white",
-            //         backgroundColor: '#1FCFCC',
-            //     },
-            //     borderColor: 'red'
-            // },
             "&.Mui-focused fieldset": {
               borderColor: iconBg, // Border color when focused
             },
           },
-          // '&:hover': {
-          //     // Remove the hover border
-          //     '& fieldset': {
-          //         borderWidth: 1,
-          //         borderColor: 'red'
-          //     },
-          // },
-          // ...customStyles,
         }}
-        // inputProps={{ style: { textTransform: capitalize && "capitalize" } }}
         inputProps={{
           style: {
             textAlign: "start",
             justifyContent: "start",
             alignSelf: "start",
+            minHeight: customStyles?.minHeight ?? null,
+            // minHeight: "100px", // Adjusted height for input content
           },
         }}
         InputProps={{

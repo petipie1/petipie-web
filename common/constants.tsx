@@ -1,17 +1,19 @@
 const petData = {
   name: "Roko",
   city: "Tirane",
+  gender: "Mashkull",
   orderCode: "dori1992",
   contactUsIntead: false,
+  vaccinesEnabled: true,
   missingMessage: "Please contact me ASAP!!!",
   imageUrl: null,
   info: "Hi, I am Roko and I am using Petipie to be safe. In case I went missing, please contact my owner, she is very kind and will give you a tip.",
-  breed: "",
+  breed: "Maltese",
   ownerInfo: {
     name: "Ada",
     contact: {
       phone: "0686284516",
-      whatsapp: "+355688803602",
+      whatsapp: "+355683303005",
       instagram: "desara_ndreko",
       email: "dorianmusaj@gmail.com",
     },
@@ -26,8 +28,8 @@ const petData = {
 export const petResponse = {
   externalId: "a12d4614-962e-4310-8b89-3262f0847436",
   id: "a12d4614-962e-4310-8b89-3262f0847436",
-  status: "New",
-  subscriptionEndDate: "2024-10-27 12:03:06.111 +0100",
+  status: "Active",
+  subscriptionEndDate: "2024-05-31T16:09:15.655003Z",
   data: petData,
 };
 
@@ -259,7 +261,7 @@ export const Citites = ["Tirane", "Durres", "Vlore", "Elbasan", "Berat"];
 export const menuItems = [
   { title: "Si funksionon?", url: "#what-is" },
   { title: "Porosit", url: "#order-form" },
-  // { title: "Te humbur", url: "some-url" },
+  { title: "Te humbur", url: "#te-humbur" },
   // { title: "Rreth nesh", url: "some-url" },
   { title: "Kontakt", url: "#footer" },
 ];

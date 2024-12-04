@@ -3,13 +3,13 @@
   "short_name": "Petipie",
   "icons": [
     {
-      "src": "/ProfilePlaceholder.png",
+      "src": "/petipie.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/ProfilePlaceholder.png",
-      "sizes": "512x512",
+      "src": "/petipie.png",
+      "sizes": "256x256",
       "type": "image/png"
     }
   ],
