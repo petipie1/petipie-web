@@ -18,8 +18,8 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import VaccinesOutlinedIcon from "@mui/icons-material/VaccinesOutlined";
 import notyificationService from "./../../services/noitifcation.service";
-import vaccinesService from "./../../services/vaccines.service";
-import reminderService from "./../../services/reminder.service";
+// import vaccinesService from "./../../services/vaccines.service";
+// import reminderService from "./../../services/reminder.service";
 
 import VaccinesModal from "components/VaccinesModal";
 import AddVaccineModal from "components/VaccinesModal/AddVaccineModal";

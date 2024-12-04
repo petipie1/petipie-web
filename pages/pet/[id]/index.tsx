@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// "use client";
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import EmptyView from "components/EmptyView";
 import LoadingIndicator from "components/LoadingIndicator";
@@ -14,7 +15,7 @@ import { useRouter } from "next/router";
 import LoadingScreen from "../../../components/LoadingScreen";
 
 const MenuPage: NextPage = () => {
-  // const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { query } = useRouter();
   const { id } = query;
 
@@ -24,7 +25,7 @@ const MenuPage: NextPage = () => {
 
   // const { i18n } = useTranslation();
 
-  const lang = "al"; // ?? pet?.data?.lang ?? "al",
+  // const lang = "al"; // ?? pet?.data?.lang ?? "al",
   // useEffect(() => {
   //   // setMounted(true);
   //   if (lang) {
@@ -46,6 +47,14 @@ const MenuPage: NextPage = () => {
   }
 
   // if (!mounted || !id) return <div>Loading...</div>;
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+
+  if (loading || isLoading) {
+    return <LoadingScreen />;
+  }
 
   if (alMessage) return <EmptyView alTitle={alMessage} enTitle={enMessage} />;
 

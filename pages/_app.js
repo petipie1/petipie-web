@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        {/* <Auth0Provider
+        <Auth0Provider
           domain={process.env.AUTH0_DOMAIN}
           clientId={process.env.AUTH0_CLIENT_ID}
           authorizationParams={{
@@ -39,15 +39,15 @@ function MyApp({ Component, pageProps }) {
             // redirect_uri: "http://localhost:3000/admin", // FOR TESTING LOCALLY
             audience: process.env.AUTH0_AUDIENCE,
           }}
-        > */}
-        <Provider store={store}>
-          <Head>
-            <title>Petipie | Mbroni miqtë e vegjël</title>
-            <meta name="title" content="Petipie" />
-          </Head>
-          <Component {...pageProps} />
-        </Provider>
-        {/* </Auth0Provider> */}
+        >
+          <Provider store={store}>
+            <Head>
+              <title>Petipie | Mbroni miqtë e vegjël</title>
+              <meta name="title" content="Petipie" />
+            </Head>
+            <Component {...pageProps} />
+          </Provider>
+        </Auth0Provider>
       </ThemeProvider>
     </QueryClientProvider>
   );

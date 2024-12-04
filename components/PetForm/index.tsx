@@ -36,7 +36,7 @@ const requiredSelectMessage = "Ju lutem zgjidhni fushen!";
 
 const PetForm = ({ data, ExternalId }: any) => {
   const { t } = useTranslation();
-  const { isLoading, activatePet } = useActivatePet(ExternalId);
+  const { /* isLoading,*/ activatePet } = useActivatePet(ExternalId);
   const [region, setRegion] = useState("");
   const [wpRegion, setWpRegion] = useState("");
   const [avatar, setAvatar] = useState<string>(
@@ -64,7 +64,7 @@ const PetForm = ({ data, ExternalId }: any) => {
 
   function validatePhone(value: string, regionCode: string) {
     if (!value) {
-      return false; // Allow empty values, you can customize this behavior
+      return false; // Allow empty values, you can customize thiss behavior
     }
 
     const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
