@@ -53,7 +53,7 @@ const getVaccines = async (petId) => {
   const vaccineList = [
     {
       title: "Rabbies Vaccination",
-      clinic: "Dr house",
+      clinic: "Dr House",
       date: "October 14, 2023",
       notes: "Should be done again in a week",
     },

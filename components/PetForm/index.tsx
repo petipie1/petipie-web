@@ -25,17 +25,18 @@ import {
   colors,
 } from "common/constants";
 import InfoDialog from "components/InfoDialog";
-import { activatePet } from "services/apiClient";
+// import { activatePet } from "services/apiClient";
 import { useRouter } from "next/router";
 import PhoneInputWithPrefix from "./PhoneInputWithPrefix";
 import { useTranslation } from "react-i18next";
+import { useActivatePet } from "./../../hooks/useActivatePet";
 
 const requiredFieldMessage = "Ju lutem plotesoni fushen!";
 const requiredSelectMessage = "Ju lutem zgjidhni fushen!";
 
-const PetForm = ({ data, externalId }: any) => {
+const PetForm = ({ data, ExternalId }: any) => {
   const { t } = useTranslation();
-
+  const { isLoading, activatePet } = useActivatePet(ExternalId);
   const [region, setRegion] = useState("");
   const [wpRegion, setWpRegion] = useState("");
   const [avatar, setAvatar] = useState<string>(
@@ -163,37 +164,39 @@ const PetForm = ({ data, externalId }: any) => {
       ? values.petBreedManual
       : values.petBreed;
 
-    const activatePetRequest = {
-      status: "Active",
-      data: {
-        name: values.petName,
-        city: values.ownerCity,
-        orderCode: "ORD123",
-        contactUsIntead: false,
-        missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
-        info: values.petInfo,
-        breed: breed,
-        image: data?.image ?? null,
-        gender: values.petGender,
-        ownerInfo: {
-          name: values.ownerName,
-          contact: {
-            phone,
-            whatsapp: value ? parsedPhone : "",
-            instagram: values.ownerInstagram,
-            email: values.ownerEmail,
-          },
-          address: values.ownerAddress,
+    const activatePetData = {
+      name: values.petName,
+      city: values.ownerCity,
+      orderCode: "ORD123",
+      contactUsIntead: false,
+      missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
+      info: values.petInfo,
+      breed: breed,
+      image: data?.image ?? null,
+      gender: values.petGender,
+      ownerInfo: {
+        name: values.ownerName,
+        contact: {
+          phone,
+          whatsapp: value ? parsedPhone : "",
+          instagram: values.ownerInstagram,
+          email: values.ownerEmail,
         },
-        styles: {
-          avatarBg: color?.name || "Sweet Morning",
-        },
+        address: values.ownerAddress,
+      },
+      styles: {
+        avatarBg: color?.name || "Sweet Morning",
       },
     };
 
-    await activatePet(externalId, activatePetRequest);
+    // await activatePet(externalId, activatePetRequest);
+    activatePet(
+      { activatePetData },
+      {
+        onSuccess: () => router.replace(`/pet/${ExternalId}`),
+      }
+    );
     // resetForm();
-    router.replace(`/pet/${externalId}`);
   };
 
   const onChangeCustomHandler = (data: any, setFieldValue: any) => {
@@ -261,8 +264,6 @@ const PetForm = ({ data, externalId }: any) => {
             // isSubmitting,
             setFieldValue,
           }) => {
-            console.log("errors", errors);
-
             return (
               <Form
                 noValidate

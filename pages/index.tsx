@@ -13,9 +13,9 @@ import OrderForm from "../components/OrderForm";
 import Footer from "../components/Footer";
 import { Container } from "@mui/material";
 import { menuItems } from "../common/constants";
-import missingPetsService from "../services/missing-pets.service";
+// import missingPetsService from "../services/missing-pets.service";
 
-export default function Home({ missingPets }: any) {
+export default function Home({ missingPets = [] }: any) {
   return (
     <>
       <Container sx={{ overflow: "hidden" }}>
@@ -47,12 +47,12 @@ export default function Home({ missingPets }: any) {
   );
 }
 
-export async function getServerSideProps() {
-  const response = await missingPetsService.getMissingPets();
-  const missingPets = response?.data || [];
-  return {
-    props: {
-      missingPets,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const response = await missingPetsService.getMissingPets();
+//   const missingPets = response?.data || [];
+//   return {
+//     props: {
+//       missingPets,
+//     },
+//   };
+// }

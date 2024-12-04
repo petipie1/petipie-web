@@ -4,40 +4,48 @@ import EmptyView from "components/EmptyView";
 import LoadingIndicator from "components/LoadingIndicator";
 import Pet from "components/Pet";
 import PetForm from "components/PetForm";
-import { getPet } from "services/apiClient";
-import { useTranslation } from "react-i18next";
+// import { getPet } from "services/apiClient";
+// import { useTranslation } from "react-i18next";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import HelpDialog from "components/HelpDialog";
 // import { petResponse } from "common/constants";
+import { usePet } from "./../../../hooks/usePet";
+import { useRouter } from "next/router";
+import LoadingScreen from "../../../components/LoadingScreen";
 
-const MenuPage: NextPage = ({ pet, lang }: any) => {
-  const [isLoading] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(pet.status === "New");
+const MenuPage: NextPage = () => {
+  // const [mounted, setMounted] = useState(false);
+  const { query } = useRouter();
+  const { id } = query;
 
-  const { i18n } = useTranslation();
+  const { isLoading, data: pet, error } = usePet(id);
 
-  useEffect(() => {
-    setMounted(true);
-    if (lang) {
-      i18n.changeLanguage(lang);
-    }
-  }, []);
+  const [dialogOpen, setDialogOpen] = useState(pet?.Status === "New");
+
+  // const { i18n } = useTranslation();
+
+  const lang = "al"; // ?? pet?.data?.lang ?? "al",
+  // useEffect(() => {
+  //   // setMounted(true);
+  //   if (lang) {
+  //     i18n.changeLanguage(lang);
+  //   }
+  // }, []);
 
   // const dateNotPassed =
   //   new Date(pet.subscriptionEndDate).getTime() > new Date().getTime();
 
   let alMessage = "";
   let enMessage = "";
-  if (!pet) {
+  if (!pet || error) {
     alMessage = "Nuk ka te dhena!";
     enMessage = "(No data found!)";
-  } else if (pet.status == "Inactive" || pet.status == "Awaiting") {
+  } else if (pet?.Status == "Inactive" || pet?.Status == "Awaiting") {
     alMessage = "Nuk eshte aktiv!";
     enMessage = "(Not available!)";
   }
 
-  if (!mounted) return <div>Loading...</div>;
+  // if (!mounted || !id) return <div>Loading...</div>;
 
   if (alMessage) return <EmptyView alTitle={alMessage} enTitle={enMessage} />;
 
@@ -78,27 +86,26 @@ const MenuPage: NextPage = ({ pet, lang }: any) => {
       <HelpDialog open={dialogOpen} handleClose={handleDialogClose} />
 
       {/* Pet info or form */}
-      {pet.status == "New" ? (
+      {pet.Status == "New" ? (
         <PetForm {...pet} />
       ) : (
-        <Pet pet={pet?.data} status={pet?.status} />
+        <Pet pet={pet.Data} status={pet?.Status} />
       )}
     </>
   );
 };
 
 export default MenuPage;
+// export async function getServerSideProps(ctx: any) {
+//   const { id, lang } = ctx.query;
+//   const response = await getPet(id);
+//   const pet = response?.data;
+//   // const pet = petResponse;
 
-export async function getServerSideProps(ctx: any) {
-  const { id, lang } = ctx.query;
-  const response = await getPet(id);
-  const pet = response?.data;
-  // const pet = petResponse;
-
-  return {
-    props: {
-      pet,
-      lang: lang ?? pet?.data?.lang ?? "al",
-    },
-  };
-}
+//   return {
+//     props: {
+//       pet,
+//       lang: lang ?? pet?.data?.lang ?? "al",
+//     },
+//   };
+// }

@@ -48,9 +48,14 @@ const Pet = ({ pet, status }: any) => {
   });
   const [reminders, setReminders] = useState([]);
 
-  const [alert, setAlert] = useState<{ open: boolean; severity: any }>({
+  const [alert, setAlert] = useState<{
+    open: boolean;
+    severity: any;
+    message: string;
+  }>({
     open: false,
     severity: "error",
+    message: "",
   });
 
   const { t } = useTranslation();
@@ -65,7 +70,11 @@ const Pet = ({ pet, status }: any) => {
   async function success(position: any) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    setAlert({ open: true, severity: "success" });
+    setAlert({
+      open: true,
+      severity: "success",
+      message: t("locationSentMessage"),
+    });
     // const googleMapsLocation = `https://maps.google.com/?q=${latitude},${longitude}`;
     const googleMapsLocation = `http://www.google.com/maps/place/${latitude},${longitude}`;
     console.log(googleMapsLocation);
@@ -81,7 +90,11 @@ const Pet = ({ pet, status }: any) => {
   }
 
   function error() {
-    setAlert({ open: true, severity: "error" });
+    setAlert({
+      open: true,
+      severity: "error",
+      message: t("locationNotSentMessage"),
+    });
   }
 
   const handleSubmit = () => {
@@ -104,7 +117,11 @@ const Pet = ({ pet, status }: any) => {
             navigator.geolocation.getCurrentPosition(success, error, options);
           } else if (result.state === "denied") {
             //If denied then you have to show instructions to enable location
-            setAlert({ open: true, severity: "error" });
+            setAlert({
+              open: true,
+              severity: "error",
+              message: t("locationNotSentMessage"),
+            });
           }
         });
     } else {
@@ -121,7 +138,7 @@ const Pet = ({ pet, status }: any) => {
       return;
     }
 
-    setAlert({ open: false, severity: "success" });
+    setAlert({ open: false, severity: "success", message: "" });
   };
 
   const onAddVaccineClick = () => {
@@ -142,12 +159,14 @@ const Pet = ({ pet, status }: any) => {
     // const res = await vaccinesService.getVaccines(pet.id);
     // setLoading(true);
     try {
-      const [vaccinesData, remindersData]: any = await Promise.all([
-        vaccinesService.getVaccines(pet.id),
-        reminderService.getReminders(pet.id),
-      ]);
-      setVaccinesData({ data: vaccinesData?.data ?? [], open: true });
-      setReminders(remindersData?.data ?? []);
+      // const [vaccinesData, remindersData]: any = await Promise.all([
+      //   vaccinesService.getVaccines(pet.id),
+      //   reminderService.getReminders(pet.id),
+      // ]);
+      // setVaccinesData({ data: vaccinesData?.data ?? [], open: true });
+      // setReminders(remindersData?.data ?? []);
+      setVaccinesData({ data: [], open: true });
+      setReminders([]);
 
       // setLoading(false);
     } catch (error) {
@@ -303,30 +322,30 @@ const Pet = ({ pet, status }: any) => {
               </Button>
             )}
           </Card>
-          {pet?.vaccinesEnabled && (
-            <Button
-              fullWidth
-              endIcon={<VaccinesOutlinedIcon />}
-              sx={{
-                mt: 3,
-                // border: "2px solid black",
-                textTransform: "none",
-                fontFamily: "Product Sans",
-                color: "whitesmoke",
-                height: "50px",
-                fontSize: "1.1rem",
-                paddingRight: "1.5rem",
-                paddingLeft: "1.5rem",
-              }}
-              onClick={handleFetchVaccines}
-              style={{
-                // background: "linear-gradient(to right, #FFDC26, #E0AF00)",
-                backgroundColor: "black",
-              }}
-            >
-              {t("vaccines")}
-            </Button>
-          )}
+          {/* {pet?.vaccinesEnabled && ( */}
+          <Button
+            fullWidth
+            endIcon={<VaccinesOutlinedIcon />}
+            sx={{
+              mt: 3,
+              // border: "2px solid black",
+              textTransform: "none",
+              fontFamily: "Product Sans",
+              color: "whitesmoke",
+              height: "50px",
+              fontSize: "1.1rem",
+              paddingRight: "1.5rem",
+              paddingLeft: "1.5rem",
+            }}
+            onClick={handleFetchVaccines}
+            style={{
+              // background: "linear-gradient(to right, #FFDC26, #E0AF00)",
+              backgroundColor: "black",
+            }}
+          >
+            {t("vaccines")}
+          </Button>
+          {/* )} */}
         </Grid>
       </Grid>
       <InfoDialog
@@ -368,9 +387,7 @@ const Pet = ({ pet, status }: any) => {
             fontSize: "1rem",
           }}
         >
-          {alert.severity === "success"
-            ? t("locationSentMessage")
-            : t("locationNotSentMessage")}
+          {alert.message}
         </Alert>
       </Snackbar>
       {/* Footer*/}
