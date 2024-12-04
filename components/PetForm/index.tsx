@@ -36,7 +36,7 @@ const requiredSelectMessage = "Ju lutem zgjidhni fushen!";
 
 const PetForm = ({ data, ExternalId }: any) => {
   const { t } = useTranslation();
-  const { isLoading, activatePet } = useActivatePet(ExternalId);
+  const { /* isLoading,*/ activatePet } = useActivatePet(ExternalId);
   const [region, setRegion] = useState("");
   const [wpRegion, setWpRegion] = useState("");
   const [avatar, setAvatar] = useState<string>(
@@ -64,7 +64,7 @@ const PetForm = ({ data, ExternalId }: any) => {
 
   function validatePhone(value: string, regionCode: string) {
     if (!value) {
-      return false; // Allow empty values, you can customize this behavior
+      return false; // Allow empty values, you can customize thiss behavior
     }
 
     const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
@@ -164,7 +164,7 @@ const PetForm = ({ data, ExternalId }: any) => {
       ? values.petBreedManual
       : values.petBreed;
 
-    const activatePetData = {
+    const activatePetData: any = {
       name: values.petName,
       city: values.ownerCity,
       orderCode: "ORD123",
@@ -189,13 +189,11 @@ const PetForm = ({ data, ExternalId }: any) => {
       },
     };
 
+    const datato: any = { activatePetData };
     // await activatePet(externalId, activatePetRequest);
-    activatePet(
-      { activatePetData },
-      {
-        onSuccess: () => router.replace(`/pet/${ExternalId}`),
-      }
-    );
+    activatePet(datato, {
+      onSuccess: () => router.replace(`/pet/${ExternalId}`),
+    });
     // resetForm();
   };
 

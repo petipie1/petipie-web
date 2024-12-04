@@ -1,24 +1,13 @@
-import React from "react";
-import Lottie from "lottie-react";
+"use client";
+import React, { useEffect, useState } from "react";
+// import lottie from "lottie-web";
+import dynamic from "next/dynamic";
 import loadingAnimation from "../../asset/loading-pet.json";
 
 // const animations = {
 //   laoding: loadingAnimation,
 // //   "not-found": notFoundAnimation,
 // };
-
-const LoadingScreen = () => {
-  return (
-    <div style={styles.container}>
-      <Lottie
-        animationData={loadingAnimation}
-        loop={true}
-        style={styles.animation}
-      />
-    </div>
-  );
-};
-
 const styles = {
   container: {
     display: "flex",
@@ -32,5 +21,17 @@ const styles = {
     height: 200,
   },
 };
+const LoadingScreen = () => {
+  const [Lottie, setLottie] = useState(undefined);
 
+  useEffect(() => {
+    setLottie(dynamic(() => import("lottie-react"), { ssr: false }));
+  }, []);
+
+  return (
+    <div style={styles.container}>
+      {Lottie && <Lottie animationData={loadingAnimation} loop={true} />}
+    </div>
+  );
+};
 export default LoadingScreen;
