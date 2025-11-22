@@ -644,8 +644,8 @@ const OrderForm = ({ data }: any) => {
                       <Image
                         alt="menu item"
                         src={"/dog_2.png"}
-                        width={"200px"}
-                        height={"140px"}
+                        width={200}
+                        height={140}
                       />
                     </Grid>
                     <StyledInput
@@ -778,8 +778,8 @@ const OrderForm = ({ data }: any) => {
                         <Image
                           alt="menu item"
                           src={"/dog_1.png"}
-                          width={"180px"}
-                          height={"180px"}
+                          width={180}
+                          height={180}
                         />
                       </Grid>
 

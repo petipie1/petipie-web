@@ -106,8 +106,8 @@ const PhoneInputWithPrefix = ({
           <Image
             src={iconSrc}
             alt="dp"
-            width="22px"
-            height="22px"
+            width={22}
+            height={22}
             onClick={clickIcon && handleCountryClick}
           />
         </Grid>
@@ -178,12 +178,7 @@ const PhoneInputWithPrefix = ({
           >
             <Grid container>
               <Grid item sx={{ marginRight: 1 }}>
-                <Image
-                  alt="flag"
-                  src={country.flag}
-                  width="22px"
-                  height="22px"
-                />
+                <Image alt="flag" src={country.flag} width={22} height={22} />
               </Grid>
               <Grid item xs>
                 {country.code}

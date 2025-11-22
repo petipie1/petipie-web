@@ -31,8 +31,8 @@ const Contacts = (contact: ContactsProps) => (
           <Button variant="contained" sx={circularButtonStyles}>
             <img
               src={"/ic_phone.png"}
-              width={"35px"}
-              height={"35px"}
+              width={35}
+              height={35}
               alt="Email Icon"
               color="white"
             />
@@ -50,8 +50,8 @@ const Contacts = (contact: ContactsProps) => (
           <Button variant="contained" sx={circularButtonStyles}>
             <img
               src={"/ic_whatsapp.png"}
-              width={"35px"}
-              height={"35px"}
+              width={35}
+              height={35}
               alt="Email Icon"
               color="white"
             />
@@ -65,8 +65,8 @@ const Contacts = (contact: ContactsProps) => (
           <Button variant="contained" sx={circularButtonStyles}>
             <img
               src={"/ic_instagram.png"}
-              width={"35px"}
-              height={"35px"}
+              width={35}
+              height={35}
               alt="Email Icon"
               color="white"
             />
@@ -80,8 +80,8 @@ const Contacts = (contact: ContactsProps) => (
           <Button variant="contained" sx={circularButtonStyles}>
             <img
               src={"/ic_email.png"}
-              width={"35px"}
-              height={"35px"}
+              width={35}
+              height={35}
               alt="Email Icon"
               color="white"
             />

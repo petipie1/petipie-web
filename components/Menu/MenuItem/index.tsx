@@ -51,12 +51,12 @@ const MenuItem = ({
   price,
   onCountChange,
   orderingEnabled,
-  readonly
-  // animationDelay,
-  // promoId,
-  // discount,
-  // addedByPromo,
-}: any) => {
+  readonly,
+}: // animationDelay,
+// promoId,
+// discount,
+// addedByPromo,
+any) => {
   const [open, setOpen] = React.useState(false);
   const { t } = useTranslation();
   // const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
@@ -66,7 +66,7 @@ const MenuItem = ({
       onCountChange(newValue);
       // setRowPrice(newValue * price);
     },
-    [onCountChange],
+    [onCountChange]
   );
 
   const handleTooltipClose = () => {
@@ -74,8 +74,7 @@ const MenuItem = ({
   };
 
   const handleTooltipOpen = () => {
-    if (description)
-      setOpen(true);
+    if (description) setOpen(true);
   };
 
   // const [rowPrice, setRowPrice] = useState(quantity * price);
@@ -87,20 +86,31 @@ const MenuItem = ({
   // const productImage = imageUrl ||;
 
   const memoImage = React.useMemo(
-    () =>
-      <Grid item container sx={{
-        backgroundColor: "#fff", borderRadius: 1.5,
-        marginRight: 1, width: "80px", height: "80px",
-      }}
-        alignItems={"center"} justifyContent="center"
+    () => (
+      <Grid
+        item
+        container
+        sx={{
+          backgroundColor: "#fff",
+          borderRadius: 1.5,
+          marginRight: 1,
+          width: "80px",
+          height: "80px",
+        }}
+        alignItems={"center"}
+        justifyContent="center"
       >
-        <Image alt="" src={imageUrl || "/placeholder.png"}
-          width={"100%"} height={"100%"}
-          objectFit='contain' style={{ borderRadius: "8%" }}
+        <Image
+          alt=""
+          src={imageUrl || "/placeholder.png"}
+          width={100}
+          height={100}
+          objectFit="contain"
+          style={{ borderRadius: "8%" }}
         />
       </Grid>
-    ,
-    [imageUrl],
+    ),
+    [imageUrl]
   );
 
   // const isPromotionItem = false; // !!promoId || !!addedByPromo || promoComponents?.length >= 1;
@@ -118,7 +128,7 @@ const MenuItem = ({
           color: "black",
           lineHeight: "16px",
           fontWeight: 600,
-          fontSize: "19px"
+          fontSize: "19px",
         }}
       >
         {caption} lek
@@ -142,17 +152,22 @@ const MenuItem = ({
   // );
 
   const content = (
-    <Grid paddingTop={1}
-      paddingBottom={1}
-      container direction="row">
-      <Grid item container xs={3}
+    <Grid paddingTop={1} paddingBottom={1} container direction="row">
+      <Grid
+        item
+        container
+        xs={3}
         sx={{
           justifyContent: "center",
           alignContent: "center",
-        }}>
+        }}
+      >
         {memoImage}
       </Grid>
-      <Grid item container xs={5}
+      <Grid
+        item
+        container
+        xs={5}
         direction={"column"}
         sx={{
           justifyContent: "center",
@@ -171,56 +186,60 @@ const MenuItem = ({
             disableTouchListener
             title={
               <React.Fragment>
-                <Typography color="inherit" variant="h6">{t(`${name}`)}</Typography>
+                <Typography color="inherit" variant="h6">
+                  {t(`${name}`)}
+                </Typography>
                 <em style={{ fontSize: "0.9rem" }}>{t(`${description}`)}</em>
               </React.Fragment>
             }
             sx={{ marginBottom: -3 }}
           >
-            <Typography sx={{
-              lineHeight: "20px", paddingBottom: "3px",
-              fontSize: "20px",
-              maxLines: 2,
-              textOverflow: "ellipsis",
-              "-webkit-line-clamp": 2,
-              "-webkit-box-orient": "vertical",
-              overflow: "hidden",
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: 2,
-            }}
-              onClick={handleTooltipOpen}>
+            <Typography
+              sx={{
+                lineHeight: "20px",
+                paddingBottom: "3px",
+                fontSize: "20px",
+                maxLines: 2,
+                textOverflow: "ellipsis",
+                "-webkit-line-clamp": 2,
+                "-webkit-box-orient": "vertical",
+                overflow: "hidden",
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 2,
+              }}
+              onClick={handleTooltipOpen}
+            >
               {t(`${name}`)}
             </Typography>
           </Tooltip>
         </ClickAwayListener>
         {description && (
-          <StyledDescription>
-            {t(`${description}`)}
-          </StyledDescription>
+          <StyledDescription>{t(`${description}`)}</StyledDescription>
         )}
         {itemDetails}
       </Grid>
-      {orderingEnabled && !readonly &&
-        (
-          <Grid item container xs={4}
-            sx={{
-              justifyContent: "end",
-              alignContent: "center",
-              alignItems: "center",
-            }}>
-
-            <StepCount
-              idx={index}
-              value={quantity}
-              onStepValueChange={stepOnChangeHandler}
-              enableDelete
-            />
-
-          </Grid>
-        )
-      }
-    </Grid >);
+      {orderingEnabled && !readonly && (
+        <Grid
+          item
+          container
+          xs={4}
+          sx={{
+            justifyContent: "end",
+            alignContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <StepCount
+            idx={index}
+            value={quantity}
+            onStepValueChange={stepOnChangeHandler}
+            enableDelete
+          />
+        </Grid>
+      )}
+    </Grid>
+  );
 
   return (
     <>
@@ -250,7 +269,7 @@ MenuItem.defaultProps = {
   description: "",
   quantity: 0,
   imageUrl: "",
-  readonly: false
+  readonly: false,
 };
 
 export default React.memo(

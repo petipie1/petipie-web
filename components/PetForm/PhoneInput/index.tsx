@@ -89,8 +89,8 @@ const PhoneInput = ({ icon, isOwner, error, value, name, ...props }: any) => {
               <Image
                 src={selectedCountry?.flag ?? "/albanian.png"}
                 alt="dp"
-                width="32px"
-                height="32px"
+                width={32}
+                height={32}
                 onClick={handleCountryClick}
               />
 
@@ -111,8 +111,8 @@ const PhoneInput = ({ icon, isOwner, error, value, name, ...props }: any) => {
                         <Image
                           alt="flag"
                           src={country.flag}
-                          width="22px"
-                          height="22px"
+                          width={22}
+                          height={22}
                         />
                       </Grid>
                       <Grid item xs>

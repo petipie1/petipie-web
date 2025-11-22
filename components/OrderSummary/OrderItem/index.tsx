@@ -27,9 +27,8 @@ const OrderItem = ({
   quantity,
   price,
   onCountChange,
-  // discount,
-}: any) => {
-
+}: // discount,
+any) => {
   // const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
   // const classes = useStyles();
   const stepOnChangeHandler = useCallback(
@@ -37,26 +36,37 @@ const OrderItem = ({
       onCountChange(newValue);
       // setRowPrice(newValue * price);
     },
-    [onCountChange],
+    [onCountChange]
   );
 
   // const [rowPrice, setRowPrice] = useState(quantity * price);
 
   const memoImage = React.useMemo(
-    () =>
-      <Grid item container sx={{
-        backgroundColor: "#fff", borderRadius: 1.5,
-        marginRight: 1, width: "80px", height: "80px",
-      }}
-        alignItems={"center"} justifyContent="center"
+    () => (
+      <Grid
+        item
+        container
+        sx={{
+          backgroundColor: "#fff",
+          borderRadius: 1.5,
+          marginRight: 1,
+          width: "80px",
+          height: "80px",
+        }}
+        alignItems={"center"}
+        justifyContent="center"
       >
-        <Image alt="" src={imageUrl || "/apple-touch-icon.png"}
-          width={"100%"} height={"100%"}
-          objectFit='contain' style={{ borderRadius: "8%" }}
+        <Image
+          alt=""
+          src={imageUrl || "/apple-touch-icon.png"}
+          width={100}
+          height={100}
+          objectFit="contain"
+          style={{ borderRadius: "8%" }}
         />
       </Grid>
-    ,
-    [imageUrl],
+    ),
+    [imageUrl]
   );
 
   const itemDetails = React.useMemo(() => {
@@ -70,7 +80,7 @@ const OrderItem = ({
           color: "black",
           lineHeight: "16px",
           fontWeight: 600,
-          fontSize: "18px"
+          fontSize: "18px",
         }}
       >
         {caption} lek
@@ -93,33 +103,49 @@ const OrderItem = ({
 
   const content = (
     <Grid padding={1} container direction="row">
-      <Grid item container xs={3}
+      <Grid
+        item
+        container
+        xs={3}
         sx={{
           justifyContent: "center",
           alignContent: "center",
-        }}>
+        }}
+      >
         {memoImage}
       </Grid>
-      <Grid item container xs={5}
+      <Grid
+        item
+        container
+        xs={5}
         direction={"column"}
         sx={{
           justifyContent: "center",
           alignContent: "start",
-        }}>
-        <Typography color="#515075" sx={{
-          lineHeight: "20px", paddingBottom: "3px",
-          fontSize: "20px"
-        }}>
+        }}
+      >
+        <Typography
+          color="#515075"
+          sx={{
+            lineHeight: "20px",
+            paddingBottom: "3px",
+            fontSize: "20px",
+          }}
+        >
           {name}
         </Typography>
         {itemDetails}
       </Grid>
-      <Grid item container xs={4}
+      <Grid
+        item
+        container
+        xs={4}
         sx={{
           justifyContent: "center",
           alignContent: "center",
-          alignItems: "center"
-        }}>
+          alignItems: "center",
+        }}
+      >
         <StepCount
           idx={index}
           value={quantity}
@@ -127,13 +153,10 @@ const OrderItem = ({
           enableDelete
         />
       </Grid>
-    </Grid>);
-
-  return (
-    <>
-      {content}
-    </>
+    </Grid>
   );
+
+  return <>{content}</>;
 };
 
 OrderItem.propTypes = {
@@ -149,7 +172,7 @@ OrderItem.defaultProps = {
   animationDelay: 300,
   description: "",
   quantity: 0,
-  imageUrl: "/coke.png"
+  imageUrl: "/coke.png",
 };
 
 export default React.memo(

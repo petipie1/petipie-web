@@ -33,7 +33,7 @@ const StyledSelect = ({
       position="start"
     >
       {/* {icon} */}
-      <Image src={icon ?? "/ic_dog.png"} alt="dp" width="32px" height="32px" />
+      <Image src={icon ?? "/ic_dog.png"} alt="dp" width={32} height={32} />
     </InputAdornment>
   );
 
