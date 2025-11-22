@@ -5,11 +5,11 @@ __turbopack_load_page_chunks__("/pet/[id]", [
   "static/chunks/cf7c75daec783f25.js",
   "static/chunks/d04469343ed222da.js",
   "static/chunks/db05186a1f6d4183.js",
-  "static/chunks/cb67af710b388118.js",
-  "static/chunks/dee4e39284960959.js",
-  "static/chunks/a0de686577e260a9.js",
+  "static/chunks/77143202154c4c8b.js",
+  "static/chunks/7402153fe356058a.js",
+  "static/chunks/a5eeb0abfcccfa5f.js",
   "static/chunks/55fe84ab5f6c8f95.js",
   "static/chunks/fd9831476aa23345.js",
   "static/chunks/8567d747d0295d7a.css",
-  "static/chunks/turbopack-9199f1156d3e7cd3.js"
+  "static/chunks/turbopack-fb189b180bc11249.js"
 ])

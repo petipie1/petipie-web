@@ -1,6 +1,6 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/18b9d9f383488214.js"
+    "static/chunks/75dee395e147fe9d.js"
   ],
   "/4dbd-9f35-67cce23758ad": [
     "static/chunks/c5a610e5bd031eef.js"
@@ -9,13 +9,13 @@ self.__BUILD_MANIFEST = {
     "static/chunks/818968a8acb67271.js"
   ],
   "/admin": [
-    "static/chunks/ec7a1f8558ed5b2c.js"
+    "static/chunks/ea3af11a79d6cf60.js"
   ],
   "/demo": [
     "static/chunks/1450d9ecae38d98c.js"
   ],
   "/pet/[id]": [
-    "static/chunks/fa53719ece48e7b5.js"
+    "static/chunks/9b3a0cc8475f7717.js"
   ],
   "__rewrites": {
     "afterFiles": [],
