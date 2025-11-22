@@ -1,30 +1,25 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/57e2b743a94286b0.js"
+    "static/chunks/f80d6c46db2e5446.js"
   ],
   "/4dbd-9f35-67cce23758ad": [
-    "static/chunks/591f62b329098051.js"
+    "static/chunks/c5a610e5bd031eef.js"
   ],
   "/_error": [
-    "static/chunks/9f5c532c93bf41da.js"
+    "static/chunks/818968a8acb67271.js"
   ],
   "/admin": [
-    "static/chunks/e8080522d9fd2d36.js"
+    "static/chunks/ec7a1f8558ed5b2c.js"
   ],
   "/demo": [
-    "static/chunks/a2e355bf8f9170d9.js"
+    "static/chunks/1450d9ecae38d98c.js"
   ],
   "/pet/[id]": [
-    "static/chunks/979bdcedf88a82c9.js"
+    "static/chunks/fa53719ece48e7b5.js"
   ],
   "__rewrites": {
     "afterFiles": [],
-    "beforeFiles": [
-      {
-        "source": "/petipie-web//_next/:path+",
-        "destination": "/petipie-web/_next/:path+"
-      }
-    ],
+    "beforeFiles": [],
     "fallback": []
   },
   "sortedPages": [
