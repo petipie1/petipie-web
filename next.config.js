@@ -6,8 +6,8 @@ const nextConfig = {
     domains: ["freepngimg.com", "res.cloudinary.com"],
   },
   output: "export",
-  basePath: "/petipie-web",
-  assetPrefix: "/petipie-web/",
+  basePath: "",
+  assetPrefix: "",
   env: {
     API_BASE_URL: process.env.API_BASE_URL,
     API_KEY: process.env.API_KEY,
