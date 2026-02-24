@@ -37,13 +37,33 @@ const Pet = ({ pet, status }: any) => {
       name: "Vet Clinic",
     },
   };
+
+  const initialDemoData = [
+    {
+      title: "Vaksina anti-parazitar",
+      date: "12 Feb 2026",
+      notes: "Vaksina u be ne mengjes pasi qenushi ishte i pa ushqyer",
+      image: "",
+      opCode: 123456,
+      clinic: "Vet Clinic",
+    },
+  ];
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [addVaccineModalOpen, setAddVaccineModalOpen] = useState(false);
   const [verificationModalOpen, setVerificationModalOpen] = useState(false);
   const [opCodeError, setOpCodeError] = useState<string>("");
 
   const [vaccinesData, setVaccinesData] = useState<any>({
-    data: [],
+    data: [
+      {
+        title: "Vaksina anti-parazitar",
+        date: "12 Feb 2026",
+        notes: "Vaksina u be ne mengjes pasi qenushi ishte i pa ushqyer",
+        image: "",
+        opCode: 123456,
+        clinic: "Vet Clinic",
+      },
+    ],
     open: false,
   });
   const [reminders, setReminders] = useState([]);
@@ -132,7 +152,7 @@ const Pet = ({ pet, status }: any) => {
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
     if (reason === "clickaway") {
       return;
@@ -165,7 +185,7 @@ const Pet = ({ pet, status }: any) => {
       // ]);
       // setVaccinesData({ data: vaccinesData?.data ?? [], open: true });
       // setReminders(remindersData?.data ?? []);
-      setVaccinesData({ data: [], open: true });
+      setVaccinesData({ data: initialDemoData, open: true });
       setReminders([]);
 
       // setLoading(false);

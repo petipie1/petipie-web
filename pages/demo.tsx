@@ -1,170 +1,158 @@
-import React from "react";
-// import AppBar from '@mui/material/AppBar';
-// import { useDispatch, useSelector } from "react-redux";
+// "use client";
+import React, { useState } from "react";
 import type { NextPage } from "next";
-// import Menu from "components/Menu";
-
-// import OrderTotal from "components/OrderTotal";
-// import MenuSlider from "components/MenuSlider";
-// import OrderSummary from "components/OrderSummary";
-// import InfoDialog from "components/InfoDialog";
-// import SearchBox from "components/SearchBox";
-// import { useTranslation } from "react-i18next";
-// import { Avatar, IconButton } from "@mui/material";
-// import Image from "next/image";
 import EmptyView from "components/EmptyView";
+import LoadingIndicator from "components/LoadingIndicator";
+import Pet from "components/Pet";
+import PetForm from "components/PetForm";
+// import { getPet } from "services/apiClient";
+// import { useTranslation } from "react-i18next";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HelpDialog from "components/HelpDialog";
+// import { petResponse } from "common/constants";
+// import { usePet } from "./../../../hooks/usePet";
+import { useRouter } from "next/router";
+import LoadingScreen from "components/LoadingScreen";
+import { usePet } from "hooks/usePet";
+// import LoadingScreen from "../../../components/LoadingScreen";
 
 const MenuPage: NextPage = () => {
-  // const dispatch = useDispatch();
-  // const { t } = useTranslation();
-  // const cart = useSelector((state: any) => state.cart);
+  const [loading, setLoading] = useState(true);
+  const { query } = useRouter();
+  const { id } = query;
 
-  // const [open, setOpen] = useState(!cart?.items);
+  // const { isLoading, data: pet, error } = usePet(id);
 
-  // const onCountChange = React.useCallback(
-  //   (product: any, quantity: number) => {
-  //     dispatch(updateCartItemQuantity({ product, quantity }));
-  //   },
-  //   [dispatch]
-  // );
+  const isLoading = false;
+  const error = "";
 
-  // const onOrderItemCountChange = (product: any, quantity: number) => {
-  //   dispatch(updateCartItemQuantity({ product, quantity }));
-  // };
+  const pet = {
+    Id: "f36a7ba9-afa2-4034-bfc0-82e90f663044",
+    Status: "Active",
+    Affiliate: "",
+    ExternalId: "b6832631-308b-4ef6-a818-09b621d1b69a",
+    SubscriptionEndDate: "",
+    Data: {
+      city: "Tirane",
+      info: "Kthen koken kur e therret",
+      name: "Lana",
+      breed: "Corgi",
+      gender: "Femer",
+      styles: {
+        avatarBg: "Sweet Morning",
+      },
+      orderCode: "111",
+      ownerInfo: {
+        name: "Bernard M",
+        address: "Rr. e Durresit",
+        contact: {
+          email: "petipie1@gmail.com",
+          phone: "+355686284516",
+          whatsapp: "+355686284516",
+          instagram: "petipie.online",
+        },
+      },
+      missingMessage: "Ju lutem kontaktoni sa me shpejte nese e gjeni!",
+      contactUsIntead: false,
+    },
+    CreatedAt: "2023-11-14 18:30:51.350 +0100",
+    UpdatedAt: "2023-11-14 18:30:51.350 +0100",
+  };
 
+  const [dialogOpen, setDialogOpen] = useState(pet?.Status === "New");
+
+  // const { i18n } = useTranslation();
+
+  // const lang = "al"; // ?? pet?.data?.lang ?? "al",
   // useEffect(() => {
-  //   if (!Object.values(cart?.items)?.length) {
-  //     setOpen(false);
+  //   // setMounted(true);
+  //   if (lang) {
+  //     i18n.changeLanguage(lang);
   //   }
-  //   return () => {};
-  // }, [cart?.items]);
+  // }, []);
 
-  // const onMenuClickHandler = ({ url }: any) => scroll(url);
+  // const dateNotPassed =
+  //   new Date(pet.subscriptionEndDate).getTime() > new Date().getTime();
 
-  // const orderTotal = React.useMemo(
-  //   () => calculateCartTotal(cart?.items),
-  //   [cart?.items]
-  // );
+  let alMessage = "";
+  let enMessage = "";
+  if (!pet || error) {
+    alMessage = "Nuk ka te dhena!";
+    enMessage = "(No data found!)";
+  } else if (pet?.Status == "Inactive" || pet?.Status == "Awaiting") {
+    alMessage = "Nuk eshte aktiv!";
+    enMessage = "(Not available!)";
+  }
 
-  // const filterProduct = (name: string, search: string) =>
-  //   name.toLowerCase().includes(search.toLowerCase());
+  // if (!mounted || !id) return <div>Loading...</div>;
 
-  // const handleNoteChange = (event: any) => {
-  //   const note = event.target.value;
-  //   dispatch(updateCartNote({ note }));
-  // };
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
 
-  // const handleCallWaiter = () => {
-  //   setCallWaiterOpen(false);
-  //   setIsWaiterCommingAlertOpen(true);
-  // };
+  if (loading || isLoading) {
+    return <LoadingScreen />;
+  }
 
-  // const orderItems = Object.values(cart?.items);
+  if (alMessage) return <EmptyView alTitle={alMessage} enTitle={enMessage} />;
 
-  // const shouldOpen = useMemo(
-  //   () => Boolean(orderItems?.length && open),
-  //   [orderItems?.length, open]
-  // );
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
 
-  // if (business?.available)
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   return (
-    <EmptyView
-      alTitle="Demo vjen se shpejti :)"
-      enTitle="Demo comming soon :)"
-    />
+    <>
+      <LoadingIndicator isLoading={isLoading} />
+      <div
+        style={{
+          background: "linear-gradient(#FCDF7B, #FF724D)",
+          position: "fixed",
+          zIndex: -1,
+          height: "100%",
+          width: "100%",
+        }}
+      />
+      {/* Info Icon */}
+      <InfoOutlinedIcon
+        sx={{
+          position: "absolute",
+          top: "15px",
+          right: "15px",
+          cursor: "pointer",
+          // opacity: 0.75,
+          color: "white",
+        }}
+        onClick={handleDialogOpen}
+      />
+
+      {/* Help Dialog */}
+      <HelpDialog open={dialogOpen} handleClose={handleDialogClose} />
+
+      {/* Pet info or form */}
+      {pet.Status == "New" ? (
+        <PetForm {...pet} />
+      ) : (
+        <Pet pet={pet.Data} status={pet?.Status} />
+      )}
+    </>
   );
-
-  //   return (
-  //     <>
-  //       <div
-  //         style={{
-  //           background: "linear-gradient(#Ffdd74,white)",
-  //           position: "fixed",
-  //           zIndex: -1,
-  //           height: "100%",
-  //           width: "100%",
-  //         }}
-  //       ></div>
-  //       {/* <SearchBox
-  //         isDemo
-  //         onSearch={handleSearch}
-  //         onIconClick={() => setCallWaiterOpen(true)} /> */}
-
-  //       {/* <MenuSlider
-  //         menuItems={categories}
-  //         onClickHandler={onMenuClickHandler}
-  //         selectedTabUrlValue={"drinks"}
-  //       /> */}
-  //       {/* <Menu
-  //         isDemo
-  //         menu={menu}
-  //         onCountChange={onCountChange}
-  //         cartItems={cart?.items}
-  //       /> */}
-
-  //       <OrderSummary
-  //         shouldOpen={shouldOpen}
-  //         orderItems={orderItems}
-  //         handleNoteChange={handleNoteChange}
-  //         onCountChange={onOrderItemCountChange}
-  //         handleClose={() => setOpen(false)}
-  //         notes={cart?.notes}
-  //       />
-
-  //       <OrderTotal
-  //         total={orderTotal}
-  //         show={!!orderTotal}
-  //         onClick={handleContinue}
-  //         isPopupOpen={open}
-  //       />
-  //       <InfoDialog
-  //         title={t("orderConfirmedTitle")}
-  //         message={t("orderConfirmedMsg")}
-  //         isOpen={isDialogOpen}
-  //         isInfo
-  //         handleClose={() => setIsDialogOpen(false)}
-  //       />
-  //       <InfoDialog
-  //         title={t("oopsTitle")}
-  //         message={t("oopsMsg")}
-  //         isOpen={isAlertOpen}
-  //         isInfo
-  //         handleClose={() => setIsAlertOpen(false)}
-  //       />
-  //       <InfoDialog
-  //         title={t("waiterComingTitle")}
-  //         message={t("waiterComingMsg")}
-  //         isOpen={isWaiterCommingAlertOpen}
-  //         isInfo
-  //         handleClose={() => setIsWaiterCommingAlertOpen(false)}
-  //       />
-  //       <InfoDialog
-  //         title={t("callWaiterTitle")}
-  //         message={t("callWaiterMsg")}
-  //         isOpen={callWaiterOpen}
-  //         handleConfirm={handleCallWaiter}
-  //         handleCancel={() => setCallWaiterOpen(false)}
-  //       />
-  //       <IconButton
-  //         onClick={handleCallWaiter}
-  //         sx={{
-  //           top: "auto",
-  //           right: 25,
-  //           bottom: 35,
-  //           left: "auto",
-  //           position: "fixed",
-  //           boxShadow: "0px 10px 25px 5px rgba(0,0,0,0.4)",
-  //         }}
-  //       >
-  //         <Avatar
-  //           style={{ width: 65, height: 65, margin: -10 }}
-  //           sx={{ backgroundColor: "#020f85" }}
-  //         >
-  //           <Image alt="waiter" src="/waiterrr.png" width={45} height={45} />
-  //         </Avatar>
-  //       </IconButton>
-  //     </>
-  //   );
-  // };
 };
+
 export default MenuPage;
+// export async function getServerSideProps(ctx: any) {
+//   const { id, lang } = ctx.query;
+//   const response = await getPet(id);
+//   const pet = response?.data;
+//   // const pet = petResponse;
+
+//   return {
+//     props: {
+//       pet,
+//       lang: lang ?? pet?.data?.lang ?? "al",
+//     },
+//   };
+// }

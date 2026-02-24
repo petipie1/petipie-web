@@ -33,33 +33,9 @@ const VaccinesModal = ({
 
         <Button
           fullWidth
-          disabled
+          // disabled
           sx={{
             mt: 3,
-            borderRadius: 2,
-            textTransform: "none",
-            fontFamily: "Product Sans",
-            color: "whitesmoke",
-            height: "50px",
-            fontSize: "1.1rem",
-            opacity: 0.2,
-            paddingRight: "1.5rem",
-            paddingLeft: "1.5rem",
-          }}
-          // onClick={handleFetchVaccines}
-          style={{
-            backgroundColor: "black",
-            color: "whitesmoke",
-          }}
-        >
-          {t("addReminder")}
-        </Button>
-        <Button
-          fullWidth
-          disabled
-          sx={{
-            mt: 1,
-            mb: 2,
             borderRadius: 2,
             textTransform: "none",
             fontFamily: "Product Sans",
@@ -73,10 +49,34 @@ const VaccinesModal = ({
           style={{
             backgroundColor: "#2FD9A6",
             color: "whitesmoke",
-            opacity: 0.4,
+            // opacity: 0.4,
           }}
         >
           {t("addVaccine")}
+        </Button>
+        <Button
+          fullWidth
+          // disabled
+          sx={{
+            mt: 1,
+            mb: 2,
+            borderRadius: 2,
+            textTransform: "none",
+            fontFamily: "Product Sans",
+            color: "whitesmoke",
+            height: "50px",
+            fontSize: "1.1rem",
+            // opacity: 0.2,
+            paddingRight: "1.5rem",
+            paddingLeft: "1.5rem",
+          }}
+          // onClick={handleFetchVaccines}
+          style={{
+            backgroundColor: "black",
+            color: "whitesmoke",
+          }}
+        >
+          {t("addReminder")}
         </Button>
       </DialogContent>
       {/* <Button

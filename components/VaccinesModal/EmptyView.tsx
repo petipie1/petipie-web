@@ -16,7 +16,7 @@ const EmptyView = () => (
         Ju nuk keni asnjë vaksinë të ruajtur. <strong>Vetëm</strong> klinikat
         veterinare mund të shtojnë një vaksinë.
       </Typography>
-      <Image alt="empty" src={"/ic_empty.png"} />
+      <Image alt="empty" src={"/ic_empty.png"} width={120} height={120} />
 
       {/* <IconButton
       color="primary"
